@@ -1,36 +1,89 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# V Financial Group — Corporate Landing Page
 
-## Getting Started
+A polished bilingual (Korean / English) corporate landing website for **V Financial Group**, built with Next.js 15, TypeScript, and Tailwind CSS.
 
-First, run the development server:
+## 🚀 Tech Stack
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+- **Framework**: Next.js 15 (App Router)
+- **Language**: TypeScript
+- **Styling**: Tailwind CSS v4
+- **Font**: Geist Sans (via next/font)
+
+## 📁 Project Structure
+
+```
+├── app/
+│   ├── globals.css       # Global styles + design tokens
+│   ├── layout.tsx        # Root layout with metadata
+│   └── page.tsx          # Main page (client, assembles all sections)
+├── components/
+│   ├── Header.tsx        # Sticky bilingual navigation
+│   ├── Footer.tsx        # Footer with contact info
+│   └── sections/
+│       ├── Hero.tsx          # Hero section
+│       ├── GroupIntro.tsx    # Group introduction + stats
+│       ├── BusinessOverview.tsx  # 4 business cards grid
+│       ├── VPaySection.tsx       # V Pay detail
+│       ├── VBazzarSection.tsx    # V Bazzar detail
+│       ├── VPhoneSection.tsx     # V Phone detail
+│       ├── HealthcareSection.tsx # Healthcare detail
+│       ├── Strengths.tsx         # Core strengths (dark section)
+│       └── Contact.tsx           # Contact / CTA section
+├── context/
+│   └── LangContext.tsx   # Language context (KO/EN toggle)
+└── messages/
+    ├── ko.ts             # Korean translations
+    └── en.ts             # English translations
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 🌐 Sections
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+1. **Header** — Sticky nav with smooth scroll + KR/EN toggle
+2. **Hero** — Bold headline, CTA, abstract portfolio visual
+3. **Group Introduction** — Company description + stats
+4. **Business Overview** — 4 business cards grid
+5. **V Pay** — Cross-border digital finance platform
+6. **V Bazzar** — C2C commerce marketplace
+7. **V Phone** — Next-gen digital lifestyle platform
+8. **Healthcare** — SNP-based personalized healthcare
+9. **Core Strengths** — Dark section with 5 differentiators
+10. **Contact** — CTA buttons + address / contact info
+11. **Footer** — Links, copyright, business registration
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 🛠️ Getting Started
 
-## Learn More
+```bash
+npm install
+npm run dev
+```
 
-To learn more about Next.js, take a look at the following resources:
+Open [http://localhost:3000](http://localhost:3000)
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## 📦 Build for Production
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+```bash
+npm run build
+npm run start
+```
 
-## Deploy on Vercel
+## 🌍 Deployment
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+This project is ready for deployment on [Vercel](https://vercel.com):
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+```bash
+npx vercel --prod
+```
+
+Or connect the GitHub repo to Vercel for automatic deployments.
+
+## ✏️ Editing Content
+
+All text content is in:
+- `messages/ko.ts` — Korean
+- `messages/en.ts` — English
+
+Edit translations there to update any text across the site without touching component files.
+
+---
+
+**V Financial Group** | info@vpayv.com | 070-4136-4390
