@@ -5,198 +5,13 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>V Financial Group | 글로벌 금융과 디지털 혁신</title>
 <meta name="description" content="V Financial Group은 V Pay, V Bazzar, V Pawn, Healthcare를 통해 글로벌 금융과 디지털 혁신을 연결하는 미래지향적 기업 포트폴리오 그룹입니다.">
-<meta property="og:title" content="V Financial Group">
-<meta property="og:description" content="Connecting Global Finance and Digital Innovation">
-<meta property="og:type" content="website">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="shared.css">
 <style>
-/* ─── Design Tokens ────────────────────────────────────────── */
-:root {
-  --orange:        #F97316;
-  --orange-dark:   #EA580C;
-  --orange-light:  #FFF7ED;
-  --orange-border: #FED7AA;
-  --s900: #0F172A;
-  --s800: #1E293B;
-  --s700: #334155;
-  --s600: #475569;
-  --s500: #64748B;
-  --s400: #94A3B8;
-  --s300: #CBD5E1;
-  --s200: #E2E8F0;
-  --s100: #F1F5F9;
-  --s50:  #F8FAFC;
-  --white: #FFFFFF;
-  --radius-xl: 24px;
-  --radius-lg: 16px;
-  --radius-md: 12px;
-  --radius-sm: 8px;
-  --shadow-card: 0 1px 3px rgba(0,0,0,0.04), 0 8px 24px rgba(0,0,0,0.07);
-  --shadow-hover: 0 4px 12px rgba(0,0,0,0.08), 0 20px 48px rgba(0,0,0,0.12);
-}
-
-/* ─── Reset ────────────────────────────────────────────────── */
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-html { scroll-behavior: smooth; font-size: 16px; }
-body {
-  font-family: 'Noto Sans KR', 'Inter', -apple-system, sans-serif;
-  background: var(--white);
-  color: var(--s900);
-  -webkit-font-smoothing: antialiased;
-  overflow-x: hidden;
-}
-img { display: block; max-width: 100%; }
-a { text-decoration: none; color: inherit; }
-button { cursor: pointer; border: none; background: none; font-family: inherit; }
-section[id] { scroll-margin-top: 80px; }
-
-/* ─── Utilities ─────────────────────────────────────────────── */
-.container { max-width: 1200px; margin: 0 auto; padding: 0 32px; }
-.section-tag {
-  display: inline-block;
-  color: var(--orange);
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: .2em;
-  text-transform: uppercase;
-}
-.section-title {
-  font-size: clamp(2rem, 4vw, 3rem);
-  font-weight: 800;
-  line-height: 1.1;
-  color: var(--s900);
-  margin-top: 14px;
-}
-.section-sub {
-  font-size: 1.1rem;
-  color: var(--s500);
-  line-height: 1.8;
-  margin-top: 16px;
-}
-.card {
-  background: var(--white);
-  border-radius: var(--radius-xl);
-  border: 1px solid var(--s100);
-  box-shadow: var(--shadow-card);
-  transition: box-shadow .25s, transform .25s;
-}
-.card:hover { box-shadow: var(--shadow-hover); transform: translateY(-3px); }
-.btn-primary {
-  display: inline-flex; align-items: center; gap: 8px;
-  padding: 14px 28px;
-  background: var(--orange);
-  color: var(--white);
-  font-weight: 700; font-size: .95rem;
-  border-radius: var(--radius-lg);
-  transition: background .2s, transform .2s, box-shadow .2s;
-}
-.btn-primary:hover { background: var(--orange-dark); transform: translateY(-2px); box-shadow: 0 8px 20px rgba(249,115,22,.3); }
-.btn-secondary {
-  display: inline-flex; align-items: center; gap: 8px;
-  padding: 14px 28px;
-  background: var(--white);
-  color: var(--s700);
-  font-weight: 700; font-size: .95rem;
-  border-radius: var(--radius-lg);
-  border: 2px solid var(--s200);
-  transition: border-color .2s, background .2s;
-}
-.btn-secondary:hover { border-color: var(--orange); background: var(--orange-light); }
-
-/* ─── NAV ────────────────────────────────────────────────────── */
-#mainNav {
-  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-  transition: background .3s, box-shadow .3s, border-color .3s;
-  border-bottom: 1px solid transparent;
-}
-#mainNav.scrolled {
-  background: rgba(255,255,255,.96);
-  backdrop-filter: blur(16px);
-  box-shadow: 0 1px 0 var(--s100);
-  border-color: var(--s100);
-}
-.nav-inner {
-  display: flex; align-items: center; justify-content: space-between;
-  height: 72px; max-width: 1200px; margin: 0 auto; padding: 0 32px;
-}
-.nav-logo {
-  display: flex; align-items: center; gap: 10px;
-  font-weight: 700; font-size: .95rem; color: var(--s900);
-}
-.logo-mark {
-  width: 36px; height: 36px;
-  background: var(--orange); border-radius: 10px;
-  display: flex; align-items: center; justify-content: center;
-  color: white; font-weight: 800; font-size: 1.1rem;
-  transition: background .2s;
-}
-.nav-logo:hover .logo-mark { background: var(--orange-dark); }
-.nav-links { display: flex; gap: 2px; list-style: none; }
-.nav-links a {
-  display: block; padding: 8px 14px;
-  font-size: .875rem; font-weight: 500; color: var(--s600);
-  border-radius: var(--radius-sm);
-  transition: color .2s, background .2s;
-}
-.nav-links a:hover { color: var(--orange); background: var(--orange-light); }
-.nav-right { display: flex; align-items: center; gap: 10px; }
-.lang-btn {
-  padding: 7px 16px;
-  border: 1.5px solid var(--s200);
-  border-radius: var(--radius-sm);
-  font-size: .8rem; font-weight: 700; color: var(--s600);
-  transition: all .2s;
-}
-.lang-btn:hover { border-color: var(--orange); color: var(--orange); }
-.nav-cta {
-  padding: 9px 20px;
-  background: var(--orange);
-  color: white;
-  font-size: .875rem; font-weight: 700;
-  border-radius: var(--radius-sm);
-  transition: background .2s;
-}
-.nav-cta:hover { background: var(--orange-dark); }
-.hamburger {
-  display: none; flex-direction: column; gap: 5px;
-  padding: 8px; border-radius: var(--radius-sm);
-}
-.hamburger span {
-  display: block; width: 22px; height: 2px;
-  background: var(--s700); border-radius: 2px;
-  transition: all .3s;
-}
-.hamburger.open span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
-.hamburger.open span:nth-child(2) { opacity: 0; }
-.hamburger.open span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
-
-/* Mobile menu */
-#mobileMenu {
-  display: none; position: fixed; top: 72px; left: 0; right: 0; z-index: 99;
-  background: rgba(255,255,255,.98);
-  backdrop-filter: blur(16px);
-  border-bottom: 1px solid var(--s100);
-  flex-direction: column; padding: 16px 24px 24px;
-  box-shadow: 0 8px 32px rgba(0,0,0,.08);
-}
-#mobileMenu.open { display: flex; }
-#mobileMenu a {
-  display: block; padding: 12px 16px;
-  font-size: 1rem; font-weight: 500; color: var(--s700);
-  border-radius: var(--radius-sm);
-  transition: color .2s, background .2s;
-}
-#mobileMenu a:hover { color: var(--orange); background: var(--orange-light); }
-.mobile-actions {
-  display: flex; gap: 10px; margin-top: 12px; padding-top: 12px;
-  border-top: 1px solid var(--s100);
-}
-.mobile-lang { flex: 1; padding: 12px; border: 1.5px solid var(--s200); border-radius: var(--radius-md); font-size: .9rem; font-weight: 700; color: var(--s600); }
-.mobile-cta { flex: 2; padding: 12px; background: var(--orange); color: white; border-radius: var(--radius-md); font-size: .9rem; font-weight: 700; }
-
-/* ─── HERO ───────────────────────────────────────────────────── */
+/* ── INDEX-SPECIFIC ─────────────────────────────────────── */
+/* Hero */
 .hero {
   min-height: 100vh;
   display: flex; align-items: center;
@@ -204,537 +19,432 @@ section[id] { scroll-margin-top: 80px; }
   position: relative; overflow: hidden;
   padding-top: 72px;
 }
-.hero-glow-1 {
-  position: absolute; top: -80px; right: -80px;
-  width: 600px; height: 600px;
-  background: radial-gradient(circle, rgba(249,115,22,.08) 0%, transparent 70%);
+.hero::before {
+  content: '';
+  position: absolute; inset: 0;
+  background:
+    radial-gradient(circle at 65% 40%, rgba(249,115,22,.065) 0%, transparent 55%),
+    radial-gradient(circle at 85% 80%, rgba(249,115,22,.04) 0%, transparent 40%);
   pointer-events: none;
 }
-.hero-glow-2 {
-  position: absolute; bottom: -100px; left: -100px;
-  width: 400px; height: 400px;
-  background: radial-gradient(circle, rgba(241,245,249,.8) 0%, transparent 70%);
+.hero-dots {
+  position: absolute; inset: 0;
+  background-image: radial-gradient(circle, rgba(15,23,42,.055) 1px, transparent 1px);
+  background-size: 32px 32px;
   pointer-events: none;
 }
 .hero-inner {
   display: grid; grid-template-columns: 1fr 1fr;
-  gap: 80px; align-items: center;
+  gap: 64px; align-items: center;
   padding: 80px 0;
 }
-.hero-eyebrow {
+/* Hero text */
+.hero-badge {
   display: inline-flex; align-items: center; gap: 8px;
-  background: var(--orange-light);
-  border: 1px solid var(--orange-border);
-  border-radius: 999px;
-  padding: 6px 16px;
-  margin-bottom: 28px;
+  background: var(--orange-light); border: 1px solid var(--orange-border);
+  border-radius: 999px; padding: 7px 16px; margin-bottom: 28px;
+  animation: fadeInUp .6s ease both;
 }
-.hero-eyebrow-dot {
-  width: 6px; height: 6px; border-radius: 50%;
-  background: var(--orange);
-  animation: pulse 2s infinite;
-}
-@keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:.4;transform:scale(1.5)} }
-.hero-eyebrow-text { font-size: .8rem; font-weight: 700; color: var(--orange-dark); }
+.hero-badge-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--orange); animation: dotPulse 2s infinite; }
+.hero-badge-text { font-size: .78rem; font-weight: 700; color: var(--orange-dark); letter-spacing: .06em; }
 .hero-title {
-  font-size: clamp(2.6rem, 5vw, 4.2rem);
-  font-weight: 800; line-height: 1.06;
-  color: var(--s900); margin-bottom: 20px;
+  font-size: clamp(2.6rem, 5.5vw, 4.4rem);
+  font-weight: 800; line-height: 1.07;
+  color: var(--s900);
+  margin-bottom: 20px;
+  animation: fadeInUp .65s .1s ease both;
 }
+.hero-title span { color: var(--orange); }
 .hero-sub {
   font-size: 1.1rem; color: var(--s500);
-  line-height: 1.8; margin-bottom: 40px;
+  line-height: 1.8; max-width: 500px;
+  margin-bottom: 36px;
+  animation: fadeInUp .65s .2s ease both;
 }
-.hero-btns { display: flex; gap: 14px; flex-wrap: wrap; margin-bottom: 40px; }
-.hero-badges { display: flex; gap: 20px; flex-wrap: wrap; }
-.hero-badge {
-  display: flex; align-items: center; gap: 6px;
-  font-size: .8rem; color: var(--s500); font-weight: 500;
+.hero-btns {
+  display: flex; gap: 14px; flex-wrap: wrap;
+  animation: fadeInUp .65s .3s ease both;
 }
-.hero-badge-dot { width: 5px; height: 5px; border-radius: 50%; background: var(--orange); }
+.hero-mini-stats {
+  display: flex; gap: 28px; margin-top: 40px;
+  animation: fadeInUp .65s .4s ease both;
+}
+.mini-stat-val { font-size: 1.5rem; font-weight: 800; color: var(--s900); }
+.mini-stat-val span { color: var(--orange); }
+.mini-stat-lbl { font-size: .72rem; color: var(--s500); margin-top: 2px; font-weight: 500; }
 
 /* Hero Visual */
-.hero-visual { position: relative; }
+.hero-visual { animation: fadeIn .8s .3s ease both; }
 .hero-card {
-  background: var(--s900); border-radius: 28px;
-  padding: 32px; overflow: hidden; position: relative;
-  box-shadow: 0 24px 64px rgba(15,23,42,.3);
-}
-.hero-card-top {
-  position: absolute; top: 0; left: 0; right: 0; height: 3px;
-  background: linear-gradient(90deg, var(--orange), #fb923c, var(--orange));
-}
-.hero-card-header {
-  display: flex; align-items: center; justify-content: space-between; margin-bottom: 24px;
-}
-.hero-card-logo { display: flex; align-items: center; gap: 8px; }
-.hero-card-logo-mark {
-  width: 26px; height: 26px; background: var(--orange);
-  border-radius: 8px; display: flex; align-items: center;
-  justify-content: center; color: white; font-weight: 800; font-size: .85rem;
-}
-.hero-card-logo-text { color: rgba(255,255,255,.8); font-size: .85rem; font-weight: 600; }
-.hero-live {
-  display: flex; align-items: center; gap: 5px;
-  font-size: .7rem; color: var(--s400);
-}
-.live-dot { width: 6px; height: 6px; border-radius: 50%; background: #4ade80; }
-.biz-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
-.biz-mini-card {
-  background: rgba(255,255,255,.05); border: 1px solid rgba(255,255,255,.08);
-  border-radius: 16px; padding: 16px;
-  transition: border-color .2s, background .2s;
-}
-.biz-mini-card:hover { border-color: rgba(249,115,22,.3); background: rgba(249,115,22,.04); }
-.biz-mini-icon {
-  width: 32px; height: 32px; background: rgba(249,115,22,.15);
-  border-radius: 10px; display: flex; align-items: center;
-  justify-content: center; font-size: 1rem; margin-bottom: 10px;
-}
-.biz-mini-name { color: white; font-size: .8rem; font-weight: 700; margin-bottom: 2px; }
-.biz-mini-sub { color: var(--s400); font-size: .65rem; }
-.biz-mini-line {
-  margin-top: 10px; height: 1.5px;
-  background: linear-gradient(90deg, rgba(249,115,22,.4), transparent);
-}
-.hero-float-badge {
-  position: absolute; top: -16px; right: -16px;
-  background: var(--orange); color: white;
-  font-size: .75rem; font-weight: 800;
-  padding: 8px 16px; border-radius: 14px;
-  box-shadow: 0 4px 16px rgba(249,115,22,.4);
-}
-
-/* ─── ABOUT ──────────────────────────────────────────────────── */
-.about-section { padding: 100px 0; background: var(--s50); }
-.about-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center; }
-.about-divider { height: 1.5px; background: linear-gradient(90deg, var(--orange-border), transparent); margin-top: 32px; }
-.about-right { display: flex; flex-direction: column; gap: 14px; }
-.stats-row { display: grid; grid-template-columns: repeat(3,1fr); gap: 12px; }
-.stat-card {
-  background: var(--white); border-radius: var(--radius-lg);
-  border: 1px solid var(--s100); box-shadow: var(--shadow-card);
-  padding: 24px 16px; text-align: center;
-  transition: box-shadow .2s, transform .2s;
-}
-.stat-card:hover { box-shadow: var(--shadow-hover); transform: translateY(-2px); }
-.stat-val { font-size: 1.8rem; font-weight: 800; color: var(--orange); }
-.stat-label { font-size: .8rem; color: var(--s500); margin-top: 4px; font-weight: 500; }
-.about-panel {
-  background: var(--s900); border-radius: var(--radius-xl); padding: 24px;
-  position: relative; overflow: hidden;
-}
-.about-panel-top { position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, var(--orange), #fb923c); }
-.about-panel-logo { display: flex; align-items: center; gap: 8px; margin-bottom: 12px; }
-.about-panel-mark { width: 26px; height: 26px; background: var(--orange); border-radius: 8px; display: flex; align-items: center; justify-content: center; color: white; font-weight: 800; font-size: .85rem; }
-.about-panel-text { color: rgba(255,255,255,.75); font-size: .85rem; font-weight: 600; }
-.about-panel-sub { color: var(--s500); font-size: .85rem; margin-bottom: 14px; }
-.about-tags { display: flex; gap: 8px; flex-wrap: wrap; }
-.about-tag { font-size: .75rem; padding: 5px 12px; border-radius: 8px; background: var(--s800); color: var(--s300); border: 1px solid var(--s700); }
-
-/* ─── BUSINESS OVERVIEW ─────────────────────────────────────── */
-.overview-section { padding: 100px 0; background: var(--white); }
-.overview-header { text-align: center; margin-bottom: 56px; }
-.overview-header .section-sub { max-width: 560px; margin: 16px auto 0; }
-.biz-cards { display: grid; grid-template-columns: repeat(2,1fr); gap: 24px; }
-.biz-card { padding: 36px; position: relative; }
-.biz-card-topbar {
-  position: absolute; top: 0; left: 0; right: 0;
-  height: 3px; border-radius: var(--radius-xl) var(--radius-xl) 0 0;
-}
-.biz-card-header { display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 20px; }
-.biz-tag {
-  font-size: .7rem; font-weight: 700; letter-spacing: .1em;
-  padding: 5px 12px; border-radius: 8px; border: 1px solid;
-}
-.biz-tag-0 { color: #EA580C; background: var(--orange-light); border-color: var(--orange-border); }
-.biz-tag-1 { color: #1D4ED8; background: #EFF6FF; border-color: #BFDBFE; }
-.biz-tag-2 { color: #7C3AED; background: #F5F3FF; border-color: #DDD6FE; }
-.biz-tag-3 { color: #059669; background: #ECFDF5; border-color: #A7F3D0; }
-.biz-icon {
-  width: 48px; height: 48px; border-radius: 14px;
-  background: var(--s50); border: 1px solid var(--s100);
-  display: flex; align-items: center; justify-content: center;
-  font-size: 1.4rem;
-  transition: background .2s, border-color .2s;
-}
-.biz-card:hover .biz-icon { background: var(--orange-light); border-color: var(--orange-border); }
-.biz-card-title { font-size: 1.4rem; font-weight: 800; color: var(--s900); margin-bottom: 8px; }
-.biz-card-desc { font-size: .875rem; color: var(--s500); line-height: 1.7; margin-bottom: 20px; }
-.biz-points { list-style: none; display: flex; flex-direction: column; gap: 10px; margin-bottom: 28px; }
-.biz-point { display: flex; align-items: center; gap: 10px; font-size: .85rem; color: var(--s600); font-weight: 500; }
-.biz-check {
-  width: 18px; height: 18px; border-radius: 50%;
-  background: rgba(249,115,22,.1);
-  display: flex; align-items: center; justify-content: center;
-  flex-shrink: 0;
-}
-.biz-check svg { width: 10px; height: 10px; stroke: var(--orange); stroke-width: 2.5; fill: none; }
-.biz-link {
-  display: inline-flex; align-items: center; gap: 6px;
-  color: var(--orange); font-weight: 700; font-size: .875rem;
-  transition: gap .2s;
-}
-.biz-link:hover { gap: 10px; }
-.biz-link svg { width: 14px; height: 14px; stroke: var(--orange); stroke-width: 2.5; fill: none; }
-
-/* ─── BUSINESS DETAIL SECTIONS ──────────────────────────────── */
-.biz-section { padding: 100px 0; }
-.biz-section-bg-light { background: var(--s50); }
-.biz-section-bg-white { background: var(--white); }
-.biz-detail { display: grid; grid-template-columns: 1fr 1fr; gap: 72px; align-items: center; }
-.biz-detail.reverse .biz-visual-wrap { order: -1; }
-.biz-content .section-title { font-size: clamp(1.8rem, 3.5vw, 2.6rem); margin-top: 14px; margin-bottom: 20px; }
-.biz-desc { font-size: .975rem; color: var(--s500); line-height: 1.85; margin-bottom: 36px; }
-.features { display: flex; flex-direction: column; gap: 20px; }
-.feature { display: flex; gap: 16px; }
-.feature-icon {
-  width: 40px; height: 40px; border-radius: 12px;
-  background: rgba(249,115,22,.1);
-  display: flex; align-items: center; justify-content: center;
-  flex-shrink: 0; margin-top: 2px;
-}
-.feature-icon svg { width: 18px; height: 18px; stroke: var(--orange); stroke-width: 2; fill: none; }
-.feature-title { font-size: 1rem; font-weight: 700; color: var(--s900); margin-bottom: 4px; }
-.feature-desc { font-size: .875rem; color: var(--s500); line-height: 1.7; }
-
-/* ─── Dark Visual Cards ──────────────────────────────────────── */
-.dark-visual {
-  background: var(--s900); border-radius: 28px;
-  overflow: hidden; position: relative;
-  box-shadow: 0 24px 64px rgba(15,23,42,.28);
-}
-.dark-visual-top { height: 3px; background: linear-gradient(90deg, var(--orange), #fb923c, var(--orange)); }
-.dark-visual-inner { padding: 28px; }
-.dv-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 24px; }
-.dv-brand { display: flex; align-items: center; gap: 8px; }
-.dv-brand-mark { width: 26px; height: 26px; background: var(--orange); border-radius: 8px; display: flex; align-items: center; justify-content: center; color: white; font-weight: 800; font-size: .8rem; }
-.dv-brand-name { color: rgba(255,255,255,.85); font-size: .85rem; font-weight: 700; }
-.dv-badge {
-  font-size: .65rem; font-weight: 700;
-  padding: 4px 10px; border-radius: 20px;
-  background: rgba(249,115,22,.15);
-  color: #fb923c;
-  border: 1px solid rgba(249,115,22,.25);
-}
-.dv-float {
-  position: absolute; top: -14px; right: -14px;
-  background: var(--orange); color: white;
-  font-size: .7rem; font-weight: 800;
-  padding: 6px 14px; border-radius: 12px;
-  box-shadow: 0 4px 16px rgba(249,115,22,.35);
-}
-
-/* V Pay visual */
-.transfer-pair { display: flex; align-items: center; gap: 14px; margin-bottom: 20px; }
-.transfer-box { flex: 1; background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.08); border-radius: 14px; padding: 14px; }
-.transfer-label { font-size: .65rem; color: var(--s400); margin-bottom: 4px; }
-.transfer-amount { font-size: 1.2rem; font-weight: 800; color: white; }
-.transfer-amount.recv { color: #fb923c; }
-.transfer-country { font-size: .7rem; color: var(--s400); margin-top: 4px; }
-.transfer-arrow-box { display: flex; flex-direction: column; align-items: center; gap: 4px; }
-.transfer-arrow-circle { width: 30px; height: 30px; background: rgba(249,115,22,.15); border-radius: 50%; display: flex; align-items: center; justify-content: center; }
-.transfer-arrow-circle svg { width: 14px; height: 14px; stroke: #fb923c; stroke-width: 2.5; fill: none; }
-.transfer-speed { font-size: .6rem; color: #fb923c; font-weight: 700; }
-.transfer-bar-wrap { margin-bottom: 20px; }
-.transfer-bar-track { height: 6px; background: rgba(255,255,255,.06); border-radius: 3px; overflow: hidden; }
-.transfer-bar-fill { height: 100%; width: 75%; background: linear-gradient(90deg, var(--orange), #fb923c); border-radius: 3px; }
-.transfer-bar-labels { display: flex; justify-content: space-between; margin-top: 6px; }
-.transfer-bar-labels span { font-size: .65rem; color: var(--s500); }
-.transfer-bar-labels strong { font-size: .65rem; color: #fb923c; }
-.transfer-stats { display: grid; grid-template-columns: repeat(3,1fr); gap: 8px; }
-.transfer-stat { background: rgba(255,255,255,.04); border: 1px solid rgba(255,255,255,.06); border-radius: 10px; padding: 10px 8px; text-align: center; }
-.transfer-stat-val { font-size: .9rem; font-weight: 800; color: #fb923c; }
-.transfer-stat-label { font-size: .6rem; color: var(--s500); margin-top: 2px; }
-
-/* V Bazzar visual */
-.bazzar-items { display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; }
-.bazzar-item { background: rgba(255,255,255,.05); border: 1px solid rgba(255,255,255,.07); border-radius: 14px; padding: 12px 14px; display: flex; align-items: center; gap: 12px; transition: border-color .2s; }
-.bazzar-item:hover { border-color: rgba(249,115,22,.25); }
-.bazzar-emoji { width: 42px; height: 42px; background: rgba(255,255,255,.06); border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; flex-shrink: 0; }
-.bazzar-info { flex: 1; min-width: 0; }
-.bazzar-name { color: white; font-size: .85rem; font-weight: 700; }
-.bazzar-seller { color: var(--s400); font-size: .7rem; }
-.bazzar-right { text-align: right; }
-.bazzar-price { color: #fb923c; font-size: .875rem; font-weight: 800; }
-.bazzar-status { font-size: .6rem; color: #4ade80; margin-top: 2px; }
-.bazzar-footer { display: grid; grid-template-columns: repeat(3,1fr); gap: 8px; }
-.bazzar-badge { background: rgba(255,255,255,.04); border: 1px solid rgba(255,255,255,.06); border-radius: 10px; padding: 10px 8px; text-align: center; }
-.bazzar-badge-icon { font-size: 1rem; margin-bottom: 4px; }
-.bazzar-badge-label { font-size: .6rem; color: var(--s500); }
-
-/* V Pawn visual */
-.pawn-header-info { display: flex; align-items: center; gap: 8px; }
-.pawn-rating { background: rgba(249,115,22,.15); border: 1px solid rgba(249,115,22,.25); border-radius: 20px; padding: 3px 10px; font-size: .65rem; font-weight: 700; color: #fb923c; }
-.pawn-assets { display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; }
-.pawn-asset { background: rgba(255,255,255,.05); border: 1px solid rgba(255,255,255,.07); border-radius: 14px; padding: 12px 14px; display: flex; align-items: center; gap: 12px; }
-.pawn-asset-icon { width: 38px; height: 38px; background: rgba(249,115,22,.12); border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 1.1rem; flex-shrink: 0; }
-.pawn-asset-info { flex: 1; }
-.pawn-asset-name { color: white; font-size: .82rem; font-weight: 700; }
-.pawn-asset-val { color: var(--s400); font-size: .7rem; margin-top: 1px; }
-.pawn-asset-badge { font-size: .6rem; font-weight: 700; padding: 3px 8px; border-radius: 6px; background: rgba(74,222,128,.1); color: #4ade80; border: 1px solid rgba(74,222,128,.2); }
-.pawn-summary { background: rgba(249,115,22,.08); border: 1px solid rgba(249,115,22,.2); border-radius: 14px; padding: 16px; display: flex; justify-content: space-between; align-items: center; }
-.pawn-summary-label { font-size: .75rem; color: var(--s400); }
-.pawn-summary-val { font-size: 1.3rem; font-weight: 800; color: #fb923c; }
-
-/* Healthcare visual */
-.dna-row { display: flex; justify-content: space-between; align-items: center; height: 50px; margin-bottom: 20px; position: relative; }
-.dna-row::before { content: ''; position: absolute; left: 0; right: 0; top: 50%; height: 1px; background: rgba(255,255,255,.08); }
-.dna-node { display: flex; flex-direction: column; align-items: center; gap: 0; position: relative; z-index: 1; }
-.dna-top { width: 10px; height: 10px; border-radius: 50%; }
-.dna-stem { width: 1px; height: 20px; }
-.dna-bot { width: 10px; height: 10px; border-radius: 50%; }
-.hc-metrics { display: flex; flex-direction: column; gap: 10px; }
-.hc-metric { background: rgba(255,255,255,.05); border: 1px solid rgba(255,255,255,.07); border-radius: 14px; padding: 12px 14px; display: flex; align-items: center; justify-content: space-between; }
-.hc-metric-label { color: var(--s400); font-size: .75rem; }
-.hc-metric-val { color: white; font-size: 1rem; font-weight: 800; }
-.hc-metric-badge { background: rgba(249,115,22,.15); border-radius: 8px; padding: 3px 8px; color: #fb923c; font-size: .65rem; font-weight: 700; }
-
-/* ─── STRENGTHS ──────────────────────────────────────────────── */
-.strengths-section {
-  padding: 100px 0;
   background: var(--s900);
-  position: relative; overflow: hidden;
+  border-radius: 28px;
+  overflow: hidden;
+  box-shadow: 0 32px 80px rgba(15,23,42,.2);
+  animation: float 6s ease-in-out infinite;
 }
-.strengths-bg-glow-1 { position: absolute; top: -100px; right: -100px; width: 400px; height: 400px; background: radial-gradient(circle, rgba(249,115,22,.06) 0%, transparent 70%); pointer-events: none; }
-.strengths-bg-glow-2 { position: absolute; bottom: -80px; left: -80px; width: 350px; height: 350px; background: radial-gradient(circle, rgba(249,115,22,.04) 0%, transparent 70%); pointer-events: none; }
-.strengths-bg-dots { position: absolute; inset: 0; background-image: radial-gradient(circle, rgba(255,255,255,.03) 1px, transparent 1px); background-size: 28px 28px; pointer-events: none; }
-.strengths-header { text-align: center; margin-bottom: 56px; }
-.strengths-header .section-tag { color: #fb923c; }
-.strengths-header .section-title { color: white; }
-.strengths-header .section-sub { color: var(--s400); max-width: 560px; margin: 16px auto 0; }
-.strengths-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 20px; }
-.strength-card {
-  background: rgba(255,255,255,.03);
-  border: 1px solid rgba(255,255,255,.06);
-  border-radius: var(--radius-xl); padding: 32px;
-  position: relative; overflow: hidden;
-  transition: background .25s, border-color .25s;
+.hero-card-top { height: 3px; background: linear-gradient(90deg, var(--orange), #fb923c, var(--orange)); background-size: 200% 100%; animation: shimmer 3s linear infinite; }
+.hero-card-inner { padding: 28px; }
+.hc-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 24px; }
+.hc-brand { display: flex; align-items: center; gap: 10px; }
+.hc-brand-mark { width: 28px; height: 28px; background: var(--orange); border-radius: 8px; display: flex; align-items: center; justify-content: center; color: white; font-weight: 800; font-size: .85rem; }
+.hc-brand-name { color: white; font-weight: 700; font-size: .9rem; }
+.hc-live { display: flex; align-items: center; gap: 6px; font-size: .68rem; color: #4ade80; font-weight: 600; }
+.hc-live-dot { width: 6px; height: 6px; border-radius: 50%; background: #4ade80; animation: dotPulse 1.5s infinite; }
+.biz-items { display: flex; flex-direction: column; gap: 10px; }
+.biz-item {
+  display: flex; align-items: center; gap: 12px;
+  background: rgba(255,255,255,.055); border: 1px solid rgba(255,255,255,.07);
+  border-radius: 14px; padding: 13px 14px;
+  transition: border-color .25s, background .25s;
+  cursor: default;
 }
-.strength-card:hover { background: rgba(255,255,255,.06); border-color: rgba(249,115,22,.2); }
-.strength-card-top { position: absolute; top: 0; left: 32px; right: 32px; height: 1px; background: linear-gradient(90deg, transparent, rgba(249,115,22,.25), transparent); transition: opacity .25s; }
-.strength-card:hover .strength-card-top { opacity: 1.5; }
-.strength-card-num { font-size: .7rem; font-family: monospace; letter-spacing: .15em; color: var(--s600); margin-bottom: 12px; }
-.strength-icon {
-  width: 48px; height: 48px; border-radius: 14px;
-  background: rgba(249,115,22,.08);
-  display: flex; align-items: center; justify-content: center;
-  font-size: 1.3rem; margin-bottom: 20px;
-  transition: background .2s;
+.biz-item:hover { border-color: rgba(249,115,22,.3); background: rgba(249,115,22,.05); }
+.biz-item-icon { width: 38px; height: 38px; border-radius: 10px; background: rgba(249,115,22,.12); display: flex; align-items: center; justify-content: center; font-size: 1.1rem; flex-shrink: 0; }
+.biz-item-main { flex: 1; }
+.biz-item-title { color: white; font-size: .85rem; font-weight: 700; }
+.biz-item-desc { color: var(--s500); font-size: .7rem; margin-top: 1px; }
+.biz-item-right { text-align: right; }
+.biz-item-tag { font-size: .62rem; padding: 2px 8px; border-radius: 8px; font-weight: 700; }
+.tag-orange { background: rgba(249,115,22,.15); color: #fb923c; }
+.tag-green  { background: rgba(74,222,128,.12); color: #4ade80; }
+.tag-blue   { background: rgba(96,165,250,.12); color: #60a5fa; }
+.tag-purple { background: rgba(167,139,250,.12); color: #a78bfa; }
+.biz-item-sub { font-size: .6rem; color: var(--s600); margin-top: 2px; }
+
+/* About */
+.about-section { padding: 120px 0; background: var(--s50); }
+.about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+.about-badge { display: inline-block; color: var(--orange); font-size: .7rem; font-weight: 700; letter-spacing: .2em; text-transform: uppercase; margin-bottom: 16px; }
+.about-title { font-size: clamp(2rem, 3.5vw, 2.9rem); font-weight: 800; line-height: 1.1; color: var(--s900); margin-bottom: 20px; }
+.about-p { font-size: .95rem; color: var(--s600); line-height: 1.85; margin-bottom: 14px; }
+.about-stats { display: grid; grid-template-columns: repeat(2,1fr); gap: 16px; margin-top: 36px; }
+.astat-card { background: white; border: 1px solid var(--s100); border-radius: var(--r-lg); padding: 20px; box-shadow: var(--shadow); text-align: center; transition: box-shadow .25s, transform .25s; }
+.astat-card:hover { box-shadow: var(--shadow-h); transform: translateY(-3px); }
+.astat-val { font-size: 2rem; font-weight: 800; color: var(--orange); }
+.astat-label { font-size: .8rem; color: var(--s500); margin-top: 4px; font-weight: 500; }
+.about-dark-panel {
+  background: var(--s900); border-radius: 28px; padding: 32px;
+  box-shadow: 0 24px 60px rgba(15,23,42,.2);
 }
-.strength-card:hover .strength-icon { background: rgba(249,115,22,.16); }
-.strength-title { font-size: 1.05rem; font-weight: 700; color: white; margin-bottom: 10px; }
-.strength-desc { font-size: .875rem; color: var(--s400); line-height: 1.7; }
+.adp-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 22px; }
+.adp-title { color: white; font-weight: 700; font-size: .95rem; }
+.adp-badge { font-size: .65rem; font-weight: 700; padding: 4px 10px; border-radius: 20px; background: rgba(74,222,128,.12); color: #4ade80; border: 1px solid rgba(74,222,128,.22); }
+.adp-rows { display: flex; flex-direction: column; gap: 12px; }
+.adp-row { display: flex; align-items: center; justify-content: space-between; padding: 12px 14px; background: rgba(255,255,255,.04); border: 1px solid rgba(255,255,255,.06); border-radius: 12px; }
+.adp-row-left { display: flex; align-items: center; gap: 10px; }
+.adp-icon { font-size: 1.1rem; }
+.adp-lbl { color: rgba(255,255,255,.7); font-size: .82rem; font-weight: 600; }
+.adp-val { color: var(--orange); font-weight: 800; font-size: .9rem; }
+.adp-bar-row { margin-top: 20px; }
+.adp-bar-label { display: flex; justify-content: space-between; color: var(--s400); font-size: .72rem; margin-bottom: 6px; }
 
-/* ─── CONTACT ────────────────────────────────────────────────── */
-.contact-section { padding: 100px 0; background: var(--s50); }
-.contact-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 72px; align-items: start; }
-.contact-title { font-size: clamp(2rem, 4vw, 2.8rem); font-weight: 800; color: var(--s900); line-height: 1.15; margin-top: 14px; margin-bottom: 16px; }
-.contact-desc { font-size: 1rem; color: var(--s500); line-height: 1.8; margin-bottom: 36px; }
-.contact-btns { display: flex; flex-direction: column; gap: 12px; margin-bottom: 32px; }
-.contact-btn-row { display: flex; gap: 12px; }
-.biz-reg { display: inline-flex; align-items: center; gap: 8px; font-size: .82rem; color: var(--s400); background: var(--white); border: 1px solid var(--s100); border-radius: var(--radius-md); padding: 10px 16px; }
-.biz-reg svg { width: 14px; height: 14px; stroke: var(--orange); stroke-width: 2; fill: none; }
-.info-cards { display: flex; flex-direction: column; gap: 14px; }
-.info-card { background: var(--white); border: 1px solid var(--s100); border-radius: var(--radius-lg); padding: 20px; display: flex; gap: 16px; transition: border-color .2s, background .2s; }
-.info-card:hover { border-color: var(--orange-border); background: var(--orange-light); }
-.info-icon { width: 40px; height: 40px; background: rgba(249,115,22,.1); border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 1.1rem; flex-shrink: 0; }
-.info-label { font-size: .72rem; color: var(--s400); font-weight: 600; margin-bottom: 4px; text-transform: uppercase; letter-spacing: .08em; }
-.info-value { font-size: .9rem; font-weight: 700; color: var(--s900); }
-.info-sub { font-size: .8rem; color: var(--s500); margin-top: 3px; line-height: 1.5; }
+/* Business Overview */
+.biz-section { padding: 120px 0; background: white; }
+.biz-header { text-align: center; max-width: 640px; margin: 0 auto 64px; }
+.biz-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 24px; }
+.biz-card {
+  border-radius: var(--r-xl); overflow: hidden;
+  border: 1px solid var(--s100);
+  box-shadow: var(--shadow);
+  transition: box-shadow .35s cubic-bezier(.16,1,.3,1), transform .35s cubic-bezier(.16,1,.3,1), border-color .35s;
+  background: white;
+  display: flex; flex-direction: column;
+}
+.biz-card:hover { box-shadow: var(--shadow-h); transform: translateY(-6px); border-color: var(--orange-border); }
+.biz-card-top { height: 4px; }
+.biz-card-top.orange { background: linear-gradient(90deg, var(--orange), #fb923c); }
+.biz-card-top.slate { background: linear-gradient(90deg, #334155, #64748b); }
+.biz-card-top.amber { background: linear-gradient(90deg, #d97706, #f59e0b); }
+.biz-card-top.teal { background: linear-gradient(90deg, #0d9488, #14b8a6); }
+.biz-card-body { padding: 32px; flex: 1; }
+.biz-card-icon { width: 56px; height: 56px; border-radius: 18px; display: flex; align-items: center; justify-content: center; font-size: 1.6rem; margin-bottom: 20px; }
+.icon-orange { background: rgba(249,115,22,.1); }
+.icon-slate  { background: rgba(51,65,85,.08); }
+.icon-amber  { background: rgba(217,119,6,.08); }
+.icon-teal   { background: rgba(13,148,136,.08); }
+.biz-card-name { font-size: 1.5rem; font-weight: 800; color: var(--s900); margin-bottom: 8px; }
+.biz-card-desc { font-size: .9rem; color: var(--s600); line-height: 1.75; margin-bottom: 20px; }
+.biz-card-points { display: flex; flex-direction: column; gap: 7px; margin-bottom: 24px; }
+.biz-card-point { display: flex; align-items: center; gap: 8px; font-size: .82rem; color: var(--s600); }
+.bcp-dot { width: 5px; height: 5px; border-radius: 50%; background: var(--orange); flex-shrink: 0; }
+.biz-card-link {
+  display: inline-flex; align-items: center; gap: 6px;
+  font-size: .85rem; font-weight: 700; color: var(--orange);
+  padding: 10px 18px; border-radius: var(--r-md);
+  border: 1.5px solid var(--orange-border);
+  background: var(--orange-light);
+  transition: background .2s, border-color .2s, transform .2s, box-shadow .2s;
+  width: fit-content;
+}
+.biz-card-link:hover { background: var(--orange); color: white; border-color: var(--orange); transform: translateX(3px); box-shadow: 0 4px 12px rgba(249,115,22,.25); }
+.arrow { display: inline-block; transition: transform .25s; }
+.biz-card-link:hover .arrow { transform: translateX(4px); }
 
-/* ─── FOOTER ─────────────────────────────────────────────────── */
-footer { background: var(--s900); padding: 64px 0 32px; }
-.footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 48px; margin-bottom: 48px; }
-.footer-logo { display: flex; align-items: center; gap: 10px; margin-bottom: 16px; }
-.footer-logo-mark { width: 34px; height: 34px; background: var(--orange); border-radius: 10px; display: flex; align-items: center; justify-content: center; color: white; font-weight: 800; font-size: 1rem; }
-.footer-logo-text { color: white; font-weight: 700; font-size: .95rem; }
-.footer-desc { font-size: .85rem; color: var(--s500); line-height: 1.75; max-width: 280px; margin-bottom: 20px; }
-.footer-contact-info { display: flex; flex-direction: column; gap: 6px; }
-.footer-contact-info a, .footer-contact-info span { font-size: .82rem; color: var(--s500); transition: color .2s; }
-.footer-contact-info a:hover { color: white; }
-.footer-col h5 { font-size: .72rem; font-weight: 700; color: var(--s400); letter-spacing: .12em; text-transform: uppercase; margin-bottom: 16px; }
-.footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
-.footer-col ul li a { font-size: .85rem; color: var(--s500); transition: color .2s; }
-.footer-col ul li a:hover { color: white; }
-.footer-bottom { border-top: 1px solid rgba(255,255,255,.06); padding-top: 24px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; }
-.footer-copy { font-size: .8rem; color: var(--s600); }
-.footer-biz { font-size: .75rem; color: var(--s700); }
+/* Strengths */
+.str-section { padding: 120px 0; background: var(--s900); position: relative; overflow: hidden; }
+.str-section::before {
+  content: '';
+  position: absolute; inset: 0;
+  background-image: radial-gradient(circle, rgba(255,255,255,.03) 1px, transparent 1px);
+  background-size: 28px 28px;
+  pointer-events: none;
+}
+.str-section::after {
+  content: '';
+  position: absolute; inset: 0;
+  background: radial-gradient(circle at 50% 30%, rgba(249,115,22,.06) 0%, transparent 60%);
+  pointer-events: none;
+}
+.str-header { text-align: center; max-width: 640px; margin: 0 auto 64px; position: relative; z-index: 1; }
+.str-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 20px; position: relative; z-index: 1; }
+.str-card {
+  background: rgba(255,255,255,.045); border: 1px solid rgba(255,255,255,.07);
+  border-radius: var(--r-xl); padding: 32px;
+  transition: border-color .25s, background .25s, transform .3s cubic-bezier(.16,1,.3,1), box-shadow .3s;
+}
+.str-card:hover { border-color: rgba(249,115,22,.35); background: rgba(249,115,22,.05); transform: translateY(-5px); box-shadow: 0 20px 48px rgba(0,0,0,.2); }
+.str-card:nth-child(n+4) { grid-column: span 1; }
+.str-bottom-two { display: contents; }
+.str-icon-wrap { width: 48px; height: 48px; border-radius: 14px; background: rgba(249,115,22,.1); border: 1px solid rgba(249,115,22,.2); display: flex; align-items: center; justify-content: center; font-size: 1.4rem; margin-bottom: 16px; transition: transform .3s cubic-bezier(.34,1.56,.64,1), background .2s; }
+.str-card:hover .str-icon-wrap { transform: scale(1.15) rotate(-8deg); background: rgba(249,115,22,.2); }
+.str-card-title { font-size: 1rem; font-weight: 700; color: white; margin-bottom: 10px; }
+.str-card-desc { font-size: .85rem; color: var(--s400); line-height: 1.75; }
 
-/* ─── RESPONSIVE ─────────────────────────────────────────────── */
+/* Contact */
+.contact-section { padding: 120px 0; background: white; }
+.contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; }
+.contact-left { }
+.contact-tag { display: inline-block; color: var(--orange); font-size: .7rem; font-weight: 700; letter-spacing: .2em; text-transform: uppercase; margin-bottom: 16px; }
+.contact-title { font-size: clamp(2rem, 3vw, 2.8rem); font-weight: 800; line-height: 1.15; color: var(--s900); margin-bottom: 16px; }
+.contact-sub { font-size: 1rem; color: var(--s500); line-height: 1.8; margin-bottom: 32px; }
+.contact-btns { display: flex; flex-direction: column; gap: 12px; }
+.contact-btn {
+  display: flex; align-items: center; gap: 12px; padding: 16px 20px;
+  background: white; border: 1.5px solid var(--s200); border-radius: var(--r-lg);
+  font-weight: 600; font-size: .9rem; color: var(--s700);
+  transition: all .25s; text-align: left;
+}
+.contact-btn:hover { border-color: var(--orange); background: var(--orange-light); color: var(--orange-dark); transform: translateX(4px); }
+.cb-icon { width: 40px; height: 40px; border-radius: 12px; background: var(--orange-light); border: 1px solid var(--orange-border); display: flex; align-items: center; justify-content: center; font-size: 1.1rem; flex-shrink: 0; transition: background .2s, transform .3s cubic-bezier(.34,1.56,.64,1); }
+.contact-btn:hover .cb-icon { background: rgba(249,115,22,.2); transform: scale(1.1) rotate(-8deg); }
+.contact-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.info-card { background: var(--s50); border: 1px solid var(--s100); border-radius: var(--r-lg); padding: 24px; transition: box-shadow .25s, transform .25s, border-color .25s; }
+.info-card:hover { box-shadow: var(--shadow-h); transform: translateY(-3px); border-color: var(--orange-border); }
+.ic-label { font-size: .68rem; font-weight: 700; color: var(--orange); letter-spacing: .12em; text-transform: uppercase; margin-bottom: 8px; }
+.ic-value { font-size: .9rem; font-weight: 700; color: var(--s900); line-height: 1.5; }
+.ic-sub { font-size: .75rem; color: var(--s500); margin-top: 4px; }
+
+/* Responsive – Index */
 @media (max-width: 1024px) {
-  .strengths-grid { grid-template-columns: repeat(2,1fr); }
+  .about-grid, .contact-grid { grid-template-columns: 1fr; gap: 48px; }
+  .biz-grid { grid-template-columns: 1fr; }
+  .str-grid { grid-template-columns: repeat(2,1fr); }
+  .hero-inner { grid-template-columns: 1fr; gap: 40px; }
+  .hero-visual { max-width: 480px; margin: 0 auto; }
 }
 @media (max-width: 768px) {
-  .container { padding: 0 20px; }
-  .nav-links, .nav-right { display: none; }
-  .hamburger { display: flex; }
-  .hero-inner { grid-template-columns: 1fr; gap: 40px; padding: 56px 0; }
-  .hero-visual { display: none; }
-  .about-inner, .biz-detail, .contact-inner { grid-template-columns: 1fr; gap: 40px; }
-  .biz-detail.reverse .biz-visual-wrap { order: 0; }
-  .biz-cards { grid-template-columns: 1fr; }
-  .stats-row { grid-template-columns: repeat(3,1fr); }
-  .strengths-grid { grid-template-columns: 1fr; }
-  .footer-grid { grid-template-columns: 1fr; gap: 32px; }
-  .footer-bottom { flex-direction: column; align-items: flex-start; }
+  .hero { min-height: auto; padding: 100px 0 60px; }
+  .hero-inner { padding: 20px 0; }
   .hero-title { font-size: 2.4rem; }
-}
-@media (max-width: 480px) {
-  .hero-title { font-size: 2rem; }
-  .section-title { font-size: 1.8rem; }
-  .hero-btns { flex-direction: column; }
-  .contact-btn-row { flex-direction: column; }
+  .about-section, .biz-section, .str-section, .contact-section { padding: 80px 0; }
+  .about-stats { grid-template-columns: 1fr 1fr; }
+  .str-grid { grid-template-columns: 1fr; }
+  .contact-cards { grid-template-columns: 1fr; }
 }
 </style>
 </head>
 <body>
 
-<!-- ═══ NAVIGATION ════════════════════════════════════════════ -->
+<!-- ═══ NAV ═══ -->
 <nav id="mainNav">
   <div class="nav-inner">
-    <a href="#" class="nav-logo" onclick="scrollToTop(event)">
+    <a href="index.html" class="nav-logo">
       <div class="logo-mark">V</div>
       <span>Financial Group</span>
     </a>
     <ul class="nav-links">
-      <li><a href="#about" onclick="smoothNav(event,'about')" data-i18n="nav-about">소개</a></li>
-      <li><a href="#vpay" onclick="smoothNav(event,'vpay')" data-i18n="nav-vpay">V Pay</a></li>
-      <li><a href="#vbazzar" onclick="smoothNav(event,'vbazzar')" data-i18n="nav-vbazzar">V Bazzar</a></li>
-      <li><a href="#vpawn" onclick="smoothNav(event,'vpawn')" data-i18n="nav-vpawn">V Pawn</a></li>
-      <li><a href="#healthcare" onclick="smoothNav(event,'healthcare')" data-i18n="nav-healthcare">헬스케어</a></li>
-      <li><a href="#contact" onclick="smoothNav(event,'contact')" data-i18n="nav-contact">문의</a></li>
+      <li><a href="index.html" class="nav-link" data-page="index" data-i18n="nav-about">소개</a></li>
+      <li><a href="vpay.html" class="nav-link" data-page="vpay">V Pay</a></li>
+      <li><a href="vbazzar.html" class="nav-link" data-page="vbazzar">V Bazzar</a></li>
+      <li><a href="vpawn.html" class="nav-link" data-page="vpawn">V Pawn</a></li>
+      <li><a href="healthcare.html" class="nav-link" data-page="healthcare" data-i18n="nav-hc">헬스케어</a></li>
+      <li><a href="#contact" class="nav-link" onclick="smoothNav(event,'contact')" data-i18n="nav-contact">문의</a></li>
     </ul>
     <div class="nav-right">
       <button class="lang-btn" id="langToggle" onclick="toggleLang()">EN</button>
-      <a href="#contact" class="nav-cta" onclick="smoothNav(event,'contact')" data-i18n="nav-cta">문의하기</a>
+      <a href="#contact" onclick="smoothNav(event,'contact')" class="nav-cta" data-i18n="nav-cta">문의하기</a>
     </div>
-    <button class="hamburger" id="hamburger" aria-label="메뉴" onclick="toggleMenu()">
-      <span></span><span></span><span></span>
-    </button>
+    <button class="hamburger" id="hamburger" onclick="toggleMenu()"><span></span><span></span><span></span></button>
   </div>
 </nav>
 
-<!-- Mobile Menu -->
 <div id="mobileMenu">
-  <a href="#about" onclick="smoothNav(event,'about')" data-i18n="nav-about">소개</a>
-  <a href="#vpay" onclick="smoothNav(event,'vpay')" data-i18n="nav-vpay">V Pay</a>
-  <a href="#vbazzar" onclick="smoothNav(event,'vbazzar')" data-i18n="nav-vbazzar">V Bazzar</a>
-  <a href="#vpawn" onclick="smoothNav(event,'vpawn')" data-i18n="nav-vpawn">V Pawn</a>
-  <a href="#healthcare" onclick="smoothNav(event,'healthcare')" data-i18n="nav-healthcare">헬스케어</a>
+  <a href="index.html" data-mob-page="index" data-i18n="nav-about">소개</a>
+  <a href="vpay.html" data-mob-page="vpay">V Pay</a>
+  <a href="vbazzar.html" data-mob-page="vbazzar">V Bazzar</a>
+  <a href="vpawn.html" data-mob-page="vpawn">V Pawn</a>
+  <a href="healthcare.html" data-mob-page="healthcare" data-i18n="nav-hc">헬스케어</a>
   <a href="#contact" onclick="smoothNav(event,'contact')" data-i18n="nav-contact">문의</a>
-  <div class="mobile-actions">
-    <button class="mobile-lang" id="mobileLangBtn" onclick="toggleLang()">EN</button>
-    <button class="mobile-cta" onclick="smoothNav(event,'contact')" data-i18n="nav-cta">문의하기</button>
+  <div class="mob-actions">
+    <button class="mob-lang" id="mobLangBtn" onclick="toggleLang()">EN</button>
+    <a href="#contact" onclick="smoothNav(event,'contact')" class="mob-cta" data-i18n="nav-cta">문의하기</a>
   </div>
 </div>
 
-<!-- ═══ HERO ══════════════════════════════════════════════════ -->
+<!-- ═══ HERO ═══ -->
 <section class="hero" id="hero">
-  <div class="hero-glow-1"></div>
-  <div class="hero-glow-2"></div>
+  <div class="hero-dots"></div>
   <div class="container">
     <div class="hero-inner">
-      <!-- Text -->
       <div class="hero-text">
-        <div class="hero-eyebrow">
-          <span class="hero-eyebrow-dot"></span>
-          <span class="hero-eyebrow-text">V Financial Group</span>
+        <div class="hero-badge">
+          <div class="hero-badge-dot"></div>
+          <span class="hero-badge-text" data-i18n="idx-badge">글로벌 금융 포트폴리오 그룹</span>
         </div>
-        <h1 class="hero-title" data-i18n="hero-title">글로벌 금융과<br>디지털 혁신을<br>연결하다</h1>
-        <p class="hero-sub" data-i18n="hero-sub">V Pay, V Bazzar, V Pawn, 헬스케어를 통해<br>금융, 커머스, 디지털 자산, 개인 맞춤형 건강관리의<br>새로운 가능성을 만들어갑니다.</p>
+        <h1 class="hero-title" data-i18n="idx-title">글로벌 금융과<br>디지털 혁신을<br>연결하다</h1>
+        <p class="hero-sub" data-i18n="idx-sub">V Financial Group은 V Pay · V Bazzar · V Pawn · Healthcare 4개 사업을 통해 국경 없는 금융 생태계를 구축합니다.</p>
         <div class="hero-btns">
-          <a href="#contact" class="btn-primary" onclick="smoothNav(event,'contact')" data-i18n="hero-cta1">사업 문의</a>
-          <a href="#about" class="btn-secondary" onclick="smoothNav(event,'about')" data-i18n="hero-cta2">사업영역 보기</a>
+          <a href="#contact" onclick="smoothNav(event,'contact')" class="btn btn-orange" data-i18n="idx-cta1">사업 문의하기</a>
+          <a href="#businesses" onclick="smoothNav(event,'businesses')" class="btn btn-ghost-dark" data-i18n="idx-cta2">사업영역 보기</a>
         </div>
-        <div class="hero-badges">
-          <span class="hero-badge"><span class="hero-badge-dot"></span><span data-i18n="hero-badge1">4개 핵심 사업</span></span>
-          <span class="hero-badge"><span class="hero-badge-dot"></span><span data-i18n="hero-badge2">글로벌 비전</span></span>
-          <span class="hero-badge"><span class="hero-badge-dot"></span><span data-i18n="hero-badge3">디지털 혁신</span></span>
+        <div class="hero-mini-stats">
+          <div>
+            <div class="mini-stat-val"><span>4</span></div>
+            <div class="mini-stat-lbl" data-i18n="idx-stat1-l">핵심 사업 영역</div>
+          </div>
+          <div>
+            <div class="mini-stat-val"><span>5</span></div>
+            <div class="mini-stat-lbl" data-i18n="idx-stat2-l">진출 국가</div>
+          </div>
+          <div>
+            <div class="mini-stat-val"><span>24</span><span style="font-size:1rem">/7</span></div>
+            <div class="mini-stat-lbl" data-i18n="idx-stat3-l">시간 서비스</div>
+          </div>
         </div>
       </div>
-      <!-- Visual -->
       <div class="hero-visual">
         <div class="hero-card">
           <div class="hero-card-top"></div>
-          <div class="hero-card-header">
-            <div class="hero-card-logo">
-              <div class="hero-card-logo-mark">V</div>
-              <span class="hero-card-logo-text">Financial Group</span>
+          <div class="hero-card-inner">
+            <div class="hc-header">
+              <div class="hc-brand">
+                <div class="hc-brand-mark">V</div>
+                <span class="hc-brand-name">Financial Group</span>
+              </div>
+              <div class="hc-live"><div class="hc-live-dot"></div> LIVE</div>
             </div>
-            <div class="hero-live"><span class="live-dot"></span>Portfolio</div>
-          </div>
-          <div class="biz-grid">
-            <div class="biz-mini-card">
-              <div class="biz-mini-icon">💳</div>
-              <div class="biz-mini-name">V Pay</div>
-              <div class="biz-mini-sub">Cross-Border Finance</div>
-              <div class="biz-mini-line"></div>
-            </div>
-            <div class="biz-mini-card">
-              <div class="biz-mini-icon">🛍️</div>
-              <div class="biz-mini-name">V Bazzar</div>
-              <div class="biz-mini-sub">C2C Commerce</div>
-              <div class="biz-mini-line"></div>
-            </div>
-            <div class="biz-mini-card">
-              <div class="biz-mini-icon">🏛️</div>
-              <div class="biz-mini-name">V Pawn</div>
-              <div class="biz-mini-sub">Digital Asset</div>
-              <div class="biz-mini-line"></div>
-            </div>
-            <div class="biz-mini-card">
-              <div class="biz-mini-icon">🧬</div>
-              <div class="biz-mini-name">Healthcare</div>
-              <div class="biz-mini-sub">SNP Platform</div>
-              <div class="biz-mini-line"></div>
+            <div class="biz-items">
+              <a href="vpay.html" class="biz-item" style="text-decoration:none">
+                <div class="biz-item-icon">💸</div>
+                <div class="biz-item-main">
+                  <div class="biz-item-title">V Pay</div>
+                  <div class="biz-item-desc">크로스보더 디지털 금융</div>
+                </div>
+                <div class="biz-item-right">
+                  <div class="biz-item-tag tag-orange">Active</div>
+                  <div class="biz-item-sub">0.5% fee</div>
+                </div>
+              </a>
+              <a href="vbazzar.html" class="biz-item" style="text-decoration:none">
+                <div class="biz-item-icon">🛍️</div>
+                <div class="biz-item-main">
+                  <div class="biz-item-title">V Bazzar</div>
+                  <div class="biz-item-desc">C2C 마켓플레이스</div>
+                </div>
+                <div class="biz-item-right">
+                  <div class="biz-item-tag tag-green">Active</div>
+                  <div class="biz-item-sub">Escrow</div>
+                </div>
+              </a>
+              <a href="vpawn.html" class="biz-item" style="text-decoration:none">
+                <div class="biz-item-icon">💎</div>
+                <div class="biz-item-main">
+                  <div class="biz-item-title">V Pawn</div>
+                  <div class="biz-item-desc">디지털 자산 유동성</div>
+                </div>
+                <div class="biz-item-right">
+                  <div class="biz-item-tag tag-blue">Active</div>
+                  <div class="biz-item-sub">up to 70%</div>
+                </div>
+              </a>
+              <a href="healthcare.html" class="biz-item" style="text-decoration:none">
+                <div class="biz-item-icon">🧬</div>
+                <div class="biz-item-main">
+                  <div class="biz-item-title">Healthcare</div>
+                  <div class="biz-item-desc">SNP 맞춤 헬스케어</div>
+                </div>
+                <div class="biz-item-right">
+                  <div class="biz-item-tag tag-purple">Dev</div>
+                  <div class="biz-item-sub">SNP</div>
+                </div>
+              </a>
             </div>
           </div>
         </div>
-        <div class="hero-float-badge">V Financial Group</div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ═══ ABOUT ═════════════════════════════════════════════════ -->
+<!-- ═══ ABOUT ═══ -->
 <section class="about-section" id="about">
   <div class="container">
-    <div class="about-inner">
-      <div class="about-left">
-        <span class="section-tag" data-i18n="about-tag">ABOUT US</span>
-        <h2 class="section-title" data-i18n="about-title">미래를 선도하는<br>디지털 사업 포트폴리오</h2>
-        <p class="section-sub" data-i18n="about-desc1">V Financial Group은 금융, 디지털 플랫폼, 커머스, 헬스케어를 아우르는 미래지향적 사업 포트폴리오를 구축하고 있습니다.</p>
-        <p class="section-sub" style="margin-top:12px" data-i18n="about-desc2">변화하는 글로벌 시장 속에서 사용자 중심의 서비스와 확장 가능한 기술 기반을 바탕으로, 신뢰할 수 있는 디지털 비즈니스 생태계를 만들어갑니다.</p>
-        <div class="about-divider"></div>
-      </div>
-      <div class="about-right">
-        <div class="stats-row">
-          <div class="stat-card">
-            <div class="stat-val" data-i18n="stat1-val">4</div>
-            <div class="stat-label" data-i18n="stat1-label">핵심 사업 영역</div>
+    <div class="about-grid">
+      <div>
+        <div class="about-badge reveal" data-i18n="idx-about-tag">ABOUT US</div>
+        <h2 class="about-title reveal" data-i18n="idx-about-title">미래 금융을 선도하는<br>디지털 혁신 그룹</h2>
+        <p class="about-p reveal" data-i18n="idx-about-sub">V Financial Group은 핀테크·커머스·자산금융·헬스케어의 교차점에서 새로운 가치를 창출합니다. 글로벌 스탠다드와 현지 금융 인프라를 연결하여 사용자 중심의 금융 생태계를 만들어갑니다.</p>
+        <p class="about-p reveal" data-i18n="idx-about-p2">우리는 규제 준수와 기술 혁신이 공존할 수 있다고 믿습니다. 금융위원회 인가 추진, SNP 기반 개인화 플랫폼 등 각 사업 영역에서 신뢰와 혁신을 동시에 추구합니다.</p>
+        <div class="about-stats">
+          <div class="astat-card reveal d1">
+            <div class="astat-val" data-count="4" data-suf="개">4개</div>
+            <div class="astat-label" data-i18n="idx-stat1-l">핵심 사업 영역</div>
           </div>
-          <div class="stat-card">
-            <div class="stat-val" data-i18n="stat2-val">글로벌</div>
-            <div class="stat-label" data-i18n="stat2-label">시장 대응력</div>
+          <div class="astat-card reveal d2">
+            <div class="astat-val" data-count="5" data-suf="개국">5개국</div>
+            <div class="astat-label" data-i18n="idx-stat2-l">진출 국가</div>
           </div>
-          <div class="stat-card">
-            <div class="stat-val" data-i18n="stat3-val">디지털</div>
-            <div class="stat-label" data-i18n="stat3-label">혁신 플랫폼</div>
+          <div class="astat-card reveal d3">
+            <div class="astat-val">24/7</div>
+            <div class="astat-label" data-i18n="idx-stat3-l">시간 서비스</div>
+          </div>
+          <div class="astat-card reveal d4">
+            <div class="astat-val" data-count="2025">2025</div>
+            <div class="astat-label" data-i18n="idx-stat4-l">서비스 고도화</div>
           </div>
         </div>
-        <div class="about-panel">
-          <div class="about-panel-top"></div>
-          <div class="about-panel-logo">
-            <div class="about-panel-mark">V</div>
-            <span class="about-panel-text">Financial Group</span>
+      </div>
+      <div class="reveal from-r">
+        <div class="about-dark-panel">
+          <div class="adp-header">
+            <span class="adp-title">Portfolio Overview</span>
+            <span class="adp-badge">2026 Active</span>
           </div>
-          <div class="about-panel-sub">Finance · Commerce · Digital Asset · Healthcare</div>
-          <div class="about-tags">
-            <span class="about-tag">V Pay</span>
-            <span class="about-tag">V Bazzar</span>
-            <span class="about-tag">V Pawn</span>
-            <span class="about-tag">Healthcare</span>
+          <div class="adp-rows">
+            <div class="adp-row">
+              <div class="adp-row-left"><span class="adp-icon">💸</span><span class="adp-lbl">V Pay</span></div>
+              <span class="adp-val">Fintech</span>
+            </div>
+            <div class="adp-row">
+              <div class="adp-row-left"><span class="adp-icon">🛍️</span><span class="adp-lbl">V Bazzar</span></div>
+              <span class="adp-val">Commerce</span>
+            </div>
+            <div class="adp-row">
+              <div class="adp-row-left"><span class="adp-icon">💎</span><span class="adp-lbl">V Pawn</span></div>
+              <span class="adp-val">Asset Finance</span>
+            </div>
+            <div class="adp-row">
+              <div class="adp-row-left"><span class="adp-icon">🧬</span><span class="adp-lbl">Healthcare</span></div>
+              <span class="adp-val">Healthtech</span>
+            </div>
+          </div>
+          <div style="margin-top:20px">
+            <div class="adp-bar-label"><span>Global Reach</span><span>5 Countries</span></div>
+            <div class="progress-track"><div class="progress-fill" data-fill="75"></div></div>
+            <div class="adp-bar-label" style="margin-top:12px"><span>Digital Innovation</span><span>High</span></div>
+            <div class="progress-track"><div class="progress-fill" data-fill="88"></div></div>
+            <div class="adp-bar-label" style="margin-top:12px"><span>Compliance</span><span>Pursuing</span></div>
+            <div class="progress-track"><div class="progress-fill" data-fill="65"></div></div>
           </div>
         </div>
       </div>
@@ -742,432 +452,156 @@ footer { background: var(--s900); padding: 64px 0 32px; }
   </div>
 </section>
 
-<!-- ═══ BUSINESS OVERVIEW ════════════════════════════════════ -->
-<section class="overview-section">
+<!-- ═══ BUSINESSES ═══ -->
+<section class="biz-section" id="businesses">
   <div class="container">
-    <div class="overview-header">
-      <span class="section-tag" data-i18n="ov-tag">OUR BUSINESSES</span>
-      <h2 class="section-title" data-i18n="ov-title">4가지 핵심 사업 영역</h2>
-      <p class="section-sub" data-i18n="ov-sub">금융, 커머스, 디지털 자산, 헬스케어를 통해<br>새로운 비즈니스 가능성을 만들어갑니다.</p>
+    <div class="biz-header">
+      <div class="section-tag reveal" data-i18n="idx-biz-tag">OUR BUSINESSES</div>
+      <h2 class="section-title reveal" data-i18n="idx-biz-title">4가지 사업 영역</h2>
+      <p class="section-sub reveal" data-i18n="idx-biz-sub">금융·커머스·자산·헬스케어를 아우르는 통합 포트폴리오</p>
     </div>
-    <div class="biz-cards">
+    <div class="biz-grid">
       <!-- V Pay -->
-      <div class="card biz-card">
-        <div class="biz-card-topbar" style="background:linear-gradient(90deg,#F97316,#fb923c)"></div>
-        <div class="biz-card-header">
-          <span class="biz-tag biz-tag-0">V PAY</span>
-          <div class="biz-icon">💳</div>
+      <div class="biz-card reveal d1">
+        <div class="biz-card-top orange"></div>
+        <div class="biz-card-body">
+          <div class="biz-card-icon icon-orange">💸</div>
+          <div class="biz-card-name" data-i18n="idx-vpay-title">V Pay</div>
+          <p class="biz-card-desc" data-i18n="idx-vpay-desc">아시아 5개국을 연결하는 크로스보더 디지털 송금·결제 플랫폼</p>
+          <div class="biz-card-points">
+            <div class="biz-card-point"><div class="bcp-dot"></div><span data-i18n="idx-vpay-p1">실시간 환전</span></div>
+            <div class="biz-card-point"><div class="bcp-dot"></div><span data-i18n="idx-vpay-p2">0.5% 이하 수수료</span></div>
+            <div class="biz-card-point"><div class="bcp-dot"></div><span data-i18n="idx-vpay-p3">금융위원회 인가 추진</span></div>
+          </div>
+          <a href="vpay.html" class="biz-card-link"><span data-i18n="idx-card-learn">자세히 보기</span> <span class="arrow">→</span></a>
         </div>
-        <div class="biz-card-title" data-i18n="ov-vpay-title">크로스보더 디지털 금융</div>
-        <div class="biz-card-desc" data-i18n="ov-vpay-desc">빠르고 편리한 글로벌 송금 및 디지털 금융 서비스 플랫폼</div>
-        <ul class="biz-points">
-          <li class="biz-point"><div class="biz-check"><svg viewBox="0 0 12 12"><polyline points="2 6 5 9 10 3"/></svg></div><span data-i18n="ov-vpay-p1">빠른 크로스보더 송금</span></li>
-          <li class="biz-point"><div class="biz-check"><svg viewBox="0 0 12 12"><polyline points="2 6 5 9 10 3"/></svg></div><span data-i18n="ov-vpay-p2">모바일 퍼스트 금융</span></li>
-          <li class="biz-point"><div class="biz-check"><svg viewBox="0 0 12 12"><polyline points="2 6 5 9 10 3"/></svg></div><span data-i18n="ov-vpay-p3">안전한 거래 처리</span></li>
-        </ul>
-        <a href="#vpay" class="biz-link" onclick="smoothNav(event,'vpay')"><span data-i18n="ov-learn">자세히 보기</span><svg viewBox="0 0 16 16"><polyline points="4 8 12 8"/><polyline points="8 4 12 8 8 12"/></svg></a>
       </div>
       <!-- V Bazzar -->
-      <div class="card biz-card">
-        <div class="biz-card-topbar" style="background:linear-gradient(90deg,#3B82F6,#60A5FA)"></div>
-        <div class="biz-card-header">
-          <span class="biz-tag biz-tag-1">V BAZZAR</span>
-          <div class="biz-icon">🛍️</div>
+      <div class="biz-card reveal d2">
+        <div class="biz-card-top slate"></div>
+        <div class="biz-card-body">
+          <div class="biz-card-icon icon-slate">🛍️</div>
+          <div class="biz-card-name" data-i18n="idx-vbazzar-title">V Bazzar</div>
+          <p class="biz-card-desc" data-i18n="idx-vbazzar-desc">에스크로 보호 C2C 중고거래 마켓플레이스 플랫폼</p>
+          <div class="biz-card-points">
+            <div class="biz-card-point"><div class="bcp-dot"></div><span data-i18n="idx-vbazzar-p1">에스크로 보호</span></div>
+            <div class="biz-card-point"><div class="bcp-dot"></div><span data-i18n="idx-vbazzar-p2">검증된 판매자</span></div>
+            <div class="biz-card-point"><div class="bcp-dot"></div><span data-i18n="idx-vbazzar-p3">안전 결제</span></div>
+          </div>
+          <a href="vbazzar.html" class="biz-card-link"><span data-i18n="idx-card-learn">자세히 보기</span> <span class="arrow">→</span></a>
         </div>
-        <div class="biz-card-title" data-i18n="ov-vbazzar-title">C2C 커머스 플랫폼</div>
-        <div class="biz-card-desc" data-i18n="ov-vbazzar-desc">사용자 간 더 쉽고 안전한 거래를 연결하는 마켓플레이스</div>
-        <ul class="biz-points">
-          <li class="biz-point"><div class="biz-check"><svg viewBox="0 0 12 12"><polyline points="2 6 5 9 10 3"/></svg></div><span data-i18n="ov-vbazzar-p1">C2C 거래 플랫폼</span></li>
-          <li class="biz-point"><div class="biz-check"><svg viewBox="0 0 12 12"><polyline points="2 6 5 9 10 3"/></svg></div><span data-i18n="ov-vbazzar-p2">안전한 사용자 거래</span></li>
-          <li class="biz-point"><div class="biz-check"><svg viewBox="0 0 12 12"><polyline points="2 6 5 9 10 3"/></svg></div><span data-i18n="ov-vbazzar-p3">신뢰 기반 마켓</span></li>
-        </ul>
-        <a href="#vbazzar" class="biz-link" onclick="smoothNav(event,'vbazzar')"><span data-i18n="ov-learn">자세히 보기</span><svg viewBox="0 0 16 16"><polyline points="4 8 12 8"/><polyline points="8 4 12 8 8 12"/></svg></a>
       </div>
       <!-- V Pawn -->
-      <div class="card biz-card">
-        <div class="biz-card-topbar" style="background:linear-gradient(90deg,#7C3AED,#A78BFA)"></div>
-        <div class="biz-card-header">
-          <span class="biz-tag biz-tag-2">V PAWN</span>
-          <div class="biz-icon">🏛️</div>
+      <div class="biz-card reveal d3">
+        <div class="biz-card-top amber"></div>
+        <div class="biz-card-body">
+          <div class="biz-card-icon icon-amber">💎</div>
+          <div class="biz-card-name" data-i18n="idx-vpawn-title">V Pawn</div>
+          <p class="biz-card-desc" data-i18n="idx-vpawn-desc">디지털 자산 기반 즉시 유동성 공급 플랫폼</p>
+          <div class="biz-card-points">
+            <div class="biz-card-point"><div class="bcp-dot"></div><span data-i18n="idx-vpawn-p1">즉시 자산 평가</span></div>
+            <div class="biz-card-point"><div class="bcp-dot"></div><span data-i18n="idx-vpawn-p2">담보 유동성</span></div>
+            <div class="biz-card-point"><div class="bcp-dot"></div><span data-i18n="idx-vpawn-p3">안전한 보관</span></div>
+          </div>
+          <a href="vpawn.html" class="biz-card-link"><span data-i18n="idx-card-learn">자세히 보기</span> <span class="arrow">→</span></a>
         </div>
-        <div class="biz-card-title" data-i18n="ov-vpawn-title">디지털 자산 유동성 플랫폼</div>
-        <div class="biz-card-desc" data-i18n="ov-vpawn-desc">디지털 자산과 고가치 자산을 담보로 빠른 유동성을 제공하는 스마트 플랫폼</div>
-        <ul class="biz-points">
-          <li class="biz-point"><div class="biz-check"><svg viewBox="0 0 12 12"><polyline points="2 6 5 9 10 3"/></svg></div><span data-i18n="ov-vpawn-p1">디지털 자산 담보 서비스</span></li>
-          <li class="biz-point"><div class="biz-check"><svg viewBox="0 0 12 12"><polyline points="2 6 5 9 10 3"/></svg></div><span data-i18n="ov-vpawn-p2">스마트 자산 평가</span></li>
-          <li class="biz-point"><div class="biz-check"><svg viewBox="0 0 12 12"><polyline points="2 6 5 9 10 3"/></svg></div><span data-i18n="ov-vpawn-p3">빠른 유동성 제공</span></li>
-        </ul>
-        <a href="#vpawn" class="biz-link" onclick="smoothNav(event,'vpawn')"><span data-i18n="ov-learn">자세히 보기</span><svg viewBox="0 0 16 16"><polyline points="4 8 12 8"/><polyline points="8 4 12 8 8 12"/></svg></a>
       </div>
       <!-- Healthcare -->
-      <div class="card biz-card">
-        <div class="biz-card-topbar" style="background:linear-gradient(90deg,#059669,#34D399)"></div>
-        <div class="biz-card-header">
-          <span class="biz-tag biz-tag-3">HEALTHCARE</span>
-          <div class="biz-icon">🧬</div>
-        </div>
-        <div class="biz-card-title" data-i18n="ov-hc-title">맞춤형 헬스케어</div>
-        <div class="biz-card-desc" data-i18n="ov-hc-desc">SNP 기반의 개인 맞춤형 건강관리 플랫폼 및 영양제 개발</div>
-        <ul class="biz-points">
-          <li class="biz-point"><div class="biz-check"><svg viewBox="0 0 12 12"><polyline points="2 6 5 9 10 3"/></svg></div><span data-i18n="ov-hc-p1">SNP 기반 맞춤 영양제</span></li>
-          <li class="biz-point"><div class="biz-check"><svg viewBox="0 0 12 12"><polyline points="2 6 5 9 10 3"/></svg></div><span data-i18n="ov-hc-p2">데이터 기반 웰니스</span></li>
-          <li class="biz-point"><div class="biz-check"><svg viewBox="0 0 12 12"><polyline points="2 6 5 9 10 3"/></svg></div><span data-i18n="ov-hc-p3">디지털 헬스케어</span></li>
-        </ul>
-        <a href="#healthcare" class="biz-link" onclick="smoothNav(event,'healthcare')"><span data-i18n="ov-learn">자세히 보기</span><svg viewBox="0 0 16 16"><polyline points="4 8 12 8"/><polyline points="8 4 12 8 8 12"/></svg></a>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ═══ V PAY SECTION ═════════════════════════════════════════ -->
-<section class="biz-section biz-section-bg-light" id="vpay">
-  <div class="container">
-    <div class="biz-detail">
-      <!-- Visual -->
-      <div class="biz-visual-wrap">
-        <div style="position:relative">
-          <div class="dark-visual">
-            <div class="dark-visual-top"></div>
-            <div class="dark-visual-inner">
-              <div class="dv-header">
-                <div class="dv-brand">
-                  <div class="dv-brand-mark">VP</div>
-                  <span class="dv-brand-name">V Pay</span>
-                </div>
-                <span class="dv-badge">LIVE</span>
-              </div>
-              <div class="transfer-pair">
-                <div class="transfer-box">
-                  <div class="transfer-label">Send</div>
-                  <div class="transfer-amount">₩1,000,000</div>
-                  <div class="transfer-country">🇰🇷 Korea</div>
-                </div>
-                <div class="transfer-arrow-box">
-                  <div class="transfer-arrow-circle">
-                    <svg viewBox="0 0 14 14"><polyline points="3 7 11 7"/><polyline points="7 3 11 7 7 11"/></svg>
-                  </div>
-                  <span class="transfer-speed">~sec</span>
-                </div>
-                <div class="transfer-box">
-                  <div class="transfer-label">Receive</div>
-                  <div class="transfer-amount recv">$768</div>
-                  <div class="transfer-country">🇺🇸 USA</div>
-                </div>
-              </div>
-              <div class="transfer-bar-wrap">
-                <div class="transfer-bar-track"><div class="transfer-bar-fill"></div></div>
-                <div class="transfer-bar-labels"><span>Processing...</span><strong>75%</strong></div>
-              </div>
-              <div class="transfer-stats">
-                <div class="transfer-stat"><div class="transfer-stat-val">&lt;0.5%</div><div class="transfer-stat-label">Fee</div></div>
-                <div class="transfer-stat"><div class="transfer-stat-val">~sec</div><div class="transfer-stat-label">Speed</div></div>
-                <div class="transfer-stat"><div class="transfer-stat-val">5+</div><div class="transfer-stat-label">Countries</div></div>
-              </div>
-            </div>
+      <div class="biz-card reveal d4">
+        <div class="biz-card-top teal"></div>
+        <div class="biz-card-body">
+          <div class="biz-card-icon icon-teal">🧬</div>
+          <div class="biz-card-name" data-i18n="idx-hc-title">Healthcare</div>
+          <p class="biz-card-desc" data-i18n="idx-hc-desc">SNP 유전자 분석 기반 맞춤형 영양·건강 관리 플랫폼</p>
+          <div class="biz-card-points">
+            <div class="biz-card-point"><div class="bcp-dot"></div><span data-i18n="idx-hc-p1">SNP 유전자 분석</span></div>
+            <div class="biz-card-point"><div class="bcp-dot"></div><span data-i18n="idx-hc-p2">맞춤 영양 솔루션</span></div>
+            <div class="biz-card-point"><div class="bcp-dot"></div><span data-i18n="idx-hc-p3">개인화 헬스케어</span></div>
           </div>
-          <div class="dv-float">V Pay</div>
-        </div>
-      </div>
-      <!-- Content -->
-      <div class="biz-content">
-        <span class="section-tag" data-i18n="vpay-tag">V PAY</span>
-        <h2 class="section-title" data-i18n="vpay-title">크로스보더<br>디지털 금융 플랫폼</h2>
-        <p class="biz-desc" data-i18n="vpay-desc">브이페이는 글로벌 크로스보더 금융 환경에서 더 빠르고 편리한 송금 경험을 제공하는 디지털 금융 서비스입니다. 모바일 중심의 사용자 경험과 효율적인 프로세스를 바탕으로, 국경을 넘어 보다 쉽게 금융에 접근할 수 있도록 돕습니다.</p>
-        <div class="features">
-          <div class="feature"><div class="feature-icon"><svg viewBox="0 0 20 20"><polyline points="4 10 8 14 16 6"/></svg></div><div><div class="feature-title" data-i18n="vpay-f1-t">빠른 크로스보더 송금</div><div class="feature-desc" data-i18n="vpay-f1-d">국경을 넘는 빠르고 신뢰할 수 있는 송금 경험을 제공합니다.</div></div></div>
-          <div class="feature"><div class="feature-icon"><svg viewBox="0 0 20 20"><polyline points="4 10 8 14 16 6"/></svg></div><div><div class="feature-title" data-i18n="vpay-f2-t">모바일 퍼스트 서비스</div><div class="feature-desc" data-i18n="vpay-f2-d">모바일 중심으로 설계된 직관적인 금융 서비스 경험</div></div></div>
-          <div class="feature"><div class="feature-icon"><svg viewBox="0 0 20 20"><polyline points="4 10 8 14 16 6"/></svg></div><div><div class="feature-title" data-i18n="vpay-f3-t">안전한 거래 처리</div><div class="feature-desc" data-i18n="vpay-f3-d">신뢰할 수 있는 트랜잭션 플로우로 안전한 송금을 보장합니다.</div></div></div>
-          <div class="feature"><div class="feature-icon"><svg viewBox="0 0 20 20"><polyline points="4 10 8 14 16 6"/></svg></div><div><div class="feature-title" data-i18n="vpay-f4-t">확장 가능한 글로벌 모델</div><div class="feature-desc" data-i18n="vpay-f4-d">글로벌 금융 서비스 확장을 위한 유연한 인프라 구조</div></div></div>
+          <a href="healthcare.html" class="biz-card-link"><span data-i18n="idx-card-learn">자세히 보기</span> <span class="arrow">→</span></a>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ═══ V BAZZAR SECTION ══════════════════════════════════════ -->
-<section class="biz-section biz-section-bg-white" id="vbazzar">
+<!-- ═══ STRENGTHS ═══ -->
+<section class="str-section" id="strengths">
   <div class="container">
-    <div class="biz-detail reverse">
-      <!-- Content -->
-      <div class="biz-content">
-        <span class="section-tag" data-i18n="vbazzar-tag">V BAZZAR</span>
-        <h2 class="section-title" data-i18n="vbazzar-title">C2C 거래를 더<br>쉽고 안전하게</h2>
-        <p class="biz-desc" data-i18n="vbazzar-desc">브이바자는 사용자 간 거래를 보다 쉽고 안전하게 연결하는 C2C 플랫폼입니다. 상품 탐색부터 거래, 결제 경험까지 직관적으로 설계하여 신뢰 기반의 거래 환경을 제공합니다.</p>
-        <div class="features">
-          <div class="feature"><div class="feature-icon"><svg viewBox="0 0 20 20"><polyline points="4 10 8 14 16 6"/></svg></div><div><div class="feature-title" data-i18n="vbazzar-f1-t">C2C 거래 플랫폼</div><div class="feature-desc" data-i18n="vbazzar-f1-d">사용자 간 손쉽고 편리한 거래 연결 시스템을 제공합니다.</div></div></div>
-          <div class="feature"><div class="feature-icon"><svg viewBox="0 0 20 20"><polyline points="4 10 8 14 16 6"/></svg></div><div><div class="feature-title" data-i18n="vbazzar-f2-t">안전한 거래 경험</div><div class="feature-desc" data-i18n="vbazzar-f2-d">검증된 사용자 거래 보안 시스템으로 안심 거래를 지원합니다.</div></div></div>
-          <div class="feature"><div class="feature-icon"><svg viewBox="0 0 20 20"><polyline points="4 10 8 14 16 6"/></svg></div><div><div class="feature-title" data-i18n="vbazzar-f3-t">직관적인 커머스 플로우</div><div class="feature-desc" data-i18n="vbazzar-f3-d">탐색부터 결제까지 끊김 없는 간편한 커머스 플로우</div></div></div>
-          <div class="feature"><div class="feature-icon"><svg viewBox="0 0 20 20"><polyline points="4 10 8 14 16 6"/></svg></div><div><div class="feature-title" data-i18n="vbazzar-f4-t">신뢰 기반 마켓플레이스</div><div class="feature-desc" data-i18n="vbazzar-f4-d">신뢰를 우선으로 설계된 건강한 마켓플레이스 환경</div></div></div>
-        </div>
+    <div class="str-header">
+      <div class="section-tag light reveal" data-i18n="idx-str-tag">CORE STRENGTHS</div>
+      <h2 class="section-title white reveal" data-i18n="idx-str-title">V Financial Group이<br>선택받는 이유</h2>
+      <p class="section-sub white reveal" data-i18n="idx-str-sub">기술·신뢰·글로벌 네트워크로 차별화된 금융 생태계를 만듭니다.</p>
+    </div>
+    <div class="str-grid">
+      <div class="str-card reveal d1">
+        <div class="str-icon-wrap">🏛️</div>
+        <h3 class="str-card-title" data-i18n="idx-s1-title">규제 준수 금융 혁신</h3>
+        <p class="str-card-desc" data-i18n="idx-s1-desc">금융위원회 소액해외송금업 인가 추진 등 합법적·신뢰성 있는 운영 기반 위에 혁신 서비스를 구축합니다.</p>
       </div>
-      <!-- Visual -->
-      <div class="biz-visual-wrap">
-        <div style="position:relative">
-          <div class="dark-visual">
-            <div class="dark-visual-top"></div>
-            <div class="dark-visual-inner">
-              <div class="dv-header">
-                <div class="dv-brand">
-                  <div class="dv-brand-mark">VB</div>
-                  <span class="dv-brand-name">V Bazzar</span>
-                </div>
-                <span class="dv-badge">🔒 Escrow</span>
-              </div>
-              <div class="bazzar-items">
-                <div class="bazzar-item">
-                  <div class="bazzar-emoji">👜</div>
-                  <div class="bazzar-info"><div class="bazzar-name">Premium Bag</div><div class="bazzar-seller">@user_42</div></div>
-                  <div class="bazzar-right"><div class="bazzar-price">₩85,000</div><div class="bazzar-status">✓ Safe Trade</div></div>
-                </div>
-                <div class="bazzar-item">
-                  <div class="bazzar-emoji">📷</div>
-                  <div class="bazzar-info"><div class="bazzar-name">Camera</div><div class="bazzar-seller">@photo_kim</div></div>
-                  <div class="bazzar-right"><div class="bazzar-price">₩320,000</div><div class="bazzar-status">✓ Verified</div></div>
-                </div>
-                <div class="bazzar-item">
-                  <div class="bazzar-emoji">💻</div>
-                  <div class="bazzar-info"><div class="bazzar-name">Laptop</div><div class="bazzar-seller">@tech_seoul</div></div>
-                  <div class="bazzar-right"><div class="bazzar-price">₩750,000</div><div class="bazzar-status">✓ New</div></div>
-                </div>
-              </div>
-              <div class="bazzar-footer">
-                <div class="bazzar-badge"><div class="bazzar-badge-icon">🛡️</div><div class="bazzar-badge-label">Safe Pay</div></div>
-                <div class="bazzar-badge"><div class="bazzar-badge-icon">✅</div><div class="bazzar-badge-label">Verified</div></div>
-                <div class="bazzar-badge"><div class="bazzar-badge-icon">⚡</div><div class="bazzar-badge-label">Fast</div></div>
-              </div>
-            </div>
-          </div>
-          <div class="dv-float" style="top:-14px;left:-14px;right:auto">V Bazzar</div>
-        </div>
+      <div class="str-card reveal d2">
+        <div class="str-icon-wrap">🌐</div>
+        <h3 class="str-card-title" data-i18n="idx-s2-title">글로벌-로컬 네트워크</h3>
+        <p class="str-card-desc" data-i18n="idx-s2-desc">한국·베트남·태국·필리핀·인도네시아를 잇는 현지 파트너십과 규제 대응 네트워크를 보유합니다.</p>
+      </div>
+      <div class="str-card reveal d3">
+        <div class="str-icon-wrap">🔗</div>
+        <h3 class="str-card-title" data-i18n="idx-s3-title">통합 생태계 시너지</h3>
+        <p class="str-card-desc" data-i18n="idx-s3-desc">V Pay·V Bazzar·V Pawn·Healthcare 4개 사업의 교차 연계를 통해 사용자 Lock-in과 생태계 가치를 극대화합니다.</p>
+      </div>
+      <div class="str-card reveal d4">
+        <div class="str-icon-wrap">📊</div>
+        <h3 class="str-card-title" data-i18n="idx-s4-title">데이터 기반 개인화</h3>
+        <p class="str-card-desc" data-i18n="idx-s4-desc">SNP 유전자 분석, 거래 데이터 분석 등 과학적 접근으로 맞춤형 서비스를 제공합니다.</p>
+      </div>
+      <div class="str-card reveal d5" style="grid-column: span 1;">
+        <div class="str-icon-wrap">🛡️</div>
+        <h3 class="str-card-title" data-i18n="idx-s5-title">안전한 자산 보호</h3>
+        <p class="str-card-desc" data-i18n="idx-s5-desc">에스크로, 에스크로 보호 거래, 콜드스토리지 등 다중 보안 체계로 사용자 자산을 안전하게 보호합니다.</p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ═══ V PAWN SECTION ════════════════════════════════════════ -->
-<section class="biz-section biz-section-bg-light" id="vpawn">
-  <div class="container">
-    <div class="biz-detail">
-      <!-- Visual -->
-      <div class="biz-visual-wrap">
-        <div style="position:relative">
-          <div class="dark-visual">
-            <div class="dark-visual-top"></div>
-            <div class="dark-visual-inner">
-              <div class="dv-header">
-                <div class="dv-brand">
-                  <div class="dv-brand-mark" style="font-size:.7rem">VPN</div>
-                  <span class="dv-brand-name">V Pawn</span>
-                </div>
-                <div class="pawn-header-info">
-                  <span class="pawn-rating">Smart Appraisal</span>
-                </div>
-              </div>
-              <div class="pawn-assets">
-                <div class="pawn-asset">
-                  <div class="pawn-asset-icon">💎</div>
-                  <div class="pawn-asset-info"><div class="pawn-asset-name">Digital Asset A</div><div class="pawn-asset-val">Appraised: ₩2,400,000</div></div>
-                  <span class="pawn-asset-badge">ACTIVE</span>
-                </div>
-                <div class="pawn-asset">
-                  <div class="pawn-asset-icon">🖼️</div>
-                  <div class="pawn-asset-info"><div class="pawn-asset-name">Asset B</div><div class="pawn-asset-val">Appraised: ₩1,200,000</div></div>
-                  <span class="pawn-asset-badge">ACTIVE</span>
-                </div>
-                <div class="pawn-asset">
-                  <div class="pawn-asset-icon">📱</div>
-                  <div class="pawn-asset-info"><div class="pawn-asset-name">Device C</div><div class="pawn-asset-val">Appraised: ₩480,000</div></div>
-                  <span class="pawn-asset-badge">PENDING</span>
-                </div>
-              </div>
-              <div class="pawn-summary">
-                <div><div class="pawn-summary-label">Available Liquidity</div><div class="pawn-summary-val">₩2,856,000</div></div>
-                <div style="background:rgba(249,115,22,.15);border-radius:10px;padding:8px 14px;font-size:.75rem;font-weight:700;color:#fb923c">Claim →</div>
-              </div>
-            </div>
-          </div>
-          <div class="dv-float">V Pawn</div>
-        </div>
-      </div>
-      <!-- Content -->
-      <div class="biz-content">
-        <span class="section-tag" data-i18n="vpawn-tag">V PAWN</span>
-        <h2 class="section-title" data-i18n="vpawn-title">디지털 자산 기반<br>스마트 유동성 플랫폼</h2>
-        <p class="biz-desc" data-i18n="vpawn-desc">V Pawn은 디지털 자산과 고가치 자산을 담보로 한 빠르고 투명한 유동성 서비스를 제공하는 차세대 스마트 플랫폼입니다. 공정한 자산 평가 시스템과 효율적인 프로세스를 통해, 보유 자산의 가치를 더 쉽게 활용할 수 있도록 지원합니다.</p>
-        <div class="features">
-          <div class="feature"><div class="feature-icon"><svg viewBox="0 0 20 20"><polyline points="4 10 8 14 16 6"/></svg></div><div><div class="feature-title" data-i18n="vpawn-f1-t">디지털 자산 담보 서비스</div><div class="feature-desc" data-i18n="vpawn-f1-d">디지털 및 고가치 자산을 담보로 한 즉각적인 유동성 제공</div></div></div>
-          <div class="feature"><div class="feature-icon"><svg viewBox="0 0 20 20"><polyline points="4 10 8 14 16 6"/></svg></div><div><div class="feature-title" data-i18n="vpawn-f2-t">스마트 자산 평가 시스템</div><div class="feature-desc" data-i18n="vpawn-f2-d">투명하고 공정한 AI 기반 자산 가치 평가 시스템</div></div></div>
-          <div class="feature"><div class="feature-icon"><svg viewBox="0 0 20 20"><polyline points="4 10 8 14 16 6"/></svg></div><div><div class="feature-title" data-i18n="vpawn-f3-t">빠른 유동성 처리</div><div class="feature-desc" data-i18n="vpawn-f3-d">신속하고 안전한 자금 집행 프로세스</div></div></div>
-          <div class="feature"><div class="feature-icon"><svg viewBox="0 0 20 20"><polyline points="4 10 8 14 16 6"/></svg></div><div><div class="feature-title" data-i18n="vpawn-f4-t">안전한 자산 관리</div><div class="feature-desc" data-i18n="vpawn-f4-d">검증된 보관 시스템 기반의 안전한 담보 자산 관리</div></div></div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ═══ HEALTHCARE SECTION ════════════════════════════════════ -->
-<section class="biz-section biz-section-bg-white" id="healthcare">
-  <div class="container">
-    <div class="biz-detail reverse">
-      <!-- Content -->
-      <div class="biz-content">
-        <span class="section-tag" data-i18n="hc-tag">HEALTHCARE</span>
-        <h2 class="section-title" data-i18n="hc-title">개인 맞춤형<br>헬스케어 플랫폼</h2>
-        <p class="biz-desc" data-i18n="hc-desc">헬스케어 부문은 개인 맞춤형 헬스케어 플랫폼을 중심으로, SNP(단일 염기 다형성) 기반의 맞춤형 영양제 제조 분야에 높은 관심을 두고 개발을 추진하고 있습니다. 개인 유전적 특성과 건강 데이터를 바탕으로 보다 정교한 맞춤형 건강관리 경험을 제공하는 것을 목표로 합니다.</p>
-        <div class="features">
-          <div class="feature"><div class="feature-icon"><svg viewBox="0 0 20 20"><polyline points="4 10 8 14 16 6"/></svg></div><div><div class="feature-title" data-i18n="hc-f1-t">맞춤형 헬스케어 플랫폼</div><div class="feature-desc" data-i18n="hc-f1-d">개인 특성에 맞춘 정교한 헬스케어 플랫폼 서비스</div></div></div>
-          <div class="feature"><div class="feature-icon"><svg viewBox="0 0 20 20"><polyline points="4 10 8 14 16 6"/></svg></div><div><div class="feature-title" data-i18n="hc-f2-t">SNP 기반 맞춤 영양제</div><div class="feature-desc" data-i18n="hc-f2-d">단일 염기 다형성 분석 기반의 개인화된 영양제 개발</div></div></div>
-          <div class="feature"><div class="feature-icon"><svg viewBox="0 0 20 20"><polyline points="4 10 8 14 16 6"/></svg></div><div><div class="feature-title" data-i18n="hc-f3-t">데이터 기반 웰니스</div><div class="feature-desc" data-i18n="hc-f3-d">개인 건강 데이터를 활용한 정밀 맞춤형 서비스</div></div></div>
-          <div class="feature"><div class="feature-icon"><svg viewBox="0 0 20 20"><polyline points="4 10 8 14 16 6"/></svg></div><div><div class="feature-title" data-i18n="hc-f4-t">확장 가능한 디지털 헬스케어</div><div class="feature-desc" data-i18n="hc-f4-d">지속 성장 가능한 디지털 헬스케어 비즈니스 모델</div></div></div>
-        </div>
-      </div>
-      <!-- Visual -->
-      <div class="biz-visual-wrap">
-        <div style="position:relative">
-          <div class="dark-visual">
-            <div class="dark-visual-top"></div>
-            <div class="dark-visual-inner">
-              <div class="dv-header">
-                <div class="dv-brand">
-                  <div class="dv-brand-mark" style="font-size:.75rem">HC</div>
-                  <span class="dv-brand-name">Healthcare</span>
-                </div>
-                <span class="dv-badge">SNP Analysis</span>
-              </div>
-              <!-- DNA visualization -->
-              <div class="dna-row">
-                <div class="dna-node"><div class="dna-top" style="background:#f97316"></div><div class="dna-stem" style="background:rgba(249,115,22,.3)"></div><div class="dna-bot" style="background:#475569"></div></div>
-                <div class="dna-node"><div class="dna-top" style="background:#475569"></div><div class="dna-stem" style="background:rgba(71,85,105,.3)"></div><div class="dna-bot" style="background:#fb923c"></div></div>
-                <div class="dna-node"><div class="dna-top" style="background:#fb923c"></div><div class="dna-stem" style="background:rgba(249,115,22,.3)"></div><div class="dna-bot" style="background:#475569"></div></div>
-                <div class="dna-node"><div class="dna-top" style="background:#475569"></div><div class="dna-stem" style="background:rgba(71,85,105,.3)"></div><div class="dna-bot" style="background:#f97316"></div></div>
-                <div class="dna-node"><div class="dna-top" style="background:#f97316"></div><div class="dna-stem" style="background:rgba(249,115,22,.3)"></div><div class="dna-bot" style="background:#475569"></div></div>
-                <div class="dna-node"><div class="dna-top" style="background:#fb923c"></div><div class="dna-stem" style="background:rgba(249,115,22,.2)"></div><div class="dna-bot" style="background:#f97316"></div></div>
-                <div class="dna-node"><div class="dna-top" style="background:#475569"></div><div class="dna-stem" style="background:rgba(71,85,105,.3)"></div><div class="dna-bot" style="background:#fb923c"></div></div>
-                <div class="dna-node"><div class="dna-top" style="background:#f97316"></div><div class="dna-stem" style="background:rgba(249,115,22,.3)"></div><div class="dna-bot" style="background:#475569"></div></div>
-              </div>
-              <div class="hc-metrics">
-                <div class="hc-metric"><div><div class="hc-metric-label">DNA Profile</div><div class="hc-metric-val">Analyzed</div></div><div class="hc-metric-badge">+SNP</div></div>
-                <div class="hc-metric"><div><div class="hc-metric-label">Nutrition Score</div><div class="hc-metric-val">94 / 100</div></div><div class="hc-metric-badge">+12</div></div>
-                <div class="hc-metric"><div><div class="hc-metric-label">Supplement Match</div><div class="hc-metric-val">98%</div></div><div class="hc-metric-badge">Personal</div></div>
-              </div>
-            </div>
-          </div>
-          <div class="dv-float" style="top:-14px;left:-14px;right:auto">Healthcare</div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ═══ STRENGTHS ══════════════════════════════════════════════ -->
-<section class="strengths-section">
-  <div class="strengths-bg-dots"></div>
-  <div class="strengths-bg-glow-1"></div>
-  <div class="strengths-bg-glow-2"></div>
-  <div class="container" style="position:relative">
-    <div class="strengths-header">
-      <span class="section-tag" data-i18n="str-tag">WHY V FINANCIAL GROUP</span>
-      <h2 class="section-title" data-i18n="str-title">우리가 만드는<br>차이</h2>
-      <p class="section-sub" data-i18n="str-sub">V Financial Group만의 차별화된 역량으로 새로운 기준을 만들어갑니다.</p>
-    </div>
-    <div class="strengths-grid">
-      <div class="strength-card">
-        <div class="strength-card-top"></div>
-        <div class="strength-card-num">01</div>
-        <div class="strength-icon">◎</div>
-        <div class="strength-title" data-i18n="str-1-t">사용자 중심 서비스 설계</div>
-        <div class="strength-desc" data-i18n="str-1-d">모든 서비스는 사용자의 니즈와 편의를 최우선으로 설계됩니다.</div>
-      </div>
-      <div class="strength-card">
-        <div class="strength-card-top"></div>
-        <div class="strength-card-num">02</div>
-        <div class="strength-icon">⬡</div>
-        <div class="strength-title" data-i18n="str-2-t">확장 가능한 디지털 플랫폼</div>
-        <div class="strength-desc" data-i18n="str-2-d">유연하고 확장 가능한 기술 기반 위에 구축된 디지털 플랫폼 구조</div>
-      </div>
-      <div class="strength-card">
-        <div class="strength-card-top"></div>
-        <div class="strength-card-num">03</div>
-        <div class="strength-icon">◈</div>
-        <div class="strength-title" data-i18n="str-3-t">글로벌 시장 대응력</div>
-        <div class="strength-desc" data-i18n="str-3-d">빠르게 변화하는 글로벌 시장의 흐름에 신속하게 대응합니다.</div>
-      </div>
-      <div class="strength-card">
-        <div class="strength-card-top"></div>
-        <div class="strength-card-num">04</div>
-        <div class="strength-icon">◉</div>
-        <div class="strength-title" data-i18n="str-4-t">데이터 기반 서비스 기획</div>
-        <div class="strength-desc" data-i18n="str-4-d">데이터를 중심으로 한 정교한 서비스 기획과 의사결정 역량</div>
-      </div>
-      <div class="strength-card" style="grid-column:span 2">
-        <div class="strength-card-top"></div>
-        <div class="strength-card-num">05</div>
-        <div class="strength-icon">◇</div>
-        <div class="strength-title" data-i18n="str-5-t">혁신적 사업 포트폴리오</div>
-        <div class="strength-desc" data-i18n="str-5-d">금융과 라이프스타일을 연결하는 미래지향적 혁신 사업 포트폴리오</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ═══ CONTACT ════════════════════════════════════════════════ -->
+<!-- ═══ CONTACT ═══ -->
 <section class="contact-section" id="contact">
   <div class="container">
-    <div class="contact-inner">
-      <!-- Left -->
-      <div>
-        <span class="section-tag" data-i18n="ct-tag">CONTACT</span>
-        <h2 class="contact-title" data-i18n="ct-title">V Financial Group과<br>함께 논의해보세요</h2>
-        <p class="contact-desc" data-i18n="ct-desc">V Financial Group과 함께 새로운 비즈니스 가능성을 논의해보세요.<br>파트너십, 사업 협력, 서비스 문의를 기다립니다.</p>
-        <div class="contact-btns">
-          <div class="contact-btn-row">
-            <a href="mailto:info@vpayv.com" class="btn-primary">
-              <svg viewBox="0 0 20 20" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="5" width="16" height="11" rx="2"/><polyline points="2 7 10 13 18 7"/></svg>
-              <span data-i18n="ct-email-btn">이메일 문의하기</span>
-            </a>
-            <a href="tel:07041364390" class="btn-secondary">
-              <svg viewBox="0 0 20 20" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 5a2 2 0 012-2h1.5a1 1 0 01.93.64l1 2.5a1 1 0 01-.23 1.08l-1 .96a9.51 9.51 0 004.64 4.64l.96-1a1 1 0 011.08-.23l2.5 1a1 1 0 01.62.93V15a2 2 0 01-2 2C7.16 17 3 12.84 3 7V5z"/></svg>
-              <span data-i18n="ct-call-btn">전화 문의하기</span>
-            </a>
-          </div>
-          <div>
-            <span class="biz-reg">
-              <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="4" width="14" height="13" rx="2"/><line x1="7" y1="9" x2="13" y2="9"/><line x1="7" y1="12" x2="11" y2="12"/></svg>
-              <span data-i18n="ct-biz-label">사업자 등록번호</span>: 283-88-03541
-            </span>
-          </div>
+    <div class="contact-grid">
+      <div class="contact-left">
+        <div class="contact-tag reveal" data-i18n="idx-ct-tag">CONTACT</div>
+        <h2 class="contact-title reveal" data-i18n="idx-ct-title">파트너십 및 사업 문의</h2>
+        <p class="contact-sub reveal" data-i18n="idx-ct-sub">투자·제휴·서비스 이용 등 모든 문의를 환영합니다.</p>
+        <div class="contact-btns reveal">
+          <a href="mailto:info@vpayv.com" class="contact-btn">
+            <div class="cb-icon">📧</div>
+            <span data-i18n="idx-ct-email">이메일 문의</span>
+            <span style="margin-left:auto;font-size:.8rem;color:var(--s400)">info@vpayv.com →</span>
+          </a>
+          <a href="tel:07041364390" class="contact-btn">
+            <div class="cb-icon">📞</div>
+            <span data-i18n="idx-ct-phone">전화 문의</span>
+            <span style="margin-left:auto;font-size:.8rem;color:var(--s400)">070-4136-4390 →</span>
+          </a>
         </div>
       </div>
-      <!-- Right: Info Cards -->
-      <div class="info-cards">
-        <div class="info-card">
-          <div class="info-icon">✉️</div>
-          <div>
-            <div class="info-label" data-i18n="ct-email-label">이메일</div>
-            <a href="mailto:info@vpayv.com" class="info-value" style="color:var(--s900)">info@vpayv.com</a>
+      <div>
+        <div class="contact-cards">
+          <div class="info-card reveal d1">
+            <div class="ic-label" data-i18n="idx-ct-card1">이메일</div>
+            <div class="ic-value"><a href="mailto:info@vpayv.com" style="color:var(--orange)">info@vpayv.com</a></div>
           </div>
-        </div>
-        <div class="info-card">
-          <div class="info-icon">📞</div>
-          <div>
-            <div class="info-label" data-i18n="ct-phone-label">전화</div>
-            <a href="tel:07041364390" class="info-value" style="color:var(--s900)">070-4136-4390</a>
+          <div class="info-card reveal d2">
+            <div class="ic-label" data-i18n="idx-ct-card2">전화번호</div>
+            <div class="ic-value"><a href="tel:07041364390" style="color:var(--s900)">070-4136-4390</a></div>
           </div>
-        </div>
-        <div class="info-card">
-          <div class="info-icon">🏢</div>
-          <div>
-            <div class="info-label" data-i18n="ct-head-label">본사</div>
-            <div class="info-value">V Financial Group</div>
-            <div class="info-sub" data-i18n="ct-head-addr">인천광역시 연수구 인천타워대로 323, 비동 30층 브이 494호 (송도 센트로드)</div>
+          <div class="info-card reveal d3">
+            <div class="ic-label" data-i18n="idx-ct-card3">사업자등록</div>
+            <div class="ic-value" data-i18n="idx-biz-num">283-88-03541</div>
           </div>
-        </div>
-        <div class="info-card">
-          <div class="info-icon">🌆</div>
-          <div>
-            <div class="info-label" data-i18n="ct-seoul-label">서울 지사</div>
-            <div class="info-value">Seoul Branch</div>
-            <div class="info-sub" data-i18n="ct-seoul-addr">서울시 강남구 선릉로 155길 15, 2층</div>
+          <div class="info-card reveal d4" style="grid-column:span 2">
+            <div class="ic-label" data-i18n="idx-ct-card4">주소 (인천)</div>
+            <div class="ic-value" data-i18n="idx-ct-addr">인천타워대로 323 비동 30층 V494호</div>
+            <div class="ic-sub" data-i18n="idx-ct-addr2">송도 센트로드, 연수구</div>
           </div>
         </div>
       </div>
@@ -1175,207 +609,47 @@ footer { background: var(--s900); padding: 64px 0 32px; }
   </div>
 </section>
 
-<!-- ═══ FOOTER ════════════════════════════════════════════════ -->
+<!-- ═══ FOOTER ═══ -->
 <footer>
   <div class="container">
-    <div class="footer-grid">
+    <div class="ft-grid">
       <div>
-        <div class="footer-logo">
-          <div class="footer-logo-mark">V</div>
-          <span class="footer-logo-text">Financial Group</span>
+        <div class="ft-logo">
+          <div class="ft-logo-mark">V</div>
+          <span class="ft-logo-text">Financial Group</span>
         </div>
-        <p class="footer-desc" data-i18n="ft-desc">글로벌 금융과 디지털 혁신을 연결하는 기업 포트폴리오 그룹.</p>
-        <div class="footer-contact-info">
+        <p class="ft-desc" data-i18n="ft-desc">글로벌 금융과 디지털 혁신을 연결하는 기업 포트폴리오 그룹.</p>
+        <div class="ft-ci">
           <a href="mailto:info@vpayv.com">info@vpayv.com</a>
           <a href="tel:07041364390">070-4136-4390</a>
-          <span style="font-size:.75rem;margin-top:4px" data-i18n="ft-biz">사업자 등록번호: 283-88-03541</span>
+          <span data-i18n="ft-biz">사업자등록번호 283-88-03541</span>
         </div>
       </div>
-      <div class="footer-col">
+      <div class="ft-col">
         <h5 data-i18n="ft-businesses">사업 영역</h5>
         <ul>
-          <li><a href="#vpay" onclick="smoothNav(event,'vpay')">V Pay</a></li>
-          <li><a href="#vbazzar" onclick="smoothNav(event,'vbazzar')">V Bazzar</a></li>
-          <li><a href="#vpawn" onclick="smoothNav(event,'vpawn')">V Pawn</a></li>
-          <li><a href="#healthcare" onclick="smoothNav(event,'healthcare')" data-i18n="nav-healthcare">헬스케어</a></li>
+          <li><a href="vpay.html">V Pay</a></li>
+          <li><a href="vbazzar.html">V Bazzar</a></li>
+          <li><a href="vpawn.html">V Pawn</a></li>
+          <li><a href="healthcare.html" data-i18n="nav-hc">헬스케어</a></li>
         </ul>
       </div>
-      <div class="footer-col">
-        <h5 data-i18n="ft-contact">연락처</h5>
+      <div class="ft-col">
+        <h5 data-i18n="ft-contact-col">연락처</h5>
         <ul>
           <li><a href="mailto:info@vpayv.com">info@vpayv.com</a></li>
           <li><a href="tel:07041364390">070-4136-4390</a></li>
-          <li><a href="#contact" onclick="smoothNav(event,'contact')" data-i18n="nav-contact">문의하기</a></li>
+          <li><a href="#contact" onclick="smoothNav(event,'contact')" data-i18n="nav-cta">문의하기</a></li>
         </ul>
       </div>
     </div>
-    <div class="footer-bottom">
-      <span class="footer-copy" data-i18n="ft-copy">© 2026 V Financial Group. All rights reserved.</span>
-      <span class="footer-biz" data-i18n="ft-biz">사업자 등록번호: 283-88-03541</span>
+    <div class="ft-bottom">
+      <span class="ft-copy" data-i18n="ft-copy">© 2026 V Financial Group. All rights reserved.</span>
+      <span class="ft-biz" data-i18n="ft-biz">사업자등록번호 283-88-03541</span>
     </div>
   </div>
 </footer>
 
-<!-- ═══ JAVASCRIPT ════════════════════════════════════════════ -->
-<script>
-const T = {
-  ko: {
-    'nav-about':'소개','nav-vpay':'V Pay','nav-vbazzar':'V Bazzar','nav-vpawn':'V Pawn','nav-healthcare':'헬스케어','nav-contact':'문의','nav-cta':'문의하기',
-    'hero-title':'글로벌 금융과<br>디지털 혁신을<br>연결하다',
-    'hero-sub':'V Pay, V Bazzar, V Pawn, 헬스케어를 통해<br>금융, 커머스, 디지털 자산, 개인 맞춤형 건강관리의<br>새로운 가능성을 만들어갑니다.',
-    'hero-cta1':'사업 문의','hero-cta2':'사업영역 보기',
-    'hero-badge1':'4개 핵심 사업','hero-badge2':'글로벌 비전','hero-badge3':'디지털 혁신',
-    'about-tag':'ABOUT US','about-title':'미래를 선도하는<br>디지털 사업 포트폴리오',
-    'about-desc1':'V Financial Group은 금융, 디지털 플랫폼, 커머스, 헬스케어를 아우르는 미래지향적 사업 포트폴리오를 구축하고 있습니다.',
-    'about-desc2':'변화하는 글로벌 시장 속에서 사용자 중심의 서비스와 확장 가능한 기술 기반을 바탕으로, 신뢰할 수 있는 디지털 비즈니스 생태계를 만들어갑니다.',
-    'stat1-val':'4','stat1-label':'핵심 사업 영역','stat2-val':'글로벌','stat2-label':'시장 대응력','stat3-val':'디지털','stat3-label':'혁신 플랫폼',
-    'ov-tag':'OUR BUSINESSES','ov-title':'4가지 핵심 사업 영역','ov-sub':'금융, 커머스, 디지털 자산, 헬스케어를 통해<br>새로운 비즈니스 가능성을 만들어갑니다.','ov-learn':'자세히 보기',
-    'ov-vpay-title':'크로스보더 디지털 금융','ov-vpay-desc':'빠르고 편리한 글로벌 송금 및 디지털 금융 서비스 플랫폼','ov-vpay-p1':'빠른 크로스보더 송금','ov-vpay-p2':'모바일 퍼스트 금융','ov-vpay-p3':'안전한 거래 처리',
-    'ov-vbazzar-title':'C2C 커머스 플랫폼','ov-vbazzar-desc':'사용자 간 더 쉽고 안전한 거래를 연결하는 마켓플레이스','ov-vbazzar-p1':'C2C 거래 플랫폼','ov-vbazzar-p2':'안전한 사용자 거래','ov-vbazzar-p3':'신뢰 기반 마켓',
-    'ov-vpawn-title':'디지털 자산 유동성 플랫폼','ov-vpawn-desc':'디지털 자산과 고가치 자산을 담보로 빠른 유동성을 제공하는 스마트 플랫폼','ov-vpawn-p1':'디지털 자산 담보 서비스','ov-vpawn-p2':'스마트 자산 평가','ov-vpawn-p3':'빠른 유동성 제공',
-    'ov-hc-title':'맞춤형 헬스케어','ov-hc-desc':'SNP 기반의 개인 맞춤형 건강관리 플랫폼 및 영양제 개발','ov-hc-p1':'SNP 기반 맞춤 영양제','ov-hc-p2':'데이터 기반 웰니스','ov-hc-p3':'디지털 헬스케어',
-    'vpay-tag':'V PAY','vpay-title':'크로스보더<br>디지털 금융 플랫폼',
-    'vpay-desc':'브이페이는 글로벌 크로스보더 금융 환경에서 더 빠르고 편리한 송금 경험을 제공하는 디지털 금융 서비스입니다. 모바일 중심의 사용자 경험과 효율적인 프로세스를 바탕으로, 국경을 넘어 보다 쉽게 금융에 접근할 수 있도록 돕습니다.',
-    'vpay-f1-t':'빠른 크로스보더 송금','vpay-f1-d':'국경을 넘는 빠르고 신뢰할 수 있는 송금 경험을 제공합니다.',
-    'vpay-f2-t':'모바일 퍼스트 서비스','vpay-f2-d':'모바일 중심으로 설계된 직관적인 금융 서비스 경험',
-    'vpay-f3-t':'안전한 거래 처리','vpay-f3-d':'신뢰할 수 있는 트랜잭션 플로우로 안전한 송금을 보장합니다.',
-    'vpay-f4-t':'확장 가능한 글로벌 모델','vpay-f4-d':'글로벌 금융 서비스 확장을 위한 유연한 인프라 구조',
-    'vbazzar-tag':'V BAZZAR','vbazzar-title':'C2C 거래를 더<br>쉽고 안전하게',
-    'vbazzar-desc':'브이바자는 사용자 간 거래를 보다 쉽고 안전하게 연결하는 C2C 플랫폼입니다. 상품 탐색부터 거래, 결제 경험까지 직관적으로 설계하여 신뢰 기반의 거래 환경을 제공합니다.',
-    'vbazzar-f1-t':'C2C 거래 플랫폼','vbazzar-f1-d':'사용자 간 손쉽고 편리한 거래 연결 시스템을 제공합니다.',
-    'vbazzar-f2-t':'안전한 거래 경험','vbazzar-f2-d':'검증된 사용자 거래 보안 시스템으로 안심 거래를 지원합니다.',
-    'vbazzar-f3-t':'직관적인 커머스 플로우','vbazzar-f3-d':'탐색부터 결제까지 끊김 없는 간편한 커머스 플로우',
-    'vbazzar-f4-t':'신뢰 기반 마켓플레이스','vbazzar-f4-d':'신뢰를 우선으로 설계된 건강한 마켓플레이스 환경',
-    'vpawn-tag':'V PAWN','vpawn-title':'디지털 자산 기반<br>스마트 유동성 플랫폼',
-    'vpawn-desc':'V Pawn은 디지털 자산과 고가치 자산을 담보로 한 빠르고 투명한 유동성 서비스를 제공하는 차세대 스마트 플랫폼입니다. 공정한 자산 평가 시스템과 효율적인 프로세스를 통해, 보유 자산의 가치를 더 쉽게 활용할 수 있도록 지원합니다.',
-    'vpawn-f1-t':'디지털 자산 담보 서비스','vpawn-f1-d':'디지털 및 고가치 자산을 담보로 한 즉각적인 유동성 제공',
-    'vpawn-f2-t':'스마트 자산 평가 시스템','vpawn-f2-d':'투명하고 공정한 AI 기반 자산 가치 평가 시스템',
-    'vpawn-f3-t':'빠른 유동성 처리','vpawn-f3-d':'신속하고 안전한 자금 집행 프로세스',
-    'vpawn-f4-t':'안전한 자산 관리','vpawn-f4-d':'검증된 보관 시스템 기반의 안전한 담보 자산 관리',
-    'hc-tag':'HEALTHCARE','hc-title':'개인 맞춤형<br>헬스케어 플랫폼',
-    'hc-desc':'헬스케어 부문은 개인 맞춤형 헬스케어 플랫폼을 중심으로, SNP(단일 염기 다형성) 기반의 맞춤형 영양제 제조 분야에 높은 관심을 두고 개발을 추진하고 있습니다. 개인 유전적 특성과 건강 데이터를 바탕으로 보다 정교한 맞춤형 건강관리 경험을 제공하는 것을 목표로 합니다.',
-    'hc-f1-t':'맞춤형 헬스케어 플랫폼','hc-f1-d':'개인 특성에 맞춘 정교한 헬스케어 플랫폼 서비스',
-    'hc-f2-t':'SNP 기반 맞춤 영양제','hc-f2-d':'단일 염기 다형성 분석 기반의 개인화된 영양제 개발',
-    'hc-f3-t':'데이터 기반 웰니스','hc-f3-d':'개인 건강 데이터를 활용한 정밀 맞춤형 서비스',
-    'hc-f4-t':'확장 가능한 디지털 헬스케어','hc-f4-d':'지속 성장 가능한 디지털 헬스케어 비즈니스 모델',
-    'str-tag':'WHY V FINANCIAL GROUP','str-title':'우리가 만드는<br>차이','str-sub':'V Financial Group만의 차별화된 역량으로 새로운 기준을 만들어갑니다.',
-    'str-1-t':'사용자 중심 서비스 설계','str-1-d':'모든 서비스는 사용자의 니즈와 편의를 최우선으로 설계됩니다.',
-    'str-2-t':'확장 가능한 디지털 플랫폼','str-2-d':'유연하고 확장 가능한 기술 기반 위에 구축된 디지털 플랫폼 구조',
-    'str-3-t':'글로벌 시장 대응력','str-3-d':'빠르게 변화하는 글로벌 시장의 흐름에 신속하게 대응합니다.',
-    'str-4-t':'데이터 기반 서비스 기획','str-4-d':'데이터를 중심으로 한 정교한 서비스 기획과 의사결정 역량',
-    'str-5-t':'혁신적 사업 포트폴리오','str-5-d':'금융과 라이프스타일을 연결하는 미래지향적 혁신 사업 포트폴리오',
-    'ct-tag':'CONTACT','ct-title':'V Financial Group과<br>함께 논의해보세요',
-    'ct-desc':'V Financial Group과 함께 새로운 비즈니스 가능성을 논의해보세요.<br>파트너십, 사업 협력, 서비스 문의를 기다립니다.',
-    'ct-email-btn':'이메일 문의하기','ct-call-btn':'전화 문의하기','ct-biz-label':'사업자 등록번호',
-    'ct-email-label':'이메일','ct-phone-label':'전화','ct-head-label':'본사','ct-seoul-label':'서울 지사',
-    'ct-head-addr':'인천광역시 연수구 인천타워대로 323, 비동 30층 브이 494호 (송도 센트로드)',
-    'ct-seoul-addr':'서울시 강남구 선릉로 155길 15, 2층',
-    'ft-desc':'글로벌 금융과 디지털 혁신을 연결하는 기업 포트폴리오 그룹.',
-    'ft-businesses':'사업 영역','ft-contact':'연락처',
-    'ft-copy':'© 2026 V Financial Group. All rights reserved.','ft-biz':'사업자 등록번호: 283-88-03541',
-  },
-  en: {
-    'nav-about':'About','nav-vpay':'V Pay','nav-vbazzar':'V Bazzar','nav-vpawn':'V Pawn','nav-healthcare':'Healthcare','nav-contact':'Contact','nav-cta':'Contact Us',
-    'hero-title':'Connecting Global<br>Finance and<br>Digital Innovation',
-    'hero-sub':'Through V Pay, V Bazzar, V Pawn, and Healthcare,<br>V Financial Group builds new possibilities across finance,<br>commerce, digital assets, and personalized health.',
-    'hero-cta1':'Business Inquiry','hero-cta2':'Explore Businesses',
-    'hero-badge1':'4 Core Businesses','hero-badge2':'Global Vision','hero-badge3':'Digital Innovation',
-    'about-tag':'ABOUT US','about-title':'A Future-Oriented<br>Digital Portfolio',
-    'about-desc1':'V Financial Group is building a future-oriented portfolio spanning finance, digital platforms, commerce, and healthcare.',
-    'about-desc2':'In a rapidly evolving global market, the group creates a trusted digital business ecosystem based on user-centered services and scalable technology foundations.',
-    'stat1-val':'4','stat1-label':'Business Verticals','stat2-val':'Global','stat2-label':'Market Reach','stat3-val':'Digital','stat3-label':'Innovation Focus',
-    'ov-tag':'OUR BUSINESSES','ov-title':'4 Core Business Areas','ov-sub':'Building new possibilities across finance, commerce,<br>digital assets, and personalized healthcare.','ov-learn':'Learn More',
-    'ov-vpay-title':'Cross-Border Digital Finance','ov-vpay-desc':'A global remittance platform offering fast, reliable financial services','ov-vpay-p1':'Fast cross-border remittance','ov-vpay-p2':'Mobile-first finance','ov-vpay-p3':'Reliable transactions',
-    'ov-vbazzar-title':'C2C Commerce Platform','ov-vbazzar-desc':'A marketplace connecting users through safer peer-to-peer transactions','ov-vbazzar-p1':'C2C trade platform','ov-vbazzar-p2':'Safe user transactions','ov-vbazzar-p3':'Trust-based market',
-    'ov-vpawn-title':'Digital Asset Liquidity Platform','ov-vpawn-desc':'A smart platform providing fast liquidity backed by digital and high-value assets','ov-vpawn-p1':'Digital asset-backed service','ov-vpawn-p2':'Smart asset appraisal','ov-vpawn-p3':'Fast liquidity access',
-    'ov-hc-title':'Personalized Healthcare','ov-hc-desc':'SNP-based personalized healthcare platform and supplement development','ov-hc-p1':'SNP-based supplements','ov-hc-p2':'Data-driven wellness','ov-hc-p3':'Digital healthcare',
-    'vpay-tag':'V PAY','vpay-title':'Cross-Border<br>Digital Finance Platform',
-    'vpay-desc':'V Pay is a digital cross-border finance platform designed to provide a faster, more convenient, and more reliable remittance experience. With a mobile-first user experience and efficient financial flows, it helps users access financial services more easily across borders.',
-    'vpay-f1-t':'Fast Cross-Border Remittance','vpay-f1-d':'Delivering fast and reliable remittance experience across borders.',
-    'vpay-f2-t':'Mobile-First Financial Service','vpay-f2-d':'Intuitive financial service experience designed with a mobile-first approach.',
-    'vpay-f3-t':'Reliable Transaction Flow','vpay-f3-d':'Ensuring secure and trustworthy transactions at every step.',
-    'vpay-f4-t':'Scalable Global Model','vpay-f4-d':'Flexible infrastructure architecture designed for global financial service expansion.',
-    'vbazzar-tag':'V BAZZAR','vbazzar-title':'C2C Transactions,<br>Easier and Safer',
-    'vbazzar-desc':'V Bazzar is a C2C marketplace platform that connects users through simpler and safer peer-to-peer transactions. From discovery to transaction and payment, it is designed to deliver intuitive and trust-based commerce.',
-    'vbazzar-f1-t':'C2C Transaction Platform','vbazzar-f1-d':'Easy and convenient transaction connection system between users.',
-    'vbazzar-f2-t':'Safer User Transactions','vbazzar-f2-d':'Secure user transaction system for worry-free trading.',
-    'vbazzar-f3-t':'Intuitive Commerce Flow','vbazzar-f3-d':'Seamless commerce flow from discovery to payment completion.',
-    'vbazzar-f4-t':'Trust-Based Marketplace','vbazzar-f4-d':'A healthy marketplace environment built on trust and reliability.',
-    'vpawn-tag':'V PAWN','vpawn-title':'Smart Liquidity<br>for Digital Assets',
-    'vpawn-desc':'V Pawn is a next-generation smart platform providing fast and transparent liquidity services backed by digital assets and high-value goods. Through a fair valuation system and efficient processes, it helps users unlock the value of their assets more easily.',
-    'vpawn-f1-t':'Digital Asset-Backed Service','vpawn-f1-d':'Immediate liquidity backed by digital and high-value assets.',
-    'vpawn-f2-t':'Smart Asset Appraisal System','vpawn-f2-d':'Transparent, fair AI-powered asset valuation system.',
-    'vpawn-f3-t':'Fast Liquidity Processing','vpawn-f3-d':'Swift and secure fund disbursement process.',
-    'vpawn-f4-t':'Secure Asset Management','vpawn-f4-d':'Safe collateral asset management based on verified custody systems.',
-    'hc-tag':'HEALTHCARE','hc-title':'Personalized<br>Healthcare Platform',
-    'hc-desc':'The Healthcare division is focused on building a personalized healthcare platform, with strong interest in SNP (Single Nucleotide Polymorphism)-based customized supplement manufacturing. Its goal is to deliver a more precise and personalized health management experience based on individual genetic traits and health data.',
-    'hc-f1-t':'Personalized Healthcare Platform','hc-f1-d':'Sophisticated healthcare platform service tailored to individual characteristics.',
-    'hc-f2-t':'SNP-Based Supplement Development','hc-f2-d':'Personalized supplement development based on single nucleotide polymorphism analysis.',
-    'hc-f3-t':'Data-Driven Wellness','hc-f3-d':'Precision personalized services powered by individual health data.',
-    'hc-f4-t':'Scalable Digital Healthcare','hc-f4-d':'A sustainable and scalable digital healthcare business model.',
-    'str-tag':'WHY V FINANCIAL GROUP','str-title':'The Difference<br>We Make','str-sub':'V Financial Group sets new standards with differentiated capabilities that drive real impact.',
-    'str-1-t':'User-Centered Service Design','str-1-d':'Every service is designed with user needs and convenience as the top priority.',
-    'str-2-t':'Scalable Digital Platform','str-2-d':'Digital platform architecture built on flexible and scalable technology foundations.',
-    'str-3-t':'Global Market Adaptability','str-3-d':'Rapid and agile response to the fast-changing dynamics of global markets.',
-    'str-4-t':'Data-Driven Service Planning','str-4-d':'Sophisticated service planning and decision-making centered around data insights.',
-    'str-5-t':'Innovative Business Portfolio','str-5-d':'A future-oriented, innovative portfolio connecting finance and lifestyle.',
-    'ct-tag':'CONTACT','ct-title':"Let's Discuss New<br>Opportunities Together",
-    'ct-desc':"Let's discuss new business opportunities with V Financial Group.<br>We welcome partnership, collaboration, and service inquiries.",
-    'ct-email-btn':'Send an Email','ct-call-btn':'Call Us','ct-biz-label':'Business Reg. No.',
-    'ct-email-label':'Email','ct-phone-label':'Phone','ct-head-label':'Head Office','ct-seoul-label':'Seoul Branch',
-    'ct-head-addr':'B Tower 30F V494, 323 Incheon tower-daero, Yeonsu-gu, Incheon',
-    'ct-seoul-addr':'15 Seolleung-ro 155-gil, Gangnam-gu, Seoul, 2F',
-    'ft-desc':'A corporate portfolio group connecting global finance and digital innovation.',
-    'ft-businesses':'Businesses','ft-contact':'Contact',
-    'ft-copy':'© 2026 V Financial Group. All rights reserved.','ft-biz':'Business Reg. No.: 283-88-03541',
-  }
-};
-
-let currentLang = localStorage.getItem('vfg-lang') || 'ko';
-
-function applyLang(lang) {
-  currentLang = lang;
-  localStorage.setItem('vfg-lang', lang);
-  document.documentElement.lang = lang;
-  document.querySelectorAll('[data-i18n]').forEach(el => {
-    const key = el.getAttribute('data-i18n');
-    if (T[lang][key] !== undefined) el.innerHTML = T[lang][key];
-  });
-  const toggle = document.getElementById('langToggle');
-  const mToggle = document.getElementById('mobileLangBtn');
-  if (toggle) toggle.textContent = lang === 'ko' ? 'EN' : 'KR';
-  if (mToggle) mToggle.textContent = lang === 'ko' ? 'EN' : 'KR';
-}
-
-function toggleLang() { applyLang(currentLang === 'ko' ? 'en' : 'ko'); }
-
-function smoothNav(e, id) {
-  e.preventDefault();
-  const el = document.getElementById(id);
-  if (el) el.scrollIntoView({ behavior: 'smooth' });
-  const mm = document.getElementById('mobileMenu');
-  const hb = document.getElementById('hamburger');
-  if (mm) mm.classList.remove('open');
-  if (hb) hb.classList.remove('open');
-}
-
-function scrollToTop(e) {
-  e.preventDefault();
-  window.scrollTo({ top: 0, behavior: 'smooth' });
-}
-
-function toggleMenu() {
-  document.getElementById('mobileMenu').classList.toggle('open');
-  document.getElementById('hamburger').classList.toggle('open');
-}
-
-// Sticky nav
-window.addEventListener('scroll', () => {
-  document.getElementById('mainNav').classList.toggle('scrolled', window.scrollY > 24);
-}, { passive: true });
-
-// Init
-applyLang(currentLang);
-</script>
+<script src="shared.js"></script>
 </body>
 </html>

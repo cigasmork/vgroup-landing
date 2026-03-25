@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Healthcare | SNP 유전자 기반 맞춤형 헬스케어 — V Financial Group</title>
+<meta name="description" content="V Financial Group Healthcare는 SNP 유전자 분석 기반의 개인 맞춤형 영양 솔루션과 건강 관리 플랫폼입니다.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="shared.css">
+<style>
+/* ── HEALTHCARE VISUAL ─── */
+.dna-card { background: var(--s800); border-radius: 18px; overflow: hidden; animation: float 7s ease-in-out infinite; }
+.dna-header { background: var(--s900); padding: 16px 20px; display: flex; align-items: center; justify-content: space-between; }
+.dna-brand { display: flex; align-items: center; gap: 8px; }
+.dna-logo { width: 24px; height: 24px; background: linear-gradient(135deg, #0d9488, #14b8a6); border-radius: 7px; display: flex; align-items: center; justify-content: center; font-size: .75rem; }
+.dna-name { color: rgba(255,255,255,.85); font-size: .82rem; font-weight: 700; }
+.dna-body { padding: 18px; }
+.snp-profile { background: rgba(13,148,136,.08); border: 1px solid rgba(13,148,136,.2); border-radius: 14px; padding: 14px; margin-bottom: 14px; }
+.snp-profile-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px; }
+.snp-profile-name { color: white; font-size: .82rem; font-weight: 700; }
+.snp-profile-badge { font-size: .6rem; padding: 2px 8px; background: rgba(13,148,136,.2); color: #2dd4bf; border-radius: 8px; font-weight: 700; }
+.snp-markers { display: flex; flex-direction: column; gap: 8px; }
+.snp-marker { display: flex; align-items: center; gap: 8px; }
+.snp-marker-label { color: var(--s400); font-size: .72rem; width: 90px; flex-shrink: 0; }
+.snp-marker-bar { flex: 1; height: 5px; background: rgba(255,255,255,.06); border-radius: 3px; overflow: hidden; }
+.snp-marker-fill { height: 100%; border-radius: 3px; background: linear-gradient(90deg, #0d9488, #2dd4bf); }
+.snp-marker-val { color: #2dd4bf; font-size: .7rem; font-weight: 700; width: 32px; text-align: right; flex-shrink: 0; }
+.nutrition-recs { display: flex; flex-direction: column; gap: 9px; }
+.nut-item { display: flex; align-items: center; gap: 10px; padding: 10px 12px; background: rgba(255,255,255,.04); border: 1px solid rgba(255,255,255,.05); border-radius: 10px; transition: border-color .2s; }
+.nut-item:hover { border-color: rgba(13,148,136,.3); }
+.nut-icon { width: 32px; height: 32px; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: .95rem; flex-shrink: 0; }
+.nut-name { color: rgba(255,255,255,.8); font-size: .78rem; font-weight: 600; flex: 1; }
+.nut-dose { color: #2dd4bf; font-size: .72rem; font-weight: 700; }
+.nut-reason { color: var(--s500); font-size: .62rem; }
+
+/* SNP Section */
+.snp-section { padding: 100px 0; background: var(--s50); }
+.snp-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center; }
+.snp-points { margin-top: 28px; display: flex; flex-direction: column; gap: 16px; }
+.snp-point { display: flex; gap: 14px; align-items: flex-start; }
+.snp-point-num { width: 28px; height: 28px; border-radius: 8px; background: var(--orange-light); border: 1px solid var(--orange-border); display: flex; align-items: center; justify-content: center; font-size: .75rem; font-weight: 800; color: var(--orange); flex-shrink: 0; margin-top: 2px; transition: transform .3s cubic-bezier(.34,1.56,.64,1), background .2s; }
+.snp-point:hover .snp-point-num { transform: scale(1.15) rotate(-5deg); background: rgba(249,115,22,.15); }
+.snp-point-title { font-size: .95rem; font-weight: 700; color: var(--s900); margin-bottom: 4px; }
+.snp-point-desc { font-size: .85rem; color: var(--s500); line-height: 1.7; }
+.snp-visual-box { background: var(--s900); border-radius: 24px; padding: 32px; }
+.snp-circle-wrap { display: flex; justify-content: center; margin-bottom: 24px; }
+.snp-circles { position: relative; width: 160px; height: 160px; }
+.snp-circle { position: absolute; border-radius: 50%; border: 2px solid; }
+.snp-circle-1 { inset: 0; border-color: rgba(249,115,22,.25); animation: spin 20s linear infinite; }
+.snp-circle-2 { inset: 20px; border-color: rgba(249,115,22,.15); animation: spin 15s linear infinite reverse; }
+.snp-circle-3 { inset: 40px; border-color: rgba(249,115,22,.08); animation: spin 10s linear infinite; }
+.snp-center { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; font-size: 2.8rem; }
+.snp-stats-row { display: grid; grid-template-columns: repeat(3,1fr); gap: 10px; }
+.snp-stat { background: rgba(255,255,255,.04); border: 1px solid rgba(255,255,255,.07); border-radius: 10px; padding: 12px 8px; text-align: center; }
+.snp-stat-val { color: #fb923c; font-size: .9rem; font-weight: 800; }
+.snp-stat-label { color: var(--s500); font-size: .62rem; margin-top: 2px; }
+
+/* Roadmap */
+.roadmap-section { padding: 100px 0; background: white; }
+.roadmap-steps { display: flex; flex-direction: column; gap: 0; margin-top: 52px; max-width: 720px; margin-left: auto; margin-right: auto; }
+.rd-step { display: flex; gap: 24px; align-items: flex-start; padding-bottom: 36px; position: relative; }
+.rd-step:not(:last-child)::before { content: ''; position: absolute; left: 19px; top: 40px; bottom: 0; width: 2px; background: linear-gradient(180deg, var(--orange-border), transparent); }
+.rd-step.done::before { background: linear-gradient(180deg, var(--orange), var(--orange-border)); }
+.rd-dot { width: 40px; height: 40px; border-radius: 50%; border: 2px solid var(--s200); background: white; display: flex; align-items: center; justify-content: center; font-size: 1rem; flex-shrink: 0; transition: border-color .25s, background .25s, transform .3s cubic-bezier(.34,1.56,.64,1), box-shadow .25s; }
+.rd-step:hover .rd-dot { border-color: var(--orange); background: var(--orange-light); transform: scale(1.1); box-shadow: 0 4px 12px rgba(249,115,22,.2); }
+.rd-step.done .rd-dot { border-color: var(--orange); background: var(--orange-light); }
+.rd-content { flex: 1; padding-top: 6px; }
+.rd-phase { font-size: .68rem; font-weight: 700; color: var(--orange); letter-spacing: .1em; text-transform: uppercase; margin-bottom: 6px; }
+.rd-title { font-size: 1rem; font-weight: 700; color: var(--s900); margin-bottom: 6px; }
+.rd-desc { font-size: .85rem; color: var(--s500); line-height: 1.7; }
+.rd-tag { display: inline-block; margin-top: 8px; font-size: .68rem; font-weight: 700; padding: 3px 10px; border-radius: 8px; }
+.rd-tag.done { background: rgba(74,222,128,.1); color: #16a34a; }
+.rd-tag.progress { background: rgba(249,115,22,.1); color: var(--orange-dark); }
+.rd-tag.planned { background: rgba(148,163,184,.1); color: var(--s500); }
+
+@media (max-width: 1024px) { .snp-inner { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+
+<!-- ═══ NAV ═══ -->
+<nav id="mainNav">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">
+      <div class="logo-mark">V</div>
+      <span>Financial Group</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="index.html" class="nav-link" data-page="index" data-i18n="nav-about">소개</a></li>
+      <li><a href="vpay.html" class="nav-link" data-page="vpay">V Pay</a></li>
+      <li><a href="vbazzar.html" class="nav-link" data-page="vbazzar">V Bazzar</a></li>
+      <li><a href="vpawn.html" class="nav-link" data-page="vpawn">V Pawn</a></li>
+      <li><a href="healthcare.html" class="nav-link" data-page="healthcare" data-i18n="nav-hc">헬스케어</a></li>
+      <li><a href="index.html#contact" class="nav-link" data-i18n="nav-contact">문의</a></li>
+    </ul>
+    <div class="nav-right">
+      <button class="lang-btn" id="langToggle" onclick="toggleLang()">EN</button>
+      <a href="index.html#contact" class="nav-cta" data-i18n="nav-cta">문의하기</a>
+    </div>
+    <button class="hamburger" id="hamburger" onclick="toggleMenu()"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+
+<div id="mobileMenu">
+  <a href="index.html" data-mob-page="index" data-i18n="nav-about">소개</a>
+  <a href="vpay.html" data-mob-page="vpay">V Pay</a>
+  <a href="vbazzar.html" data-mob-page="vbazzar">V Bazzar</a>
+  <a href="vpawn.html" data-mob-page="vpawn">V Pawn</a>
+  <a href="healthcare.html" data-mob-page="healthcare" data-i18n="nav-hc">헬스케어</a>
+  <a href="index.html#contact" data-i18n="nav-contact">문의</a>
+  <div class="mob-actions">
+    <button class="mob-lang" id="mobLangBtn" onclick="toggleLang()">EN</button>
+    <a href="index.html#contact" class="mob-cta" data-i18n="nav-cta">문의하기</a>
+  </div>
+</div>
+
+<!-- ═══ HERO ═══ -->
+<section class="biz-hero" style="background:linear-gradient(145deg,#0a1628,#0d2137)">
+  <div class="hero-bg-dots"></div>
+  <div class="hero-bg-glow" style="width:600px;height:600px;top:-100px;right:-60px;background:radial-gradient(circle,rgba(13,148,136,.1) 0%,transparent 70%)"></div>
+  <div class="hero-bg-glow" style="width:400px;height:400px;bottom:-100px;left:15%;background:radial-gradient(circle,rgba(13,148,136,.06) 0%,transparent 70%)"></div>
+  <div class="breadcrumb">
+    <a href="index.html">V Financial Group</a>
+    <span>›</span>
+    <span style="color:rgba(255,255,255,.7)" data-i18n="nav-hc">헬스케어</span>
+  </div>
+  <div class="container">
+    <div class="biz-hero-inner">
+      <div>
+        <div class="biz-hero-tag">
+          <div class="biz-hero-tag-pill" style="background:rgba(13,148,136,.12);border-color:rgba(13,148,136,.3)">
+            <div class="hero-tag-dot" style="background:#14b8a6"></div>
+            <span class="hero-tag-text" style="color:#2dd4bf" data-i18n="hc-hero-tag">HEALTHCARE</span>
+          </div>
+        </div>
+        <h1 class="biz-hero-title" data-i18n="hc-hero-title">SNP 유전자 기반<br>맞춤형 헬스케어</h1>
+        <p class="biz-hero-sub" data-i18n="hc-hero-sub">SNP 유전자 분석을 기반으로 개인 맞춤형 영양 솔루션과 건강 관리 서비스를 제공합니다. 과학적 데이터로 더 건강한 삶을 설계합니다.</p>
+        <div class="biz-hero-btns">
+          <a href="index.html#contact" class="btn" style="background:#0d9488;color:white;box-shadow:0 4px 14px rgba(13,148,136,.3)" onmouseover="this.style.background='#0f766e'" onmouseout="this.style.background='#0d9488'" data-i18n="cta-contact">지금 문의하기</a>
+          <a href="#features" onclick="document.getElementById('features').scrollIntoView({behavior:'smooth'});return false;" class="btn btn-ghost-white" data-i18n="cta-learn">더 알아보기</a>
+        </div>
+        <div class="biz-hero-badges">
+          <div class="biz-badge"><div class="biz-badge-dot" style="background:#14b8a6"></div><span data-i18n="hc-badge1">SNP 유전자 분석</span></div>
+          <div class="biz-badge"><div class="biz-badge-dot" style="background:#14b8a6"></div><span data-i18n="hc-badge2">맞춤 영양 솔루션</span></div>
+          <div class="biz-badge"><div class="biz-badge-dot" style="background:#14b8a6"></div><span data-i18n="hc-badge3">개인화 헬스케어</span></div>
+        </div>
+      </div>
+      <div class="biz-hero-visual">
+        <div class="dark-card">
+          <div class="dark-card-bar" style="background:linear-gradient(90deg,#0d9488,#2dd4bf,#0d9488);background-size:200% 100%"></div>
+          <div class="dc-inner">
+            <div class="dc-header">
+              <div class="dc-brand"><div class="dc-brand-mark" style="background:linear-gradient(135deg,#0d9488,#14b8a6)">H</div><span class="dc-brand-name">Healthcare</span></div>
+              <div class="dc-badge" style="background:rgba(13,148,136,.15);color:#2dd4bf;border-color:rgba(13,148,136,.25)">SNP Platform</div>
+            </div>
+            <div class="dna-card">
+              <div class="dna-header">
+                <div class="dna-brand">
+                  <div class="dna-logo">🧬</div>
+                  <span class="dna-name">SNP Analysis</span>
+                </div>
+                <span style="font-size:.65rem;color:#2dd4bf;font-weight:700">● 분석 완료</span>
+              </div>
+              <div class="dna-body">
+                <div class="snp-profile">
+                  <div class="snp-profile-header">
+                    <span class="snp-profile-name">개인 유전자 프로파일</span>
+                    <span class="snp-profile-badge">SNP 분석 완료</span>
+                  </div>
+                  <div class="snp-markers">
+                    <div class="snp-marker">
+                      <span class="snp-marker-label">비타민D 대사</span>
+                      <div class="snp-marker-bar"><div class="snp-marker-fill progress-fill" data-fill="35" style="background:linear-gradient(90deg,#0d9488,#2dd4bf)"></div></div>
+                      <span class="snp-marker-val">낮음</span>
+                    </div>
+                    <div class="snp-marker">
+                      <span class="snp-marker-label">오메가-3 활용</span>
+                      <div class="snp-marker-bar"><div class="snp-marker-fill progress-fill" data-fill="78" style="background:linear-gradient(90deg,#0d9488,#2dd4bf)"></div></div>
+                      <span class="snp-marker-val">높음</span>
+                    </div>
+                    <div class="snp-marker">
+                      <span class="snp-marker-label">엽산 대사</span>
+                      <div class="snp-marker-bar"><div class="snp-marker-fill progress-fill" data-fill="55" style="background:linear-gradient(90deg,#0d9488,#2dd4bf)"></div></div>
+                      <span class="snp-marker-val">보통</span>
+                    </div>
+                    <div class="snp-marker">
+                      <span class="snp-marker-label">항산화 능력</span>
+                      <div class="snp-marker-bar"><div class="snp-marker-fill progress-fill" data-fill="62" style="background:linear-gradient(90deg,#0d9488,#2dd4bf)"></div></div>
+                      <span class="snp-marker-val">보통</span>
+                    </div>
+                  </div>
+                </div>
+                <div style="font-size:.68rem;color:var(--s500);letter-spacing:.08em;text-transform:uppercase;margin-bottom:10px">맞춤 영양 추천 · Personalized</div>
+                <div class="nutrition-recs">
+                  <div class="nut-item">
+                    <div class="nut-icon" style="background:rgba(251,191,36,.1)">☀️</div>
+                    <div><div class="nut-name">비타민D3 + K2</div><div class="nut-reason">SNP: VDR Fok1 TT형</div></div>
+                    <div><div class="nut-dose">5000IU</div></div>
+                  </div>
+                  <div class="nut-item">
+                    <div class="nut-icon" style="background:rgba(96,165,250,.1)">🐟</div>
+                    <div><div class="nut-name">오메가-3 EPA/DHA</div><div class="nut-reason">SNP: FADS1 우수형</div></div>
+                    <div><div class="nut-dose">2000mg</div></div>
+                  </div>
+                  <div class="nut-item">
+                    <div class="nut-icon" style="background:rgba(74,222,128,.1)">🍃</div>
+                    <div><div class="nut-name">메틸엽산 (L-MTHF)</div><div class="nut-reason">SNP: MTHFR C677T</div></div>
+                    <div><div class="nut-dose">800mcg</div></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ STATS ═══ -->
+<div class="stats-band dark">
+  <div class="container">
+    <div class="stats-row">
+      <div class="stat-item reveal"><span class="stat-val" data-i18n="hc-s1v">SNP</span><div class="stat-label" data-i18n="hc-s1l">유전자 분석 기반</div></div>
+      <div class="stat-item reveal d1"><span class="stat-val" data-i18n="hc-s2v">맞춤형</span><div class="stat-label" data-i18n="hc-s2l">영양소 설계</div></div>
+      <div class="stat-item reveal d2"><span class="stat-val" data-i18n="hc-s3v">100%</span><div class="stat-label" data-i18n="hc-s3l">개인화 서비스</div></div>
+      <div class="stat-item reveal d3"><span class="stat-val" data-i18n="hc-s4v">과학적</span><div class="stat-label" data-i18n="hc-s4l">근거 기반</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ FEATURES ═══ -->
+<section class="features-section" id="features">
+  <div class="container">
+    <div class="features-header">
+      <div class="section-tag reveal" data-i18n="hc-ft-tag">FEATURES</div>
+      <h2 class="section-title reveal" data-i18n="hc-ft-title">Healthcare의 핵심 기능</h2>
+      <p class="section-sub reveal" data-i18n="hc-ft-sub">과학적 데이터로 나만의 건강 솔루션을 만듭니다.</p>
+    </div>
+    <div class="features-grid">
+      <div class="feat-card reveal d1">
+        <div class="feat-icon" style="background:rgba(13,148,136,.1);border-color:rgba(13,148,136,.25)">🧬</div>
+        <div class="feat-title" data-i18n="hc-f1-title">SNP 유전자 분석</div>
+        <p class="feat-desc" data-i18n="hc-f1-desc">SNP(단일염기다형성) 분석을 통해 개인의 유전적 특성을 파악합니다. 과학적 데이터를 기반으로 최적의 영양 솔루션을 도출합니다.</p>
+      </div>
+      <div class="feat-card reveal d2">
+        <div class="feat-icon" style="background:rgba(13,148,136,.1);border-color:rgba(13,148,136,.25)">💊</div>
+        <div class="feat-title" data-i18n="hc-f2-title">맞춤형 영양 솔루션</div>
+        <p class="feat-desc" data-i18n="hc-f2-desc">유전자 분석 결과를 바탕으로 개인에게 최적화된 영양제와 건강 보충제를 설계합니다. 불필요한 성분 없이 꼭 필요한 영양소만을 제공합니다.</p>
+      </div>
+      <div class="feat-card reveal d3">
+        <div class="feat-icon" style="background:rgba(13,148,136,.1);border-color:rgba(13,148,136,.25)">📊</div>
+        <div class="feat-title" data-i18n="hc-f3-title">디지털 건강 관리</div>
+        <p class="feat-desc" data-i18n="hc-f3-desc">실시간 건강 데이터 모니터링과 AI 분석으로 지속적인 건강 관리를 지원합니다. 데이터 기반 인사이트로 생활 습관 개선을 안내합니다.</p>
+      </div>
+      <div class="feat-card reveal d4">
+        <div class="feat-icon" style="background:rgba(13,148,136,.1);border-color:rgba(13,148,136,.25)">👤</div>
+        <div class="feat-title" data-i18n="hc-f4-title">개인화 헬스 플랫폼</div>
+        <p class="feat-desc" data-i18n="hc-f4-desc">건강 상태, 라이프스타일, 유전적 요인을 종합 분석하여 개인별 최적화된 헬스케어 플랜을 제공합니다.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ HOW IT WORKS ═══ -->
+<section class="how-section">
+  <div class="container">
+    <div class="how-header">
+      <div class="section-tag reveal" data-i18n="hc-hw-tag">HOW IT WORKS</div>
+      <h2 class="section-title reveal" data-i18n="hc-hw-title">SNP 분석부터 배송까지</h2>
+      <p class="section-sub reveal" data-i18n="hc-hw-sub">과학적 분석으로 나만의 건강 솔루션을 받아보세요.</p>
+    </div>
+    <div class="how-steps">
+      <div class="how-step reveal d1">
+        <div class="step-circle">
+          <div class="step-icon-em">📝</div>
+          <div class="step-num-label">STEP 1</div>
+        </div>
+        <div class="step-title" data-i18n="hc-step1-t">건강 프로파일</div>
+        <p class="step-desc" data-i18n="hc-step1-d">건강 상태와 생활 습관 정보를 입력합니다.</p>
+      </div>
+      <div class="how-step reveal d2">
+        <div class="step-circle">
+          <div class="step-icon-em">🧬</div>
+          <div class="step-num-label">STEP 2</div>
+        </div>
+        <div class="step-title" data-i18n="hc-step2-t">SNP 유전자 분석</div>
+        <p class="step-desc" data-i18n="hc-step2-d">유전자 키트로 SNP 분석을 진행합니다.</p>
+      </div>
+      <div class="how-step reveal d3">
+        <div class="step-circle">
+          <div class="step-icon-em">🔬</div>
+          <div class="step-num-label">STEP 3</div>
+        </div>
+        <div class="step-title" data-i18n="hc-step3-t">영양소 설계</div>
+        <p class="step-desc" data-i18n="hc-step3-d">분석 결과 기반 맞춤 영양 솔루션을 설계합니다.</p>
+      </div>
+      <div class="how-step reveal d4">
+        <div class="step-circle">
+          <div class="step-icon-em">📦</div>
+          <div class="step-num-label">STEP 4</div>
+        </div>
+        <div class="step-title" data-i18n="hc-step4-t">제품 수령</div>
+        <p class="step-desc" data-i18n="hc-step4-d">맞춤 영양제를 받고 건강 관리를 시작합니다.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ SNP TECHNOLOGY ═══ -->
+<section class="snp-section">
+  <div class="container">
+    <div class="snp-inner">
+      <div>
+        <div class="section-tag reveal" data-i18n="hc-snp-tag">OUR TECHNOLOGY</div>
+        <h2 class="section-title reveal" data-i18n="hc-snp-title">SNP 기술 소개</h2>
+        <p class="section-sub reveal" data-i18n="hc-snp-sub">SNP(단일염기다형성)는 인간 게놈에서 가장 흔한 유전적 변이로, 개인의 건강과 영양 대사에 중요한 영향을 미칩니다.</p>
+        <div class="snp-points">
+          <div class="snp-point reveal d1">
+            <div class="snp-point-num">01</div>
+            <div>
+              <div class="snp-point-title">유전자 변이 분석</div>
+              <p class="snp-point-desc">수십만 개의 SNP 마커를 분석하여 개인의 유전적 특성을 파악하고 건강 위험도를 예측합니다.</p>
+            </div>
+          </div>
+          <div class="snp-point reveal d2">
+            <div class="snp-point-num">02</div>
+            <div>
+              <div class="snp-point-title">영양소 대사 패턴 파악</div>
+              <p class="snp-point-desc">비타민, 미네랄, 오메가-3 등 주요 영양소의 대사 유전자를 분석하여 개인별 최적 섭취량을 결정합니다.</p>
+            </div>
+          </div>
+          <div class="snp-point reveal d3">
+            <div class="snp-point-num">03</div>
+            <div>
+              <div class="snp-point-title">맞춤형 솔루션 도출</div>
+              <p class="snp-point-desc">AI 알고리즘이 분석 결과를 종합하여 개인에게 최적화된 영양 처방을 자동으로 생성합니다.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="reveal from-r">
+        <div class="snp-visual-box">
+          <div class="snp-circle-wrap">
+            <div class="snp-circles">
+              <div class="snp-circle snp-circle-1"></div>
+              <div class="snp-circle snp-circle-2"></div>
+              <div class="snp-circle snp-circle-3"></div>
+              <div class="snp-center">🧬</div>
+            </div>
+          </div>
+          <div class="snp-stats-row">
+            <div class="snp-stat"><div class="snp-stat-val">SNP</div><div class="snp-stat-label">분석 기반</div></div>
+            <div class="snp-stat"><div class="snp-stat-val">AI</div><div class="snp-stat-label">맞춤 설계</div></div>
+            <div class="snp-stat"><div class="snp-stat-val">과학적</div><div class="snp-stat-label">근거 기반</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ ROADMAP ═══ -->
+<section class="roadmap-section">
+  <div class="container">
+    <div class="how-header">
+      <div class="section-tag reveal" data-i18n="hc-rd-tag">ROADMAP</div>
+      <h2 class="section-title reveal" data-i18n="hc-rd-title">개발 로드맵</h2>
+      <p class="section-sub reveal" data-i18n="hc-rd-sub">단계적 플랫폼 고도화를 통해 더 나은 헬스케어 서비스를 제공합니다.</p>
+    </div>
+    <div class="roadmap-steps">
+      <div class="rd-step done reveal">
+        <div class="rd-dot">✓</div>
+        <div class="rd-content">
+          <div class="rd-phase">Phase 1 · 2024</div>
+          <div class="rd-title">SNP 분석 플랫폼 기반 구축</div>
+          <p class="rd-desc">유전자 분석 파이프라인 개발 및 SNP 마커 데이터베이스 구축. 초기 영양 매핑 알고리즘 개발 완료.</p>
+          <span class="rd-tag done">완료</span>
+        </div>
+      </div>
+      <div class="rd-step reveal">
+        <div class="rd-dot">⚡</div>
+        <div class="rd-content">
+          <div class="rd-phase">Phase 2 · 2025</div>
+          <div class="rd-title">맞춤 영양 솔루션 서비스 런칭</div>
+          <p class="rd-desc">SNP 분석 기반 개인 맞춤 영양제 처방 서비스 및 구독 플랫폼 출시. 사용자 건강 데이터 수집 체계 구축.</p>
+          <span class="rd-tag progress">진행 중</span>
+        </div>
+      </div>
+      <div class="rd-step reveal">
+        <div class="rd-dot">🔬</div>
+        <div class="rd-content">
+          <div class="rd-phase">Phase 3 · 2026</div>
+          <div class="rd-title">디지털 건강 관리 플랫폼 확장</div>
+          <p class="rd-desc">웨어러블 데이터 연동, 실시간 건강 모니터링, AI 기반 건강 인사이트 제공. 의료기관 파트너십 구축.</p>
+          <span class="rd-tag planned">예정</span>
+        </div>
+      </div>
+      <div class="rd-step reveal">
+        <div class="rd-dot">🌐</div>
+        <div class="rd-content">
+          <div class="rd-phase">Phase 4 · 2027+</div>
+          <div class="rd-title">글로벌 헬스케어 생태계 구축</div>
+          <p class="rd-desc">아시아 시장 확대 및 글로벌 헬스케어 파트너십. V Financial Group 전 사업 영역과의 헬스케어 데이터 연동.</p>
+          <span class="rd-tag planned">예정</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ CTA ═══ -->
+<section class="cta-banner" style="background:linear-gradient(140deg,#0a1628,#0d2137)">
+  <div class="cta-banner-inner">
+    <div class="section-tag light reveal" style="color:#2dd4bf">HEALTHCARE</div>
+    <h2 class="reveal">나만의 건강 솔루션을<br>지금 시작하세요</h2>
+    <p class="reveal" style="color:var(--s400)">파트너십 및 서비스 문의를 환영합니다.</p>
+    <div class="cta-btns reveal">
+      <a href="index.html#contact" class="btn" style="background:#0d9488;color:white" data-i18n="cta-contact">지금 문의하기</a>
+      <a href="index.html" class="btn btn-ghost-white">← V Financial Group</a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ FOOTER ═══ -->
+<footer>
+  <div class="container">
+    <div class="ft-grid">
+      <div>
+        <div class="ft-logo">
+          <div class="ft-logo-mark">V</div>
+          <span class="ft-logo-text">Financial Group</span>
+        </div>
+        <p class="ft-desc" data-i18n="ft-desc">글로벌 금융과 디지털 혁신을 연결하는 기업 포트폴리오 그룹.</p>
+        <div class="ft-ci">
+          <a href="mailto:info@vpayv.com">info@vpayv.com</a>
+          <a href="tel:07041364390">070-4136-4390</a>
+          <span data-i18n="ft-biz">사업자등록번호 283-88-03541</span>
+        </div>
+      </div>
+      <div class="ft-col">
+        <h5 data-i18n="ft-businesses">사업 영역</h5>
+        <ul>
+          <li><a href="vpay.html">V Pay</a></li>
+          <li><a href="vbazzar.html">V Bazzar</a></li>
+          <li><a href="vpawn.html">V Pawn</a></li>
+          <li><a href="healthcare.html" data-i18n="nav-hc">헬스케어</a></li>
+        </ul>
+      </div>
+      <div class="ft-col">
+        <h5 data-i18n="ft-contact-col">연락처</h5>
+        <ul>
+          <li><a href="mailto:info@vpayv.com">info@vpayv.com</a></li>
+          <li><a href="tel:07041364390">070-4136-4390</a></li>
+          <li><a href="index.html#contact" data-i18n="nav-cta">문의하기</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="ft-bottom">
+      <span class="ft-copy" data-i18n="ft-copy">© 2026 V Financial Group. All rights reserved.</span>
+      <span class="ft-biz" data-i18n="ft-biz">사업자등록번호 283-88-03541</span>
+    </div>
+  </div>
+</footer>
+
+<script src="shared.js"></script>
+</body>
+</html>
