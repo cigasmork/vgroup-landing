@@ -1,88 +1,49 @@
 # V Financial Group — Corporate Landing Page
 
-A polished bilingual (Korean / English) corporate landing website for **V Financial Group**, built with Next.js 15, TypeScript, and Tailwind CSS.
+프리미엄 법인 소개 랜딩 페이지 (한국어/영어 지원)
 
-## 🚀 Tech Stack
+## 기술 스택
 
-- **Framework**: Next.js 15 (App Router)
-- **Language**: TypeScript
-- **Styling**: Tailwind CSS v4
-- **Font**: Geist Sans (via next/font)
+- **순수 HTML / CSS / JavaScript** (프레임워크 없음)
+- Google Fonts (Noto Sans KR + Inter)
+- 외부 의존성 없음
 
-## 📁 Project Structure
+## 사업 영역
 
-```
-├── app/
-│   ├── globals.css       # Global styles + design tokens
-│   ├── layout.tsx        # Root layout with metadata
-│   └── page.tsx          # Main page (client, assembles all sections)
-├── components/
-│   ├── Header.tsx        # Sticky bilingual navigation
-│   ├── Footer.tsx        # Footer with contact info
-│   └── sections/
-│       ├── Hero.tsx          # Hero section
-│       ├── GroupIntro.tsx    # Group introduction + stats
-│       ├── BusinessOverview.tsx  # 4 business cards grid
-│       ├── VPaySection.tsx       # V Pay detail
-│       ├── VBazzarSection.tsx    # V Bazzar detail
-│       ├── VPhoneSection.tsx     # V Phone detail
-│       ├── HealthcareSection.tsx # Healthcare detail
-│       ├── Strengths.tsx         # Core strengths (dark section)
-│       └── Contact.tsx           # Contact / CTA section
-├── context/
-│   └── LangContext.tsx   # Language context (KO/EN toggle)
-└── messages/
-    ├── ko.ts             # Korean translations
-    └── en.ts             # English translations
-```
+| 사업 | 설명 |
+|------|------|
+| V Pay | 크로스보더 디지털 금융 플랫폼 |
+| V Bazzar | C2C 커머스 마켓플레이스 |
+| V Pawn | 디지털 자산 기반 스마트 유동성 플랫폼 |
+| Healthcare | SNP 기반 개인 맞춤형 헬스케어 |
 
-## 🌐 Sections
+## 주요 기능
 
-1. **Header** — Sticky nav with smooth scroll + KR/EN toggle
-2. **Hero** — Bold headline, CTA, abstract portfolio visual
-3. **Group Introduction** — Company description + stats
-4. **Business Overview** — 4 business cards grid
-5. **V Pay** — Cross-border digital finance platform
-6. **V Bazzar** — C2C commerce marketplace
-7. **V Phone** — Next-gen digital lifestyle platform
-8. **Healthcare** — SNP-based personalized healthcare
-9. **Core Strengths** — Dark section with 5 differentiators
-10. **Contact** — CTA buttons + address / contact info
-11. **Footer** — Links, copyright, business registration
+- 한국어 / 영어 실시간 토글
+- 스무스 스크롤 네비게이션
+- 스크롤 시 투명 → 고정 헤더
+- 모바일 반응형 레이아웃 + 햄버거 메뉴
+- 섹션별 사업 상세 + 추상 UI 비주얼
+- 문의 섹션 (이메일, 전화, 주소)
 
-## 🛠️ Getting Started
+## GitHub Pages 퍼블리시
+
+1. `Settings` → `Pages` 탭으로 이동
+2. Source: **Deploy from a branch**
+3. Branch: `main` / `/ (root)` 선택
+4. **Save** 클릭
+
+약 1분 후 `https://cigasmork.github.io/vgroup-landing` 에서 확인 가능
+
+## 로컬 미리보기
 
 ```bash
-npm install
-npm run dev
+# Python이 있는 경우
+python -m http.server 3000
+
+# Node.js가 있는 경우
+npx serve .
 ```
-
-Open [http://localhost:3000](http://localhost:3000)
-
-## 📦 Build for Production
-
-```bash
-npm run build
-npm run start
-```
-
-## 🌍 Deployment
-
-This project is ready for deployment on [Vercel](https://vercel.com):
-
-```bash
-npx vercel --prod
-```
-
-Or connect the GitHub repo to Vercel for automatic deployments.
-
-## ✏️ Editing Content
-
-All text content is in:
-- `messages/ko.ts` — Korean
-- `messages/en.ts` — English
-
-Edit translations there to update any text across the site without touching component files.
 
 ---
 
