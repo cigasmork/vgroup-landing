@@ -56,6 +56,21 @@
   <div id="note">Natural Earth 지형 데이터</div>
 </div>
 <script>
+// The map lives in an iframe, so it reads the language the parent stored and
+// re-draws when the parent posts a change.
+let LANG = 'ko';
+try { if (localStorage.getItem('vfg-lang') === 'en') LANG = 'en'; } catch (e) { /* private mode */ }
+
+const EN = {
+  '서울': 'Seoul', '하노이': 'Hanoi', '마닐라': 'Manila', '방콕': 'Bangkok', '자카르타': 'Jakarta',
+  '계좌 · 현금': 'Bank · cash', '계좌 · 준비': 'Bank · planned',
+  '운영 구간': 'Live corridor', '준비 구간': 'Planned corridor',
+  'Natural Earth 지형 데이터': 'Natural Earth terrain data',
+  '한국에서 베트남·필리핀·태국·인도네시아로 이어지는 V Pay 송금 구간 지도':
+    'Map of V Pay transfer corridors from Korea to Vietnam, the Philippines, Thailand and Indonesia'
+};
+const t = (s) => (LANG === 'en' && EN[s]) ? EN[s] : s;
+
 const CITIES = {
   seoul:   { name: '서울', sub: 'Seoul · HUB', lon: 126.98, lat: 37.57 },
   hanoi:   { name: '하노이', sub: '계좌 · 현금', lon: 105.85, lat: 21.03, status: 'live' },
@@ -63,6 +78,21 @@ const CITIES = {
   bangkok: { name: '방콕', sub: '계좌 · 준비', lon: 100.50, lat: 13.75, status: 'soon' },
   jakarta: { name: '자카르타', sub: '계좌 · 준비', lon: 106.85, lat: -6.21, status: 'soon' }
 };
+
+function applyLang() {
+  document.documentElement.lang = LANG;
+  document.getElementById('legend').innerHTML =
+    '<span><b></b>' + t('운영 구간') + '</span><span><i></i>' + t('준비 구간') + '</span>';
+  document.getElementById('note').textContent = t('Natural Earth 지형 데이터');
+  document.getElementById('map').setAttribute('aria-label',
+    t('한국에서 베트남·필리핀·태국·인도네시아로 이어지는 V Pay 송금 구간 지도'));
+  draw();
+}
+
+window.addEventListener('message', (e) => {
+  const l = e.data && e.data.vfgLang;
+  if (l === 'en' || l === 'ko') { LANG = l; applyLang(); }
+});
 const ROUTES = ['hanoi', 'manila', 'bangkok', 'jakarta'];
 const HIGHLIGHT = new Set(['South Korea', 'Vietnam', 'Philippines', 'Thailand', 'Indonesia']);
 const REGION = { type: 'Polygon', coordinates: [[[94, -13], [94, 44], [144, 44], [144, -13], [94, -13]]] };
@@ -116,25 +146,25 @@ function draw() {
     nodes.append('text').attr('class', 'label')
       .attr('x', flip ? x - 11 : x + 11).attr('y', y - 1)
       .attr('text-anchor', flip ? 'end' : 'start')
-      .text(city.name);
+      .text(t(city.name));
     nodes.append('text').attr('class', 'sub')
       .attr('x', flip ? x - 11 : x + 11).attr('y', y + 11)
       .attr('text-anchor', flip ? 'end' : 'start')
-      .text(city.sub);
+      .text(t(city.sub));
   });
 
   const [hx, hy] = projection([CITIES.seoul.lon, CITIES.seoul.lat]);
   nodes.append('circle').attr('class', 'hub-ring').attr('cx', hx).attr('cy', hy).attr('r', 5);
   nodes.append('circle').attr('class', 'hub').attr('cx', hx).attr('cy', hy).attr('r', 5.5);
-  nodes.append('text').attr('class', 'label').attr('x', hx + 12).attr('y', hy - 1).text(CITIES.seoul.name);
-  nodes.append('text').attr('class', 'sub').attr('x', hx + 12).attr('y', hy + 11).text(CITIES.seoul.sub);
+  nodes.append('text').attr('class', 'label').attr('x', hx + 12).attr('y', hy - 1).text(t(CITIES.seoul.name));
+  nodes.append('text').attr('class', 'sub').attr('x', hx + 12).attr('y', hy + 11).text(t(CITIES.seoul.sub));
 }
 
 fetch('https://cdn.jsdelivr.net/npm/world-atlas@2.0.2/countries-110m.json')
   .then(r => r.json())
   .then(topology => {
     countries = topojson.feature(topology, topology.objects.countries).features;
-    draw();
+    applyLang();
   });
 
 new ResizeObserver(() => draw()).observe(document.getElementById('wrap'));

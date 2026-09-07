@@ -19,6 +19,16 @@ a:hover{color:var(--ink)}
 img{display:block;max-width:100%}
 ::selection{background:var(--acc);color:#fff}
 
+.navright{display:flex;align-items:center;gap:12px}
+.langbtn{
+  display:inline-flex;align-items:center;justify-content:center;
+  min-width:40px;height:28px;padding:0 10px;
+  border:1px solid var(--line);border-radius:999px;background:transparent;
+  color:var(--ink2);font:inherit;font-size:.74rem;font-weight:600;letter-spacing:.05em;
+  cursor:pointer;transition:color .25s,border-color .25s
+}
+.langbtn:hover{color:var(--acc-text);border-color:var(--acc)}
+
 /* hover states — these were style-hover attributes in the design source */
 .nl:hover{opacity:1;color:var(--acc-text)}
 .card:hover{box-shadow:var(--sh-l)}

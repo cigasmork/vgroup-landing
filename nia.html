@@ -24,11 +24,14 @@
         <li><a href="#top" style="font-size:.8rem;font-weight:600;color:var(--acc-text)">NIA World</a></li>
         <li><a class="nl" href="genova.html" style="font-size:.8rem;font-weight:500;color:var(--ink2);transition:opacity .25s,color .25s">Genova</a></li>
       </ul>
-      <a class="navcta" href="index.html#contact" data-press="1" style="display:inline-flex;align-items:center;padding:7px 16px;border-radius:999px;background:var(--acc);color:#fff;font-size:.79rem;font-weight:600;transition:background .3s">문의하기</a>
-      <button class="burger" onclick="toggleMenu()" aria-label="메뉴" style="display:none;flex-direction:column;gap:5px;padding:6px;border:none;background:none;cursor:pointer">
-        <span data-burger="1" style="display:block;width:20px;height:1.5px;background:var(--ink);border-radius:2px;transition:transform .4s cubic-bezier(.32,.72,0,1)"></span>
-        <span data-burger="2" style="display:block;width:20px;height:1.5px;background:var(--ink);border-radius:2px;transition:transform .4s cubic-bezier(.32,.72,0,1)"></span>
-      </button>
+      <div class="navright">
+        <button class="langbtn" data-lang-btn onclick="toggleLang()">EN</button>
+        <a class="navcta" href="index.html#contact" data-press="1" style="display:inline-flex;align-items:center;padding:7px 16px;border-radius:999px;background:var(--acc);color:#fff;font-size:.79rem;font-weight:600;transition:background .3s">문의하기</a>
+        <button class="burger" onclick="toggleMenu()" aria-label="메뉴" style="display:none;flex-direction:column;gap:5px;padding:6px;border:none;background:none;cursor:pointer">
+          <span data-burger="1" style="display:block;width:20px;height:1.5px;background:var(--ink);border-radius:2px;transition:transform .4s cubic-bezier(.32,.72,0,1)"></span>
+          <span data-burger="2" style="display:block;width:20px;height:1.5px;background:var(--ink);border-radius:2px;transition:transform .4s cubic-bezier(.32,.72,0,1)"></span>
+        </button>
+      </div>
     </div>
   </nav>
 
@@ -266,6 +269,7 @@
   </footer>
 </div>
 
+<script type="module" src="i18n.js"></script>
 <script type="module" src="page.js"></script>
 </body>
 </html>
