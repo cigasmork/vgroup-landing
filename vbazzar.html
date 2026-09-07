@@ -1,357 +1,283 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>V Bazzar | 안전한 C2C 마켓플레이스 — V Financial Group</title>
-<meta name="description" content="V Bazzar는 에스크로 보호 기반의 신뢰할 수 있는 C2C 중고거래 마켓플레이스 플랫폼입니다.">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="shared.css">
-<style>
-/* ── MARKETPLACE VISUAL ─── */
-.market-card { background: var(--s800); border-radius: 18px; overflow: hidden; animation: floatR 6s ease-in-out infinite; }
-.market-header { background: var(--s900); padding: 14px 18px; display: flex; align-items: center; justify-content: space-between; }
-.market-search { flex: 1; background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.08); border-radius: 8px; padding: 7px 14px; font-size: .78rem; color: var(--s400); margin: 0 12px; }
-.market-items { padding: 16px; display: flex; flex-direction: column; gap: 10px; }
-.mkt-item { background: rgba(255,255,255,.04); border: 1px solid rgba(255,255,255,.06); border-radius: 14px; padding: 13px 14px; display: flex; gap: 12px; align-items: center; transition: border-color .2s, background .2s; cursor: default; }
-.mkt-item:hover { border-color: rgba(249,115,22,.3); background: rgba(249,115,22,.04); }
-.mkt-img { width: 46px; height: 46px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 1.4rem; flex-shrink: 0; }
-.mkt-img.bg1 { background: rgba(96,165,250,.1); }
-.mkt-img.bg2 { background: rgba(167,139,250,.1); }
-.mkt-img.bg3 { background: rgba(74,222,128,.1); }
-.mkt-img.bg4 { background: rgba(249,115,22,.1); }
-.mkt-info { flex: 1; min-width: 0; }
-.mkt-name { color: white; font-size: .82rem; font-weight: 700; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-.mkt-sub { color: var(--s500); font-size: .68rem; margin-top: 2px; }
-.mkt-price { color: #fb923c; font-size: .9rem; font-weight: 800; white-space: nowrap; }
-.mkt-escrow { font-size: .6rem; color: #4ade80; margin-top: 2px; text-align: right; }
-.market-footer { background: rgba(255,255,255,.03); border-top: 1px solid rgba(255,255,255,.06); padding: 12px 16px; display: flex; justify-content: space-between; align-items: center; }
-.mf-item { text-align: center; }
-.mf-val { color: #fb923c; font-size: .85rem; font-weight: 800; }
-.mf-label { color: var(--s500); font-size: .62rem; margin-top: 1px; }
-
-/* Trust section */
-.trust-section { padding: 100px 0; background: var(--s50); }
-.trust-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 28px; margin-top: 52px; }
-.trust-card { background: white; border: 1px solid var(--s100); border-radius: var(--r-xl); padding: 36px 28px; text-align: center; box-shadow: var(--shadow); transition: all .3s cubic-bezier(.16,1,.3,1); position: relative; overflow: hidden; }
-.trust-card::before { content:''; position:absolute; inset:0; background:linear-gradient(145deg,transparent,rgba(249,115,22,.03)); opacity:0; transition:opacity .3s; }
-.trust-card:hover { box-shadow: var(--shadow-h); transform: translateY(-5px); border-color: var(--orange-border); }
-.trust-card:hover::before { opacity: 1; }
-.trust-icon { width: 64px; height: 64px; border-radius: 20px; background: var(--orange-light); border: 1.5px solid var(--orange-border); display: flex; align-items: center; justify-content: center; font-size: 1.8rem; margin: 0 auto 20px; transition: transform .35s cubic-bezier(.34,1.56,.64,1); }
-.trust-card:hover .trust-icon { transform: scale(1.12) rotate(-8deg); }
-.trust-card-title { font-size: 1.1rem; font-weight: 700; color: var(--s900); margin-bottom: 10px; }
-.trust-card-desc { font-size: .88rem; color: var(--s500); line-height: 1.75; }
-
-@media (max-width: 1024px) { .trust-grid { grid-template-columns: 1fr; } }
-@media (max-width: 768px) { .trust-grid { grid-template-columns: 1fr; } }
-</style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>V Bazzar | 에스크로 C2C 마켓플레이스 — V Financial Group</title>
+<meta name="description" content="V Bazzar는 대금을 플랫폼이 보관한 뒤 수령이 확인되면 정산하는 C2C 마켓플레이스입니다. 판매자는 3단계 검증을 통과해야 등록됩니다.">
+<link rel="stylesheet" href="v3.css">
 </head>
 <body>
 
-<!-- ═══ NAV ═══ -->
-<nav id="mainNav">
-  <div class="nav-inner">
-    <a href="index.html" class="nav-logo">
-      <div class="logo-mark">V</div>
-      <span>Financial Group</span>
-    </a>
-    <ul class="nav-links">
-      <li><a href="index.html" class="nav-link" data-page="index" data-i18n="nav-about">소개</a></li>
-      <li><a href="vpay.html" class="nav-link" data-page="vpay">V Pay</a></li>
-      <li><a href="vbazzar.html" class="nav-link" data-page="vbazzar">V Bazzar</a></li>
-      <li><a href="vpawn.html" class="nav-link" data-page="vpawn">V Pawn</a></li>
-      <li><a href="nia.html" class="nav-link" data-page="nia">NIA World</a></li>
-      <li><a href="healthcare.html" class="nav-link" data-page="healthcare" data-i18n="nav-hc">헬스케어</a></li>
-      <li><a href="index.html#contact" class="nav-link" data-i18n="nav-contact">문의</a></li>
-    </ul>
-    <div class="nav-right">
-      <button class="lang-btn" id="langToggle" onclick="toggleLang()">EN</button>
-      <a href="index.html#contact" class="nav-cta" data-i18n="nav-cta">문의하기</a>
+<div id="top" data-om-root="1" style="min-height:100vh">
+
+  <nav data-nav="1" style="position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(245,245,247,var(--nav-a));backdrop-filter:blur(var(--nav-blur)) saturate(180%);-webkit-backdrop-filter:blur(var(--nav-blur)) saturate(180%);box-shadow:inset 0 -1px 0 rgba(0,0,0,calc(.08 * var(--nav-line)))">
+    <div class="cont" style="max-width:1180px;margin:0 auto;padding:0 34px;height:54px;display:flex;align-items:center;justify-content:space-between">
+      <a href="index.html" data-press="1" style="display:flex;align-items:center;gap:9px;color:var(--ink);font-size:.94rem;font-weight:600;letter-spacing:-.01em">
+        <span style="width:24px;height:24px;border-radius:7px;background:var(--acc);color:#fff;display:flex;align-items:center;justify-content:center;font-size:.76rem;font-weight:700">V</span>
+        <span>Financial Group</span>
+      </a>
+      <ul class="navlinks" style="display:flex;gap:24px;list-style:none;align-items:center">
+        <li><a class="nl" href="index.html#group" style="font-size:.8rem;font-weight:500;color:var(--ink2);transition:opacity .25s,color .25s">그룹</a></li>
+        <li><a class="nl" href="vpay.html" style="font-size:.8rem;font-weight:500;color:var(--ink2);transition:opacity .25s,color .25s">V Pay</a></li>
+        <li><a href="#top" style="font-size:.8rem;font-weight:600;color:var(--acc-text)">V Bazzar</a></li>
+        <li><a class="nl" href="nia.html" style="font-size:.8rem;font-weight:500;color:var(--ink2);transition:opacity .25s,color .25s">NIA World</a></li>
+        <li><a class="nl" href="genova.html" style="font-size:.8rem;font-weight:500;color:var(--ink2);transition:opacity .25s,color .25s">Genova</a></li>
+      </ul>
+      <a class="navcta" href="index.html#contact" data-press="1" style="display:inline-flex;align-items:center;padding:7px 16px;border-radius:999px;background:var(--acc);color:#fff;font-size:.79rem;font-weight:600;transition:background .3s">문의하기</a>
+      <button class="burger" onclick="toggleMenu()" aria-label="메뉴" style="display:none;flex-direction:column;gap:5px;padding:6px;border:none;background:none;cursor:pointer">
+        <span data-burger="1" style="display:block;width:20px;height:1.5px;background:var(--ink);border-radius:2px;transition:transform .4s cubic-bezier(.32,.72,0,1)"></span>
+        <span data-burger="2" style="display:block;width:20px;height:1.5px;background:var(--ink);border-radius:2px;transition:transform .4s cubic-bezier(.32,.72,0,1)"></span>
+      </button>
     </div>
-    <button class="hamburger" id="hamburger" onclick="toggleMenu()"><span></span><span></span><span></span></button>
-  </div>
-</nav>
+  </nav>
 
-<div id="mobileMenu">
-  <a href="index.html" data-mob-page="index" data-i18n="nav-about">소개</a>
-  <a href="vpay.html" data-mob-page="vpay">V Pay</a>
-  <a href="vbazzar.html" data-mob-page="vbazzar">V Bazzar</a>
-  <a href="vpawn.html" data-mob-page="vpawn">V Pawn</a>
-  <a href="nia.html" data-mob-page="nia">NIA World</a>
-  <a href="healthcare.html" data-mob-page="healthcare" data-i18n="nav-hc">헬스케어</a>
-  <a href="index.html#contact" data-i18n="nav-contact">문의</a>
-  <div class="mob-actions">
-    <button class="mob-lang" id="mobLangBtn" onclick="toggleLang()">EN</button>
-    <a href="index.html#contact" class="mob-cta" data-i18n="nav-cta">문의하기</a>
+  <div data-mob="1" data-glass="1" style="display:none;position:fixed;top:54px;left:0;right:0;z-index:99;background:rgba(245,245,247,.92);backdrop-filter:blur(28px) saturate(180%);flex-direction:column;padding:12px 22px 22px;box-shadow:0 20px 50px rgba(0,0,0,.12)">
+    <a href="index.html#group" style="padding:15px 0;border-bottom:1px solid var(--line);font-size:1.3rem;font-weight:600;letter-spacing:-.02em;color:var(--ink)">그룹</a>
+    <a href="vpay.html" style="padding:15px 0;border-bottom:1px solid var(--line);font-size:1.3rem;font-weight:600;letter-spacing:-.02em;color:var(--ink)">V Pay</a>
+    <a href="#top" style="padding:15px 0;border-bottom:1px solid var(--line);font-size:1.3rem;font-weight:600;letter-spacing:-.02em;color:var(--acc-text)">V Bazzar</a>
+    <a href="nia.html" style="padding:15px 0;border-bottom:1px solid var(--line);font-size:1.3rem;font-weight:600;letter-spacing:-.02em;color:var(--ink)">NIA World</a>
+    <a href="genova.html" style="padding:15px 0;border-bottom:1px solid var(--line);font-size:1.3rem;font-weight:600;letter-spacing:-.02em;color:var(--ink)">Genova Wellness</a>
+    <a href="index.html#contact" data-press="1" style="margin-top:16px;padding:14px;text-align:center;border-radius:999px;background:var(--acc);color:#fff;font-size:.95rem;font-weight:600">문의하기</a>
   </div>
-</div>
 
-<!-- ═══ HERO ═══ -->
-<section class="biz-hero">
-  <div class="hero-bg-dots"></div>
-  <div class="hero-bg-glow" style="width:600px;height:600px;top:-100px;right:-80px"></div>
-  <div class="hero-bg-glow" style="width:350px;height:350px;bottom:-80px;left:15%"></div>
-  <div class="breadcrumb">
-    <a href="index.html">V Financial Group</a>
-    <span>›</span>
-    <span style="color:rgba(255,255,255,.7)">V Bazzar</span>
-  </div>
-  <div class="container">
-    <div class="biz-hero-inner">
-      <div>
-        <div class="biz-hero-tag">
-          <div class="biz-hero-tag-pill">
-            <div class="hero-tag-dot"></div>
-            <span class="hero-tag-text" data-i18n="vb-hero-tag">V BAZZAR</span>
+  <section style="position:relative;min-height:78svh;display:flex;align-items:flex-end;overflow:hidden;background:var(--deep)">
+    <img src="img/vbazzar-still.jpg" alt="아이보리 종이 위에 정돈된 중고 거래 물품 정물" data-parallax="0.14" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;will-change:transform" />
+    <div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(11,11,13,.6) 0%,rgba(11,11,13,.3) 34%,rgba(11,11,13,.9) 100%)"></div>
+    <div class="cont" style="position:relative;max-width:1180px;margin:0 auto;padding:0 34px 76px;width:100%">
+      <div data-rv="1" style="font-size:.76rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.72);margin-bottom:20px">02 · Escrow marketplace</div>
+      <h1 data-rv="1" data-d="60" style="font-size:clamp(2.5rem,5.6vw,4.6rem);font-weight:600;line-height:1.05;letter-spacing:-.035em;color:#fff;max-width:20ch">모르는 사람과 거래해도 안전하게</h1>
+      <p data-rv="1" data-d="120" style="font-size:1.1rem;line-height:1.62;color:rgba(255,255,255,.78);max-width:46ch;margin-top:22px">대금을 플랫폼이 보관한 뒤 수령이 확인되면 정산합니다. 판매자는 검증을 통과해야 등록됩니다.</p>
+    </div>
+  </section>
+
+  <section class="sect" style="padding:76px 0 0">
+    <div class="cont" style="max-width:1180px;margin:0 auto;padding:0 34px">
+      <div class="figs" style="display:grid;grid-template-columns:repeat(4,1fr);gap:16px">
+        <div class="card" data-rv="1" data-lift="1" style="background:var(--surf);border-radius:var(--r);padding:28px;box-shadow:var(--sh-s);transition:box-shadow .4s cubic-bezier(.32,.72,0,1)">
+          <div style="font-size:2.4rem;font-weight:600;letter-spacing:-.04em;line-height:1">전건</div>
+          <div style="font-size:.88rem;color:var(--mut);margin-top:10px">에스크로 적용</div>
+        </div>
+        <div class="card" data-rv="1" data-d="70" data-lift="1" style="background:var(--surf);border-radius:var(--r);padding:28px;box-shadow:var(--sh-s);transition:box-shadow .4s cubic-bezier(.32,.72,0,1)">
+          <div style="font-size:2.4rem;font-weight:600;letter-spacing:-.04em;line-height:1;font-variant-numeric:tabular-nums">3단계</div>
+          <div style="font-size:.88rem;color:var(--mut);margin-top:10px">판매자 검증</div>
+        </div>
+        <div class="card" data-rv="1" data-d="140" data-lift="1" style="background:var(--surf);border-radius:var(--r);padding:28px;box-shadow:var(--sh-s);transition:box-shadow .4s cubic-bezier(.32,.72,0,1)">
+          <div style="font-size:2.4rem;font-weight:600;letter-spacing:-.04em;line-height:1;font-variant-numeric:tabular-nums">7일</div>
+          <div style="font-size:.88rem;color:var(--mut);margin-top:10px">분쟁 접수 기간</div>
+        </div>
+        <div class="card" data-rv="1" data-d="210" data-lift="1" style="background:var(--surf);border-radius:var(--r);padding:28px;box-shadow:var(--sh-s);transition:box-shadow .4s cubic-bezier(.32,.72,0,1)">
+          <div style="font-size:2.4rem;font-weight:600;letter-spacing:-.04em;line-height:1">V Pay</div>
+          <div style="font-size:.88rem;color:var(--mut);margin-top:10px">결제 연동</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="capability" class="sect" style="padding:100px 0">
+    <div class="cont" style="max-width:1180px;margin:0 auto;padding:0 34px">
+      <h2 data-rv="1" style="font-size:clamp(1.8rem,3.4vw,2.8rem);font-weight:600;letter-spacing:-.03em;line-height:1.12;max-width:22ch">사고를 구조로 막습니다</h2>
+      <div class="cards" style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:44px">
+        <div class="card" data-rv="1" data-d="40" data-lift="1" style="background:var(--surf);border-radius:var(--r);padding:34px 32px;box-shadow:var(--sh-s);transition:box-shadow .4s cubic-bezier(.32,.72,0,1)">
+          <div style="font-size:.74rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--acc-text)">01</div>
+          <div style="font-size:1.2rem;font-weight:600;letter-spacing:-.022em;margin-top:14px">판매자 검증</div>
+          <p style="font-size:.95rem;line-height:1.7;color:var(--mut);margin-top:10px">실명 확인, 연락처 인증, 거래 이력 심사 3단계를 통과해야 판매 권한이 부여됩니다. 위반 시 즉시 정지됩니다.</p>
+        </div>
+        <div class="card" data-rv="1" data-d="110" data-lift="1" style="background:var(--surf);border-radius:var(--r);padding:34px 32px;box-shadow:var(--sh-s);transition:box-shadow .4s cubic-bezier(.32,.72,0,1)">
+          <div style="font-size:.74rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--acc-text)">02</div>
+          <div style="font-size:1.2rem;font-weight:600;letter-spacing:-.022em;margin-top:14px">대금 예치</div>
+          <p style="font-size:.95rem;line-height:1.7;color:var(--mut);margin-top:10px">모든 거래에 에스크로가 기본 적용됩니다. 판매자는 수령 확인 전에는 대금을 인출할 수 없습니다.</p>
+        </div>
+        <div class="card" data-rv="1" data-d="180" data-lift="1" style="background:var(--surf);border-radius:var(--r);padding:34px 32px;box-shadow:var(--sh-s);transition:box-shadow .4s cubic-bezier(.32,.72,0,1)">
+          <div style="font-size:.74rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--acc-text)">03</div>
+          <div style="font-size:1.2rem;font-weight:600;letter-spacing:-.022em;margin-top:14px">분쟁 조정</div>
+          <p style="font-size:.95rem;line-height:1.7;color:var(--mut);margin-top:10px">수령 후 7일 내 접수된 분쟁은 플랫폼이 증빙을 받아 판단합니다. 조정 기간에도 대금은 예치 상태로 유지됩니다.</p>
+        </div>
+        <div class="card" data-rv="1" data-d="250" data-lift="1" style="background:var(--surf);border-radius:var(--r);padding:34px 32px;box-shadow:var(--sh-s);transition:box-shadow .4s cubic-bezier(.32,.72,0,1)">
+          <div style="font-size:.74rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--acc-text)">04</div>
+          <div style="font-size:1.2rem;font-weight:600;letter-spacing:-.022em;margin-top:14px">금지 품목 차단</div>
+          <p style="font-size:.95rem;line-height:1.7;color:var(--mut);margin-top:10px">위조품, 개인정보, 규제 대상 물품은 등록 단계에서 차단하고 신고 채널을 상시 운영합니다.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sect" style="padding:0 0 100px">
+    <div class="cont" style="max-width:1180px;margin:0 auto;padding:0 34px">
+      <div style="display:flex;align-items:flex-end;justify-content:space-between;gap:24px;flex-wrap:wrap;margin-bottom:28px">
+        <h2 data-rv="1" style="font-size:clamp(1.8rem,3.4vw,2.8rem);font-weight:600;letter-spacing:-.03em;line-height:1.12">대금은 어디에 있나</h2>
+        <p data-rv="1" data-d="60" style="font-size:.92rem;line-height:1.7;color:var(--mut);max-width:34ch">결제 시점부터 수령 확인까지 대금은 플랫폼 계정에 머무릅니다.</p>
+      </div>
+      <div data-rv="1" data-d="100" style="background:var(--surf);border-radius:34px;box-shadow:var(--sh-l);overflow:hidden">
+        <div class="cards" style="display:grid;grid-template-columns:1fr 1.2fr 1fr;gap:0;align-items:stretch">
+          <div style="padding:clamp(26px,3.4vw,40px)">
+            <div style="font-size:.72rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--mut)">구매자</div>
+            <div style="font-size:1.5rem;font-weight:600;letter-spacing:-.03em;margin-top:14px;font-variant-numeric:tabular-nums">₩ 480,000</div>
+            <div style="font-size:.88rem;color:var(--mut);margin-top:8px">결제 완료 · 카드 · V Pay</div>
+          </div>
+          <div style="padding:clamp(26px,3.4vw,40px);background:rgba(249,115,22,.07);box-shadow:inset 1px 0 0 var(--line),inset -1px 0 0 var(--line)">
+            <div style="display:flex;align-items:center;gap:10px">
+              <span style="width:7px;height:7px;border-radius:50%;background:var(--acc)"></span>
+              <span style="font-size:.72rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--acc-text)">에스크로 보관 중</span>
+            </div>
+            <div style="font-size:1.5rem;font-weight:600;letter-spacing:-.03em;margin-top:14px;font-variant-numeric:tabular-nums">₩ 480,000</div>
+            <div style="font-size:.88rem;color:var(--mut);margin-top:8px">수령 확인 전에는 인출할 수 없습니다</div>
+            <div data-bar="1" style="display:block;height:6px;border-radius:99px;background:rgba(0,0,0,.07);overflow:hidden;margin-top:20px">
+              <span data-grow="x" style="display:block;width:64%;height:100%;border-radius:99px;background:var(--acc)"></span>
+            </div>
+            <div style="display:flex;justify-content:space-between;font-size:.74rem;color:var(--mut);margin-top:8px"><span>배송 진행</span><span>수령 확인 대기</span></div>
+          </div>
+          <div style="padding:clamp(26px,3.4vw,40px)">
+            <div style="font-size:.72rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--mut)">판매자</div>
+            <div style="font-size:1.5rem;font-weight:600;letter-spacing:-.03em;margin-top:14px;color:var(--mut);font-variant-numeric:tabular-nums">₩ 0</div>
+            <div style="font-size:.88rem;color:var(--mut);margin-top:8px">확정 즉시 정산 · 분쟁 창 7일</div>
           </div>
         </div>
-        <h1 class="biz-hero-title" data-i18n="vb-hero-title">안전하고 스마트한<br>C2C 마켓플레이스</h1>
-        <p class="biz-hero-sub" data-i18n="vb-hero-sub">에스크로 결제 보호 기반의 신뢰할 수 있는 개인간 중고거래 플랫폼. 스마트한 상품 매칭과 안전한 거래 환경으로 새로운 커머스 경험을 제공합니다.</p>
-        <div class="biz-hero-btns">
-          <a href="index.html#contact" class="btn btn-orange" data-i18n="cta-contact">지금 문의하기</a>
-          <a href="#features" onclick="document.getElementById('features').scrollIntoView({behavior:'smooth'});return false;" class="btn btn-ghost-white" data-i18n="cta-learn">더 알아보기</a>
-        </div>
-        <div class="biz-hero-badges">
-          <div class="biz-badge"><div class="biz-badge-dot"></div><span data-i18n="vb-badge1">에스크로 보호</span></div>
-          <div class="biz-badge"><div class="biz-badge-dot"></div><span data-i18n="vb-badge2">검증된 판매자</span></div>
-          <div class="biz-badge"><div class="biz-badge-dot"></div><span data-i18n="vb-badge3">안전 거래 보장</span></div>
+        <div style="padding:6px 0 8px">
+          <div class="gaugerow" style="display:grid;grid-template-columns:1.1fr 1.5fr .6fr;gap:20px;align-items:center;padding:18px clamp(22px,3.2vw,38px);border-top:1px solid var(--line)">
+            <span style="font-size:1rem;font-weight:600;letter-spacing:-.02em">전자기기</span>
+            <span data-bar="1" style="display:block;height:6px;border-radius:99px;background:rgba(0,0,0,.06);overflow:hidden">
+              <span data-grow="x" style="display:block;width:88%;height:100%;border-radius:99px;background:var(--acc)"></span>
+            </span>
+            <span style="justify-self:end;font-size:.86rem;font-weight:600;color:var(--mut);font-variant-numeric:tabular-nums">등급 표기 필수</span>
+          </div>
+          <div class="gaugerow" style="display:grid;grid-template-columns:1.1fr 1.5fr .6fr;gap:20px;align-items:center;padding:18px clamp(22px,3.2vw,38px);border-top:1px solid var(--line)">
+            <span style="font-size:1rem;font-weight:600;letter-spacing:-.02em">패션 · 명품</span>
+            <span data-bar="1" style="display:block;height:6px;border-radius:99px;background:rgba(0,0,0,.06);overflow:hidden">
+              <span data-grow="x" style="display:block;width:74%;height:100%;border-radius:99px;background:var(--acc)"></span>
+            </span>
+            <span style="justify-self:end;font-size:.86rem;font-weight:600;color:var(--mut);font-variant-numeric:tabular-nums">정품 확인 우선</span>
+          </div>
+          <div class="gaugerow" style="display:grid;grid-template-columns:1.1fr 1.5fr .6fr;gap:20px;align-items:center;padding:18px clamp(22px,3.2vw,38px);border-top:1px solid var(--line)">
+            <span style="font-size:1rem;font-weight:600;letter-spacing:-.02em">생활 · 취미</span>
+            <span data-bar="1" style="display:block;height:6px;border-radius:99px;background:rgba(0,0,0,.06);overflow:hidden">
+              <span data-grow="x" style="display:block;width:61%;height:100%;border-radius:99px;background:rgba(249,115,22,.55)"></span>
+            </span>
+            <span style="justify-self:end;font-size:.86rem;font-weight:600;color:var(--mut);font-variant-numeric:tabular-nums">안전 거래 안내</span>
+          </div>
+          <div class="gaugerow" style="display:grid;grid-template-columns:1.1fr 1.5fr .6fr;gap:20px;align-items:center;padding:18px clamp(22px,3.2vw,38px);border-top:1px solid var(--line)">
+            <span style="font-size:1rem;font-weight:600;letter-spacing:-.02em">한국 상품</span>
+            <span data-bar="1" style="display:block;height:6px;border-radius:99px;background:rgba(0,0,0,.06);overflow:hidden">
+              <span data-grow="x" style="display:block;width:52%;height:100%;border-radius:99px;background:rgba(249,115,22,.55)"></span>
+            </span>
+            <span style="justify-self:end;font-size:.86rem;font-weight:600;color:var(--mut);font-variant-numeric:tabular-nums">V Pay 결제 연동</span>
+          </div>
         </div>
       </div>
-      <div class="biz-hero-visual">
-        <div class="dark-card">
-          <div class="dark-card-bar"></div>
-          <div class="dc-inner">
-            <div class="dc-header">
-              <div class="dc-brand"><div class="dc-brand-mark">B</div><span class="dc-brand-name">V Bazzar</span></div>
-              <div class="dc-badge green">에스크로 보호</div>
+      <p data-rv="1" style="font-size:.78rem;color:var(--mut);margin-top:14px">화면은 거래 흐름 설명을 위한 예시이며, 막대는 카테고리별 정책 적용 범위를 나타냅니다.</p>
+    </div>
+  </section>
+
+  <section class="sect" style="padding:0 0 100px">
+    <div class="cont" style="max-width:1180px;margin:0 auto;padding:0 34px">
+      <div style="background:var(--surf);border-radius:34px;box-shadow:var(--sh-l);padding:clamp(30px,4.4vw,56px)">
+        <h2 data-rv="1" style="font-size:clamp(1.6rem,3vw,2.4rem);font-weight:600;letter-spacing:-.03em;line-height:1.14">돈은 마지막에 움직입니다</h2>
+        <div style="position:relative;margin-top:40px">
+          <div class="railline" style="position:absolute;left:16px;right:16px;top:17px;height:2px;background:rgba(0,0,0,.07);border-radius:2px">
+            <div data-grow="x" style="height:100%;width:100%;background:linear-gradient(90deg,var(--acc),rgba(249,115,22,.25));border-radius:2px"></div>
+          </div>
+          <div class="steps" style="position:relative;display:grid;grid-template-columns:repeat(4,1fr);gap:28px">
+            <div data-rv="1" data-d="40">
+              <div class="stepdot" style="width:34px;height:34px;border-radius:999px;background:var(--acc);color:#fff;display:flex;align-items:center;justify-content:center;font-size:.82rem;font-weight:700;font-variant-numeric:tabular-nums;box-shadow:0 0 0 6px var(--surf),0 6px 16px rgba(249,115,22,.28);margin-bottom:20px">1</div>
+              <div style="font-size:.74rem;font-weight:600;letter-spacing:.12em;color:var(--mut)">판매자 검증 완료</div>
+              <div style="font-size:1.06rem;font-weight:600;letter-spacing:-.02em;margin-top:8px">상품 등록</div>
+              <p style="font-size:.9rem;line-height:1.7;color:var(--mut);margin-top:8px">실명·연락처·이력 심사를 통과한 판매자만 등록합니다.</p>
             </div>
-            <div class="market-card">
-              <div class="market-header">
-                <span style="font-size:.75rem;color:rgba(255,255,255,.6);font-weight:700">🛍️ V Bazzar</span>
-                <div class="market-search">상품 검색 · Search</div>
-                <span style="font-size:.75rem;color:#fb923c;font-weight:700">🔔</span>
-              </div>
-              <div class="market-items">
-                <div class="mkt-item">
-                  <div class="mkt-img bg1">📱</div>
-                  <div class="mkt-info">
-                    <div class="mkt-name">iPhone 15 Pro 256GB 블루티타늄</div>
-                    <div class="mkt-sub">서울 강남구 · 거의 새 제품</div>
-                  </div>
-                  <div><div class="mkt-price">₩ 980,000</div><div class="mkt-escrow">✓ Escrow</div></div>
-                </div>
-                <div class="mkt-item">
-                  <div class="mkt-img bg2">🎮</div>
-                  <div class="mkt-info">
-                    <div class="mkt-name">PS5 디지털 에디션 + 게임 5개</div>
-                    <div class="mkt-sub">경기 성남시 · 상태 양호</div>
-                  </div>
-                  <div><div class="mkt-price">₩ 550,000</div><div class="mkt-escrow">✓ Escrow</div></div>
-                </div>
-                <div class="mkt-item">
-                  <div class="mkt-img bg3">💻</div>
-                  <div class="mkt-info">
-                    <div class="mkt-name">MacBook Air M2 16GB 스타라이트</div>
-                    <div class="mkt-sub">서울 마포구 · 6개월 사용</div>
-                  </div>
-                  <div><div class="mkt-price">₩ 1,350,000</div><div class="mkt-escrow">✓ Escrow</div></div>
-                </div>
-                <div class="mkt-item">
-                  <div class="mkt-img bg4">⌚</div>
-                  <div class="mkt-info">
-                    <div class="mkt-name">Apple Watch Ultra 2 오션밴드</div>
-                    <div class="mkt-sub">인천 연수구 · 미개봉</div>
-                  </div>
-                  <div><div class="mkt-price">₩ 750,000</div><div class="mkt-escrow">✓ Escrow</div></div>
-                </div>
-              </div>
-              <div class="market-footer">
-                <div class="mf-item"><div class="mf-val">100%</div><div class="mf-label">에스크로</div></div>
-                <div class="mf-item"><div class="mf-val">⭐ 4.9</div><div class="mf-label">평균 평점</div></div>
-                <div class="mf-item"><div class="mf-val">0원</div><div class="mf-label">등록 수수료</div></div>
-              </div>
+            <div data-rv="1" data-d="100">
+              <div class="stepdot" style="width:34px;height:34px;border-radius:999px;background:var(--acc);color:#fff;display:flex;align-items:center;justify-content:center;font-size:.82rem;font-weight:700;font-variant-numeric:tabular-nums;box-shadow:0 0 0 6px var(--surf),0 6px 16px rgba(249,115,22,.28);margin-bottom:20px">2</div>
+              <div style="font-size:.74rem;font-weight:600;letter-spacing:.12em;color:var(--mut)">플랫폼 보관</div>
+              <div style="font-size:1.06rem;font-weight:600;letter-spacing:-.02em;margin-top:8px">대금 예치</div>
+              <p style="font-size:.9rem;line-height:1.7;color:var(--mut);margin-top:8px">구매 대금은 판매자가 아니라 플랫폼 계정에 머무릅니다.</p>
+            </div>
+            <div data-rv="1" data-d="160">
+              <div class="stepdot" style="width:34px;height:34px;border-radius:999px;background:var(--acc);color:#fff;display:flex;align-items:center;justify-content:center;font-size:.82rem;font-weight:700;font-variant-numeric:tabular-nums;box-shadow:0 0 0 6px var(--surf),0 6px 16px rgba(249,115,22,.28);margin-bottom:20px">3</div>
+              <div style="font-size:.74rem;font-weight:600;letter-spacing:.12em;color:var(--mut)">운송장 등록</div>
+              <div style="font-size:1.06rem;font-weight:600;letter-spacing:-.02em;margin-top:8px">발송 · 수령</div>
+              <p style="font-size:.9rem;line-height:1.7;color:var(--mut);margin-top:8px">양측에 통지되고, 수령 확인으로 거래가 확정됩니다.</p>
+            </div>
+            <div data-rv="1" data-d="220">
+              <div class="stepdot" style="width:34px;height:34px;border-radius:999px;background:var(--ink);color:#fff;display:flex;align-items:center;justify-content:center;font-size:.82rem;font-weight:700;font-variant-numeric:tabular-nums;box-shadow:0 0 0 6px var(--surf),0 6px 16px rgba(0,0,0,.18);margin-bottom:20px">4</div>
+              <div style="font-size:.74rem;font-weight:600;letter-spacing:.12em;color:var(--acc-text)">확정 즉시</div>
+              <div style="font-size:1.06rem;font-weight:600;letter-spacing:-.02em;margin-top:8px">정산</div>
+              <p style="font-size:.9rem;line-height:1.7;color:var(--mut);margin-top:8px">분쟁 없이 확정되면 판매자에게 대금이 지급됩니다.</p>
             </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- ═══ STATS ═══ -->
-<div class="stats-band dark">
-  <div class="container">
-    <div class="stats-row">
-      <div class="stat-item reveal"><span class="stat-val" data-i18n="vb-s1v">100%</span><div class="stat-label" data-i18n="vb-s1l">에스크로 보호율</div></div>
-      <div class="stat-item reveal d1"><span class="stat-val" data-i18n="vb-s2v">3단계</span><div class="stat-label" data-i18n="vb-s2l">판매자 검증</div></div>
-      <div class="stat-item reveal d2"><span class="stat-val" data-i18n="vb-s3v">24/7</span><div class="stat-label" data-i18n="vb-s3l">분쟁 지원</div></div>
-      <div class="stat-item reveal d3"><span class="stat-val" data-i18n="vb-s4v">0원</span><div class="stat-label" data-i18n="vb-s4l">기본 등록 수수료</div></div>
+  <section class="sect" style="padding:100px 0;background:var(--deep);color:#fff">
+    <div class="cont" style="max-width:1180px;margin:0 auto;padding:0 34px">
+      <div class="two" style="display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:start">
+        <div>
+          <div data-rv="1" style="font-size:.76rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.55)">Categories</div>
+          <h2 data-rv="1" data-d="50" style="font-size:clamp(1.8rem,3.4vw,2.7rem);font-weight:600;letter-spacing:-.03em;line-height:1.12;margin-top:16px">주요 카테고리</h2>
+        </div>
+        <div>
+          <div data-rv="1" data-d="60" data-glass="1" style="background:rgba(255,255,255,.07);backdrop-filter:blur(20px);border-radius:22px;padding:26px 28px;box-shadow:inset 0 1px 0 rgba(255,255,255,.14);margin-bottom:12px">
+            <div style="font-size:1.02rem;font-weight:600;letter-spacing:-.02em">전자기기</div>
+            <p style="font-size:.92rem;line-height:1.7;color:rgba(255,255,255,.66);margin-top:8px">스마트폰·노트북·주변기기. 기기 상태 등급 표기가 필수입니다.</p>
+          </div>
+          <div data-rv="1" data-d="120" data-glass="1" style="background:rgba(255,255,255,.07);backdrop-filter:blur(20px);border-radius:22px;padding:26px 28px;box-shadow:inset 0 1px 0 rgba(255,255,255,.14);margin-bottom:12px">
+            <div style="font-size:1.02rem;font-weight:600;letter-spacing:-.02em">패션 · 명품</div>
+            <p style="font-size:.92rem;line-height:1.7;color:rgba(255,255,255,.66);margin-top:8px">의류·신발·가방. 정품 확인 절차를 통과한 판매자를 우선 노출합니다.</p>
+          </div>
+          <div data-rv="1" data-d="180" data-glass="1" style="background:rgba(255,255,255,.07);backdrop-filter:blur(20px);border-radius:22px;padding:26px 28px;box-shadow:inset 0 1px 0 rgba(255,255,255,.14)">
+            <div style="font-size:1.02rem;font-weight:600;letter-spacing:-.02em">한국 상품</div>
+            <p style="font-size:.92rem;line-height:1.7;color:rgba(255,255,255,.66);margin-top:8px">해외 구매자를 위한 국내 브랜드 상품. V Pay 결제와 배송을 연계합니다.</p>
+          </div>
+        </div>
+      </div>
     </div>
-  </div>
+  </section>
+
+  <section class="sect" style="padding:100px 0;text-align:center">
+    <div class="cont" style="max-width:760px;margin:0 auto;padding:0 34px">
+      <h2 data-rv="1" style="font-size:clamp(1.8rem,3.6vw,2.8rem);font-weight:600;letter-spacing:-.03em;line-height:1.12">판매자와 물류 파트너를 모집합니다</h2>
+      <p data-rv="1" data-d="60" style="font-size:1.02rem;line-height:1.7;color:var(--mut);margin:18px auto 32px;max-width:42ch">입점, 정산 조건, 해외 배송 연계에 대해 논의할 수 있습니다.</p>
+      <div data-rv="1" data-d="120" style="display:flex;justify-content:center;gap:12px;flex-wrap:wrap">
+        <a href="index.html#contact" data-press="1" style="display:inline-flex;align-items:center;padding:13px 26px;border-radius:999px;background:var(--acc);color:#fff;font-size:.94rem;font-weight:600;transition:background .3s">지금 문의하기</a>
+        <a href="index.html" data-press="1" style="display:inline-flex;align-items:center;padding:13px 26px;border-radius:999px;background:var(--surf);color:var(--ink);font-size:.94rem;font-weight:600;box-shadow:var(--sh-s)">그룹으로</a>
+      </div>
+    </div>
+  </section>
+
+  <footer style="background:var(--deep);color:#fff;padding:56px 0 28px">
+    <div class="cont" style="max-width:1180px;margin:0 auto;padding:0 34px">
+      <div class="ftgrid" style="display:grid;grid-template-columns:1.7fr 1fr 1fr;gap:44px;padding-bottom:36px;border-bottom:1px solid rgba(255,255,255,.12)">
+        <div>
+          <div style="display:flex;align-items:center;gap:9px;margin-bottom:14px">
+            <span style="width:24px;height:24px;border-radius:7px;background:var(--acc);color:#fff;display:flex;align-items:center;justify-content:center;font-size:.76rem;font-weight:700">V</span>
+            <span style="font-size:.94rem;font-weight:600">Financial Group</span>
+          </div>
+          <p style="font-size:1.18rem;font-weight:600;letter-spacing:-.025em;line-height:1.35;max-width:20ch">신뢰는 구조에서 나옵니다.</p>
+        </div>
+        <div>
+          <div style="font-size:.76rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.5);margin-bottom:14px">사업</div>
+          <ul style="list-style:none;display:flex;flex-direction:column;gap:10px">
+            <li><a class="fl" href="vpay.html" style="font-size:.9rem;color:rgba(255,255,255,.74)">V Pay</a></li>
+            <li><a href="vbazzar.html" style="font-size:.9rem;color:#fff">V Bazzar</a></li>
+            <li><a class="fl" href="nia.html" style="font-size:.9rem;color:rgba(255,255,255,.74)">NIA World</a></li>
+            <li><a class="fl" href="genova.html" style="font-size:.9rem;color:rgba(255,255,255,.74)">Genova Wellness</a></li>
+          </ul>
+        </div>
+        <div>
+          <div style="font-size:.76rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.5);margin-bottom:14px">연락</div>
+          <ul style="list-style:none;display:flex;flex-direction:column;gap:10px">
+            <li><a class="fl" href="mailto:info@vpayv.com" style="font-size:.9rem;color:rgba(255,255,255,.74)">info@vpayv.com</a></li>
+            <li><a class="fl" href="tel:07041364390" style="font-size:.9rem;color:rgba(255,255,255,.74);font-variant-numeric:tabular-nums">070-4136-4390</a></li>
+          </ul>
+        </div>
+      </div>
+      <div style="display:flex;justify-content:space-between;align-items:center;gap:14px;padding-top:22px;flex-wrap:wrap">
+        <span style="font-size:.78rem;color:rgba(255,255,255,.42)">© 2026 V Financial Group</span>
+        <span style="font-size:.78rem;color:rgba(255,255,255,.42);font-variant-numeric:tabular-nums">사업자등록번호 283-88-03541</span>
+      </div>
+    </div>
+  </footer>
 </div>
 
-<!-- ═══ FEATURES ═══ -->
-<section class="features-section" id="features">
-  <div class="container">
-    <div class="features-header">
-      <div class="section-tag reveal" data-i18n="vb-ft-tag">FEATURES</div>
-      <h2 class="section-title reveal" data-i18n="vb-ft-title">V Bazzar의 핵심 기능</h2>
-      <p class="section-sub reveal" data-i18n="vb-ft-sub">안전하고 편리한 C2C 거래 경험을 제공합니다.</p>
-    </div>
-    <div class="features-grid">
-      <div class="feat-card reveal d1">
-        <div class="feat-icon">🔗</div>
-        <div class="feat-title" data-i18n="vb-f1-title">C2C 통합 플랫폼</div>
-        <p class="feat-desc" data-i18n="vb-f1-desc">개인과 개인을 직접 연결하는 직거래 플랫폼. 판매자와 구매자 모두에게 최적화된 경험을 제공하여 효율적인 거래를 지원합니다.</p>
-      </div>
-      <div class="feat-card reveal d2">
-        <div class="feat-icon">🔒</div>
-        <div class="feat-title" data-i18n="vb-f2-title">에스크로 결제 보호</div>
-        <p class="feat-desc" data-i18n="vb-f2-desc">모든 거래에 에스크로 결제 보호를 적용합니다. 구매자가 상품을 수령하고 확인할 때까지 결제 금액을 안전하게 보관합니다.</p>
-      </div>
-      <div class="feat-card reveal d3">
-        <div class="feat-icon">🎯</div>
-        <div class="feat-title" data-i18n="vb-f3-title">스마트 상품 매칭</div>
-        <p class="feat-desc" data-i18n="vb-f3-desc">AI 기반 상품 추천 및 검색 기능으로 원하는 상품을 빠르게 찾을 수 있습니다. 카테고리별 최적화된 인터페이스를 제공합니다.</p>
-      </div>
-      <div class="feat-card reveal d4">
-        <div class="feat-icon">⭐</div>
-        <div class="feat-title" data-i18n="vb-f4-title">투명한 리뷰 시스템</div>
-        <p class="feat-desc" data-i18n="vb-f4-desc">검증된 거래자 리뷰와 평점 시스템으로 신뢰할 수 있는 거래 파트너를 쉽게 찾을 수 있습니다.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ═══ HOW IT WORKS ═══ -->
-<section class="how-section">
-  <div class="container">
-    <div class="how-header">
-      <div class="section-tag reveal" data-i18n="vb-hw-tag">HOW IT WORKS</div>
-      <h2 class="section-title reveal" data-i18n="vb-hw-title">쉽고 안전한 거래 과정</h2>
-      <p class="section-sub reveal" data-i18n="vb-hw-sub">4단계로 완료되는 안전한 C2C 거래 프로세스.</p>
-    </div>
-    <div class="how-steps">
-      <div class="how-step reveal d1">
-        <div class="step-circle">
-          <div class="step-icon-em">📝</div>
-          <div class="step-num-label">STEP 1</div>
-        </div>
-        <div class="step-title" data-i18n="vb-step1-t">상품 등록</div>
-        <p class="step-desc" data-i18n="vb-step1-d">사진과 설명을 입력하여 상품을 등록합니다.</p>
-      </div>
-      <div class="how-step reveal d2">
-        <div class="step-circle">
-          <div class="step-icon-em">🔍</div>
-          <div class="step-num-label">STEP 2</div>
-        </div>
-        <div class="step-title" data-i18n="vb-step2-t">상품 탐색</div>
-        <p class="step-desc" data-i18n="vb-step2-d">스마트 검색으로 원하는 상품을 찾습니다.</p>
-      </div>
-      <div class="how-step reveal d3">
-        <div class="step-circle">
-          <div class="step-icon-em">🤝</div>
-          <div class="step-num-label">STEP 3</div>
-        </div>
-        <div class="step-title" data-i18n="vb-step3-t">거래 시작</div>
-        <p class="step-desc" data-i18n="vb-step3-d">에스크로 결제로 안전하게 거래를 시작합니다.</p>
-      </div>
-      <div class="how-step reveal d4">
-        <div class="step-circle">
-          <div class="step-icon-em">✅</div>
-          <div class="step-num-label">STEP 4</div>
-        </div>
-        <div class="step-title" data-i18n="vb-step4-t">거래 완료</div>
-        <p class="step-desc" data-i18n="vb-step4-d">수령 확인 후 대금이 판매자에게 전달됩니다.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ═══ TRUST & SAFETY ═══ -->
-<section class="trust-section">
-  <div class="container">
-    <div class="how-header">
-      <div class="section-tag reveal" data-i18n="vb-trust-tag">TRUST &amp; SAFETY</div>
-      <h2 class="section-title reveal" data-i18n="vb-trust-title">안전한 거래 환경</h2>
-      <p class="section-sub reveal" data-i18n="vb-trust-sub">다중 보안 체계로 모든 거래를 보호합니다.</p>
-    </div>
-    <div class="trust-grid">
-      <div class="trust-card reveal d1">
-        <div class="trust-icon">🔒</div>
-        <div class="trust-card-title">에스크로 결제 보호</div>
-        <p class="trust-card-desc">모든 거래에 에스크로를 적용하여 판매자와 구매자 모두를 보호합니다. 수령 확인 전까지 결제금 보관이 보장됩니다.</p>
-      </div>
-      <div class="trust-card reveal d2">
-        <div class="trust-icon">✅</div>
-        <div class="trust-card-title">3단계 판매자 인증</div>
-        <p class="trust-card-desc">신원 확인, 계좌 인증, 거래 이력 검토를 통한 3단계 판매자 검증으로 사기 거래를 사전에 방지합니다.</p>
-      </div>
-      <div class="trust-card reveal d3">
-        <div class="trust-icon">⚖️</div>
-        <div class="trust-card-title">24/7 분쟁 해결 지원</div>
-        <p class="trust-card-desc">전문 분쟁 해결팀이 24시간 대기하여 거래 과정에서 발생하는 모든 문제를 신속하고 공정하게 처리합니다.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ═══ CTA ═══ -->
-<section class="cta-banner">
-  <div class="cta-banner-inner">
-    <div class="section-tag light reveal">V BAZZAR</div>
-    <h2 class="reveal">V Bazzar로 더 안전하게<br>거래하세요</h2>
-    <p class="reveal" style="color:var(--s400)">파트너십 및 서비스 문의를 환영합니다.</p>
-    <div class="cta-btns reveal">
-      <a href="index.html#contact" class="btn btn-orange" data-i18n="cta-contact">지금 문의하기</a>
-      <a href="index.html" class="btn btn-ghost-white">← V Financial Group</a>
-    </div>
-  </div>
-</section>
-
-<!-- ═══ FOOTER ═══ -->
-<footer>
-  <div class="container">
-    <div class="ft-grid">
-      <div>
-        <div class="ft-logo">
-          <div class="ft-logo-mark">V</div>
-          <span class="ft-logo-text">Financial Group</span>
-        </div>
-        <p class="ft-desc" data-i18n="ft-desc">글로벌 금융과 디지털 혁신을 연결하는 기업 포트폴리오 그룹.</p>
-        <div class="ft-ci">
-          <a href="mailto:info@vpayv.com">info@vpayv.com</a>
-          <a href="tel:07041364390">070-4136-4390</a>
-          <span data-i18n="ft-biz">사업자등록번호 283-88-03541</span>
-        </div>
-      </div>
-      <div class="ft-col">
-        <h5 data-i18n="ft-businesses">사업 영역</h5>
-        <ul>
-          <li><a href="vpay.html">V Pay</a></li>
-          <li><a href="vbazzar.html">V Bazzar</a></li>
-          <li><a href="vpawn.html">V Pawn</a></li>
-          <li><a href="healthcare.html" data-i18n="nav-hc">헬스케어</a></li>
-        </ul>
-      </div>
-      <div class="ft-col">
-        <h5 data-i18n="ft-contact-col">연락처</h5>
-        <ul>
-          <li><a href="mailto:info@vpayv.com">info@vpayv.com</a></li>
-          <li><a href="tel:07041364390">070-4136-4390</a></li>
-          <li><a href="index.html#contact" data-i18n="nav-cta">문의하기</a></li>
-        </ul>
-      </div>
-    </div>
-    <div class="ft-bottom">
-      <span class="ft-copy" data-i18n="ft-copy">© 2026 V Financial Group. All rights reserved.</span>
-      <span class="ft-biz" data-i18n="ft-biz">사업자등록번호 283-88-03541</span>
-    </div>
-  </div>
-</footer>
-
-<script src="shared.js"></script>
+<script type="module" src="page.js"></script>
 </body>
 </html>

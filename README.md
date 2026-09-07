@@ -1,49 +1,40 @@
-# V Financial Group — Corporate Landing Page
+# V Financial Group — Corporate Site
 
-프리미엄 법인 소개 랜딩 페이지 (한국어/영어 지원)
+Claude Design 프로젝트 "V Financial Group 재디자인"(v3)을 정적 사이트로 구현한 결과물입니다.
 
 ## 기술 스택
 
-- **순수 HTML / CSS / JavaScript** (프레임워크 없음)
-- Google Fonts (Noto Sans KR + Inter)
-- 외부 의존성 없음
+- **순수 HTML / CSS / JavaScript** (프레임워크 없음, 빌드 단계 없음)
+- 시스템 폰트 스택 (SF Pro / Apple SD Gothic Neo / Pretendard)
+- `apple-motion.js` — 스프링 기반 리빌·패럴랙스·드래그 레일·press/lift 모션
+- V Pay 구간 지도만 CDN에서 d3 + topojson을 불러옵니다
 
-## 사업 영역
+## 화면 구성
 
-| 사업 | 설명 |
-|------|------|
-| V Pay | 크로스보더 디지털 금융 플랫폼 |
-| V Bazzar | C2C 커머스 마켓플레이스 |
-| V Pawn | 디지털 자산 기반 스마트 유동성 플랫폼 |
-| Healthcare | SNP 기반 개인 맞춤형 헬스케어 |
-| NIA World | 공연·체험·숙박·상업을 하나의 동선으로 묶는 문화관광 복합개발 |
+| 페이지 | 사업 | 디자인 원본 |
+|--------|------|-------------|
+| `index.html` | 그룹 소개 | V Financial Group v3.dc.html |
+| `vpay.html` | 크로스보더 송금·결제 | V Pay v3.dc.html |
+| `vbazzar.html` | 에스크로 C2C 마켓플레이스 | V Bazzar v3.dc.html |
+| `nia.html` | 문화관광 복합개발 | NIA World v3.dc.html |
+| `genova.html` | SNP 기반 정밀 웰니스 | Genova Wellness v3.dc.html |
 
-## 주요 기능
+공유 자산: `v3.css`(디자인 토큰·반응형), `page.js`(모션 부팅·모바일 메뉴),
+`apple-motion.js`(모션 프리미티브), `vpay-corridors.html`(구간 지도 iframe), `img/`.
 
-- 한국어 / 영어 실시간 토글
-- 스무스 스크롤 네비게이션
-- 스크롤 시 투명 → 고정 헤더
-- 모바일 반응형 레이아웃 + 햄버거 메뉴
-- 섹션별 사업 상세 + 추상 UI 비주얼
-- 문의 섹션 (이메일, 전화, 주소)
+v2에 있던 V Pawn과 Healthcare 페이지는 v3 디자인에서 제외되어 삭제했습니다.
+Healthcare는 Genova Wellness로 대체됩니다.
 
 ## GitHub Pages 퍼블리시
 
-1. `Settings` → `Pages` 탭으로 이동
-2. Source: **Deploy from a branch**
-3. Branch: `main` / `/ (root)` 선택
-4. **Save** 클릭
+`main` 브랜치 `/ (root)`에서 배포됩니다. push하면 약 1분 뒤 반영됩니다.
 
-약 1분 후 `https://cigasmork.github.io/vgroup-landing` 에서 확인 가능
+https://cigasmork.github.io/vgroup-landing
 
 ## 로컬 미리보기
 
 ```bash
-# Python이 있는 경우
 python -m http.server 3000
-
-# Node.js가 있는 경우
-npx serve .
 ```
 
 ---

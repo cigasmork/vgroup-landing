@@ -5,38 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>NIA World | V Financial Group 문화관광업</title>
 <meta name="description" content="NIA World는 공연·체험·숙박·상업 시설을 하나의 동선으로 묶는 V Financial Group의 문화관광 복합개발 프로젝트입니다.">
-<style>
-:root{
-  --bg:#F5F5F7; --surf:#FFFFFF; --ink:#111113; --ink2:#3A3A3E; --mut:#6E6E73;
-  --line:rgba(0,0,0,.09); --acc:#F97316; --acc-d:#EA580C; --acc-text:#9A3412; --deep:#0B0B0D;
-  --sh-s:0 1px 2px rgba(0,0,0,.05), 0 8px 20px rgba(0,0,0,.06);
-  --sh-l:0 2px 6px rgba(0,0,0,.06), 0 30px 70px rgba(0,0,0,.14);
-  --r:26px; --nav-a:.35; --nav-blur:14px; --nav-line:0;
-}
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth}
-body{font-family:-apple-system,BlinkMacSystemFont,"SF Pro Text","Apple SD Gothic Neo","Pretendard",system-ui,sans-serif;background:var(--bg);color:var(--ink);-webkit-font-smoothing:antialiased;overflow-x:hidden;word-break:keep-all;overflow-wrap:break-word;font-size:17px;line-height:1.5}
-a{text-decoration:none;color:var(--acc-text)}
-a:hover{color:var(--ink)}
-img{display:block;max-width:100%}
-::selection{background:var(--acc);color:#fff}
-.nl:hover{opacity:1;color:var(--acc-text)}
-.card:hover{box-shadow:var(--sh-l)}
-.fl:hover{color:#fff}
-@media (prefers-reduced-transparency: reduce){[data-nav]{background:#fff !important;backdrop-filter:none !important}[data-glass]{background:#fff !important;backdrop-filter:none !important}}
-@media (prefers-contrast: more){:root{--line:rgba(0,0,0,.35);--mut:#48484C}}
-@media (max-width:1024px){.two{grid-template-columns:1fr !important;gap:40px !important}}
-@media (max-width:768px){
-  .navlinks,.navcta{display:none !important}
-  .burger{display:flex !important}
-  .cont{padding:0 22px !important}
-  .sect{padding:72px 0 !important}
-  .figs,.cards,.steps,.ftgrid,.gaugerow,.zoneleg{grid-template-columns:1fr !important;gap:16px !important}
-  .railline{display:none !important}
-  .gaugerow span[data-bar]{display:none !important}
-  .stack{height:44px !important}
-}
-</style>
+<link rel="stylesheet" href="v3.css">
 </head>
 <body>
 
@@ -49,11 +18,11 @@ img{display:block;max-width:100%}
         <span>Financial Group</span>
       </a>
       <ul class="navlinks" style="display:flex;gap:24px;list-style:none;align-items:center">
-        <li><a class="nl" href="index.html#about" style="font-size:.8rem;font-weight:500;color:var(--ink2);transition:opacity .25s,color .25s">그룹</a></li>
+        <li><a class="nl" href="index.html#group" style="font-size:.8rem;font-weight:500;color:var(--ink2);transition:opacity .25s,color .25s">그룹</a></li>
         <li><a class="nl" href="vpay.html" style="font-size:.8rem;font-weight:500;color:var(--ink2);transition:opacity .25s,color .25s">V Pay</a></li>
         <li><a class="nl" href="vbazzar.html" style="font-size:.8rem;font-weight:500;color:var(--ink2);transition:opacity .25s,color .25s">V Bazzar</a></li>
         <li><a href="#top" style="font-size:.8rem;font-weight:600;color:var(--acc-text)">NIA World</a></li>
-        <li><a class="nl" href="healthcare.html" style="font-size:.8rem;font-weight:500;color:var(--ink2);transition:opacity .25s,color .25s">Genova</a></li>
+        <li><a class="nl" href="genova.html" style="font-size:.8rem;font-weight:500;color:var(--ink2);transition:opacity .25s,color .25s">Genova</a></li>
       </ul>
       <a class="navcta" href="index.html#contact" data-press="1" style="display:inline-flex;align-items:center;padding:7px 16px;border-radius:999px;background:var(--acc);color:#fff;font-size:.79rem;font-weight:600;transition:background .3s">문의하기</a>
       <button class="burger" onclick="toggleMenu()" aria-label="메뉴" style="display:none;flex-direction:column;gap:5px;padding:6px;border:none;background:none;cursor:pointer">
@@ -64,11 +33,11 @@ img{display:block;max-width:100%}
   </nav>
 
   <div data-mob="1" data-glass="1" style="display:none;position:fixed;top:54px;left:0;right:0;z-index:99;background:rgba(245,245,247,.92);backdrop-filter:blur(28px) saturate(180%);flex-direction:column;padding:12px 22px 22px;box-shadow:0 20px 50px rgba(0,0,0,.12)">
-    <a href="index.html#about" style="padding:15px 0;border-bottom:1px solid var(--line);font-size:1.3rem;font-weight:600;letter-spacing:-.02em;color:var(--ink)">그룹</a>
+    <a href="index.html#group" style="padding:15px 0;border-bottom:1px solid var(--line);font-size:1.3rem;font-weight:600;letter-spacing:-.02em;color:var(--ink)">그룹</a>
     <a href="vpay.html" style="padding:15px 0;border-bottom:1px solid var(--line);font-size:1.3rem;font-weight:600;letter-spacing:-.02em;color:var(--ink)">V Pay</a>
     <a href="vbazzar.html" style="padding:15px 0;border-bottom:1px solid var(--line);font-size:1.3rem;font-weight:600;letter-spacing:-.02em;color:var(--ink)">V Bazzar</a>
     <a href="#top" style="padding:15px 0;border-bottom:1px solid var(--line);font-size:1.3rem;font-weight:600;letter-spacing:-.02em;color:var(--acc-text)">NIA World</a>
-    <a href="healthcare.html" style="padding:15px 0;border-bottom:1px solid var(--line);font-size:1.3rem;font-weight:600;letter-spacing:-.02em;color:var(--ink)">Genova Wellness</a>
+    <a href="genova.html" style="padding:15px 0;border-bottom:1px solid var(--line);font-size:1.3rem;font-weight:600;letter-spacing:-.02em;color:var(--ink)">Genova Wellness</a>
     <a href="index.html#contact" data-press="1" style="margin-top:16px;padding:14px;text-align:center;border-radius:999px;background:var(--acc);color:#fff;font-size:.95rem;font-weight:600">문의하기</a>
   </div>
 
@@ -278,7 +247,7 @@ img{display:block;max-width:100%}
             <li><a class="fl" href="vpay.html" style="font-size:.9rem;color:rgba(255,255,255,.74)">V Pay</a></li>
             <li><a class="fl" href="vbazzar.html" style="font-size:.9rem;color:rgba(255,255,255,.74)">V Bazzar</a></li>
             <li><a href="nia.html" style="font-size:.9rem;color:#fff">NIA World</a></li>
-            <li><a class="fl" href="healthcare.html" style="font-size:.9rem;color:rgba(255,255,255,.74)">Genova Wellness</a></li>
+            <li><a class="fl" href="genova.html" style="font-size:.9rem;color:rgba(255,255,255,.74)">Genova Wellness</a></li>
           </ul>
         </div>
         <div>
@@ -297,22 +266,6 @@ img{display:block;max-width:100%}
   </footer>
 </div>
 
-<script type="module">
-import { init } from './apple-motion.js';
-
-const root = document.querySelector('[data-om-root="1"]');
-init(root);
-
-const mob = root.querySelector('[data-mob="1"]');
-const bars = root.querySelectorAll('[data-burger]');
-let open = false;
-window.toggleMenu = () => {
-  open = !open;
-  mob.style.display = open ? 'flex' : 'none';
-  bars[0].style.transform = open ? 'translateY(3.5px) rotate(45deg)' : 'none';
-  bars[1].style.transform = open ? 'translateY(-3px) rotate(-45deg)' : 'none';
-};
-mob.querySelectorAll('a').forEach(a => a.addEventListener('click', () => { if (open) window.toggleMenu(); }));
-</script>
+<script type="module" src="page.js"></script>
 </body>
 </html>

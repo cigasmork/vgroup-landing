@@ -1,657 +1,250 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>V Financial Group | 글로벌 금융과 디지털 혁신</title>
-<meta name="description" content="V Financial Group은 V Pay, V Bazzar, V Pawn, Healthcare를 통해 글로벌 금융과 디지털 혁신을 연결하는 미래지향적 기업 포트폴리오 그룹입니다.">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="shared.css">
-<style>
-/* ── INDEX-SPECIFIC ─────────────────────────────────────── */
-/* Hero */
-.hero {
-  min-height: 100vh;
-  display: flex; align-items: center;
-  background: var(--white);
-  position: relative; overflow: hidden;
-  padding-top: 72px;
-}
-.hero::before {
-  content: '';
-  position: absolute; inset: 0;
-  background:
-    radial-gradient(circle at 65% 40%, rgba(249,115,22,.065) 0%, transparent 55%),
-    radial-gradient(circle at 85% 80%, rgba(249,115,22,.04) 0%, transparent 40%);
-  pointer-events: none;
-}
-.hero-dots {
-  position: absolute; inset: 0;
-  background-image: radial-gradient(circle, rgba(15,23,42,.055) 1px, transparent 1px);
-  background-size: 32px 32px;
-  pointer-events: none;
-}
-.hero-inner {
-  display: grid; grid-template-columns: 1fr 1fr;
-  gap: 64px; align-items: center;
-  padding: 80px 0;
-}
-/* Hero text */
-.hero-badge {
-  display: inline-flex; align-items: center; gap: 8px;
-  background: var(--orange-light); border: 1px solid var(--orange-border);
-  border-radius: 999px; padding: 7px 16px; margin-bottom: 28px;
-  animation: fadeInUp .6s ease both;
-}
-.hero-badge-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--orange); animation: dotPulse 2s infinite; }
-.hero-badge-text { font-size: .78rem; font-weight: 700; color: var(--orange-dark); letter-spacing: .06em; }
-.hero-title {
-  font-size: clamp(2.6rem, 5.5vw, 4.4rem);
-  font-weight: 800; line-height: 1.07;
-  color: var(--s900);
-  margin-bottom: 20px;
-  animation: fadeInUp .65s .1s ease both;
-}
-.hero-title span { color: var(--orange); }
-.hero-sub {
-  font-size: 1.1rem; color: var(--s500);
-  line-height: 1.8; max-width: 500px;
-  margin-bottom: 36px;
-  animation: fadeInUp .65s .2s ease both;
-}
-.hero-btns {
-  display: flex; gap: 14px; flex-wrap: wrap;
-  animation: fadeInUp .65s .3s ease both;
-}
-.hero-mini-stats {
-  display: flex; gap: 28px; margin-top: 40px;
-  animation: fadeInUp .65s .4s ease both;
-}
-.mini-stat-val { font-size: 1.5rem; font-weight: 800; color: var(--s900); }
-.mini-stat-val span { color: var(--orange); }
-.mini-stat-lbl { font-size: .72rem; color: var(--s500); margin-top: 2px; font-weight: 500; }
-
-/* Hero Visual */
-.hero-visual { animation: fadeIn .8s .3s ease both; }
-.hero-card {
-  background: var(--s900);
-  border-radius: 28px;
-  overflow: hidden;
-  box-shadow: 0 32px 80px rgba(15,23,42,.2);
-  animation: float 6s ease-in-out infinite;
-}
-.hero-card-top { height: 3px; background: linear-gradient(90deg, var(--orange), #fb923c, var(--orange)); background-size: 200% 100%; animation: shimmer 3s linear infinite; }
-.hero-card-inner { padding: 28px; }
-.hc-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 24px; }
-.hc-brand { display: flex; align-items: center; gap: 10px; }
-.hc-brand-mark { width: 28px; height: 28px; background: var(--orange); border-radius: 8px; display: flex; align-items: center; justify-content: center; color: white; font-weight: 800; font-size: .85rem; }
-.hc-brand-name { color: white; font-weight: 700; font-size: .9rem; }
-.hc-live { display: flex; align-items: center; gap: 6px; font-size: .68rem; color: #4ade80; font-weight: 600; }
-.hc-live-dot { width: 6px; height: 6px; border-radius: 50%; background: #4ade80; animation: dotPulse 1.5s infinite; }
-.biz-items { display: flex; flex-direction: column; gap: 10px; }
-.biz-item {
-  display: flex; align-items: center; gap: 12px;
-  background: rgba(255,255,255,.055); border: 1px solid rgba(255,255,255,.07);
-  border-radius: 14px; padding: 13px 14px;
-  transition: border-color .25s, background .25s;
-  cursor: default;
-}
-.biz-item:hover { border-color: rgba(249,115,22,.3); background: rgba(249,115,22,.05); }
-.biz-item-icon { width: 38px; height: 38px; border-radius: 10px; background: rgba(249,115,22,.12); display: flex; align-items: center; justify-content: center; font-size: 1.1rem; flex-shrink: 0; }
-.biz-item-main { flex: 1; }
-.biz-item-title { color: white; font-size: .85rem; font-weight: 700; }
-.biz-item-desc { color: var(--s500); font-size: .7rem; margin-top: 1px; }
-.biz-item-right { text-align: right; }
-.biz-item-tag { font-size: .62rem; padding: 2px 8px; border-radius: 8px; font-weight: 700; }
-.tag-orange { background: rgba(249,115,22,.15); color: #fb923c; }
-.tag-green  { background: rgba(74,222,128,.12); color: #4ade80; }
-.tag-blue   { background: rgba(96,165,250,.12); color: #60a5fa; }
-.tag-purple { background: rgba(167,139,250,.12); color: #a78bfa; }
-.biz-item-sub { font-size: .6rem; color: var(--s600); margin-top: 2px; }
-
-/* About */
-.about-section { padding: 120px 0; background: var(--s50); }
-.about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
-.about-badge { display: inline-block; color: var(--orange); font-size: .7rem; font-weight: 700; letter-spacing: .2em; text-transform: uppercase; margin-bottom: 16px; }
-.about-title { font-size: clamp(2rem, 3.5vw, 2.9rem); font-weight: 800; line-height: 1.1; color: var(--s900); margin-bottom: 20px; }
-.about-p { font-size: .95rem; color: var(--s600); line-height: 1.85; margin-bottom: 14px; }
-.about-stats { display: grid; grid-template-columns: repeat(2,1fr); gap: 16px; margin-top: 36px; }
-.astat-card { background: white; border: 1px solid var(--s100); border-radius: var(--r-lg); padding: 20px; box-shadow: var(--shadow); text-align: center; transition: box-shadow .25s, transform .25s; }
-.astat-card:hover { box-shadow: var(--shadow-h); transform: translateY(-3px); }
-.astat-val { font-size: 2rem; font-weight: 800; color: var(--orange); }
-.astat-label { font-size: .8rem; color: var(--s500); margin-top: 4px; font-weight: 500; }
-.about-dark-panel {
-  background: var(--s900); border-radius: 28px; padding: 32px;
-  box-shadow: 0 24px 60px rgba(15,23,42,.2);
-}
-.adp-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 22px; }
-.adp-title { color: white; font-weight: 700; font-size: .95rem; }
-.adp-badge { font-size: .65rem; font-weight: 700; padding: 4px 10px; border-radius: 20px; background: rgba(74,222,128,.12); color: #4ade80; border: 1px solid rgba(74,222,128,.22); }
-.adp-rows { display: flex; flex-direction: column; gap: 12px; }
-.adp-row { display: flex; align-items: center; justify-content: space-between; padding: 12px 14px; background: rgba(255,255,255,.04); border: 1px solid rgba(255,255,255,.06); border-radius: 12px; }
-.adp-row-left { display: flex; align-items: center; gap: 10px; }
-.adp-icon { font-size: 1.1rem; }
-.adp-lbl { color: rgba(255,255,255,.7); font-size: .82rem; font-weight: 600; }
-.adp-val { color: var(--orange); font-weight: 800; font-size: .9rem; }
-.adp-bar-row { margin-top: 20px; }
-.adp-bar-label { display: flex; justify-content: space-between; color: var(--s400); font-size: .72rem; margin-bottom: 6px; }
-
-/* Business Overview */
-.biz-section { padding: 120px 0; background: white; }
-.biz-header { text-align: center; max-width: 640px; margin: 0 auto 64px; }
-.biz-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 24px; }
-.biz-card {
-  border-radius: var(--r-xl); overflow: hidden;
-  border: 1px solid var(--s100);
-  box-shadow: var(--shadow);
-  transition: box-shadow .35s cubic-bezier(.16,1,.3,1), transform .35s cubic-bezier(.16,1,.3,1), border-color .35s;
-  background: white;
-  display: flex; flex-direction: column;
-}
-.biz-card:hover { box-shadow: var(--shadow-h); transform: translateY(-6px); border-color: var(--orange-border); }
-.biz-card-top { height: 4px; }
-.biz-card-top.orange { background: linear-gradient(90deg, var(--orange), #fb923c); }
-.biz-card-top.slate { background: linear-gradient(90deg, #334155, #64748b); }
-.biz-card-top.amber { background: linear-gradient(90deg, #d97706, #f59e0b); }
-.biz-card-top.teal { background: linear-gradient(90deg, #0d9488, #14b8a6); }
-.biz-card-body { padding: 32px; flex: 1; }
-.biz-card-icon { width: 56px; height: 56px; border-radius: 18px; display: flex; align-items: center; justify-content: center; font-size: 1.6rem; margin-bottom: 20px; }
-.icon-orange { background: rgba(249,115,22,.1); }
-.icon-slate  { background: rgba(51,65,85,.08); }
-.icon-amber  { background: rgba(217,119,6,.08); }
-.icon-teal   { background: rgba(13,148,136,.08); }
-.biz-card-name { font-size: 1.5rem; font-weight: 800; color: var(--s900); margin-bottom: 8px; }
-.biz-card-desc { font-size: .9rem; color: var(--s600); line-height: 1.75; margin-bottom: 20px; }
-.biz-card-points { display: flex; flex-direction: column; gap: 7px; margin-bottom: 24px; }
-.biz-card-point { display: flex; align-items: center; gap: 8px; font-size: .82rem; color: var(--s600); }
-.bcp-dot { width: 5px; height: 5px; border-radius: 50%; background: var(--orange); flex-shrink: 0; }
-.biz-card-link {
-  display: inline-flex; align-items: center; gap: 6px;
-  font-size: .85rem; font-weight: 700; color: var(--orange);
-  padding: 10px 18px; border-radius: var(--r-md);
-  border: 1.5px solid var(--orange-border);
-  background: var(--orange-light);
-  transition: background .2s, border-color .2s, transform .2s, box-shadow .2s;
-  width: fit-content;
-}
-.biz-card-link:hover { background: var(--orange); color: white; border-color: var(--orange); transform: translateX(3px); box-shadow: 0 4px 12px rgba(249,115,22,.25); }
-.arrow { display: inline-block; transition: transform .25s; }
-.biz-card-link:hover .arrow { transform: translateX(4px); }
-
-/* Strengths */
-.str-section { padding: 120px 0; background: var(--s900); position: relative; overflow: hidden; }
-.str-section::before {
-  content: '';
-  position: absolute; inset: 0;
-  background-image: radial-gradient(circle, rgba(255,255,255,.03) 1px, transparent 1px);
-  background-size: 28px 28px;
-  pointer-events: none;
-}
-.str-section::after {
-  content: '';
-  position: absolute; inset: 0;
-  background: radial-gradient(circle at 50% 30%, rgba(249,115,22,.06) 0%, transparent 60%);
-  pointer-events: none;
-}
-.str-header { text-align: center; max-width: 640px; margin: 0 auto 64px; position: relative; z-index: 1; }
-.str-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 20px; position: relative; z-index: 1; }
-.str-card {
-  background: rgba(255,255,255,.045); border: 1px solid rgba(255,255,255,.07);
-  border-radius: var(--r-xl); padding: 32px;
-  transition: border-color .25s, background .25s, transform .3s cubic-bezier(.16,1,.3,1), box-shadow .3s;
-}
-.str-card:hover { border-color: rgba(249,115,22,.35); background: rgba(249,115,22,.05); transform: translateY(-5px); box-shadow: 0 20px 48px rgba(0,0,0,.2); }
-.str-card:nth-child(n+4) { grid-column: span 1; }
-.str-bottom-two { display: contents; }
-.str-icon-wrap { width: 48px; height: 48px; border-radius: 14px; background: rgba(249,115,22,.1); border: 1px solid rgba(249,115,22,.2); display: flex; align-items: center; justify-content: center; font-size: 1.4rem; margin-bottom: 16px; transition: transform .3s cubic-bezier(.34,1.56,.64,1), background .2s; }
-.str-card:hover .str-icon-wrap { transform: scale(1.15) rotate(-8deg); background: rgba(249,115,22,.2); }
-.str-card-title { font-size: 1rem; font-weight: 700; color: white; margin-bottom: 10px; }
-.str-card-desc { font-size: .85rem; color: var(--s400); line-height: 1.75; }
-
-/* Contact */
-.contact-section { padding: 120px 0; background: white; }
-.contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; }
-.contact-left { }
-.contact-tag { display: inline-block; color: var(--orange); font-size: .7rem; font-weight: 700; letter-spacing: .2em; text-transform: uppercase; margin-bottom: 16px; }
-.contact-title { font-size: clamp(2rem, 3vw, 2.8rem); font-weight: 800; line-height: 1.15; color: var(--s900); margin-bottom: 16px; }
-.contact-sub { font-size: 1rem; color: var(--s500); line-height: 1.8; margin-bottom: 32px; }
-.contact-btns { display: flex; flex-direction: column; gap: 12px; }
-.contact-btn {
-  display: flex; align-items: center; gap: 12px; padding: 16px 20px;
-  background: white; border: 1.5px solid var(--s200); border-radius: var(--r-lg);
-  font-weight: 600; font-size: .9rem; color: var(--s700);
-  transition: all .25s; text-align: left;
-}
-.contact-btn:hover { border-color: var(--orange); background: var(--orange-light); color: var(--orange-dark); transform: translateX(4px); }
-.cb-icon { width: 40px; height: 40px; border-radius: 12px; background: var(--orange-light); border: 1px solid var(--orange-border); display: flex; align-items: center; justify-content: center; font-size: 1.1rem; flex-shrink: 0; transition: background .2s, transform .3s cubic-bezier(.34,1.56,.64,1); }
-.contact-btn:hover .cb-icon { background: rgba(249,115,22,.2); transform: scale(1.1) rotate(-8deg); }
-.contact-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
-.info-card { background: var(--s50); border: 1px solid var(--s100); border-radius: var(--r-lg); padding: 24px; transition: box-shadow .25s, transform .25s, border-color .25s; }
-.info-card:hover { box-shadow: var(--shadow-h); transform: translateY(-3px); border-color: var(--orange-border); }
-.ic-label { font-size: .68rem; font-weight: 700; color: var(--orange); letter-spacing: .12em; text-transform: uppercase; margin-bottom: 8px; }
-.ic-value { font-size: .9rem; font-weight: 700; color: var(--s900); line-height: 1.5; }
-.ic-sub { font-size: .75rem; color: var(--s500); margin-top: 4px; }
-
-/* Responsive – Index */
-@media (max-width: 1024px) {
-  .about-grid, .contact-grid { grid-template-columns: 1fr; gap: 48px; }
-  .biz-grid { grid-template-columns: 1fr; }
-  .str-grid { grid-template-columns: repeat(2,1fr); }
-  .hero-inner { grid-template-columns: 1fr; gap: 40px; }
-  .hero-visual { max-width: 480px; margin: 0 auto; }
-}
-@media (max-width: 768px) {
-  .hero { min-height: auto; padding: 100px 0 60px; }
-  .hero-inner { padding: 20px 0; }
-  .hero-title { font-size: 2.4rem; }
-  .about-section, .biz-section, .str-section, .contact-section { padding: 80px 0; }
-  .about-stats { grid-template-columns: 1fr 1fr; }
-  .str-grid { grid-template-columns: 1fr; }
-  .contact-cards { grid-template-columns: 1fr; }
-}
-</style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>V Financial Group | 신뢰는 구조에서 나옵니다</title>
+<meta name="description" content="V Financial Group은 결제(V Pay), 커머스(V Bazzar), 문화관광(NIA World), 웰니스(Genova Wellness) 네 개 사업을 하나의 운영 기준 위에서 운영합니다.">
+<link rel="stylesheet" href="v3.css">
 </head>
 <body>
 
-<!-- ═══ NAV ═══ -->
-<nav id="mainNav">
-  <div class="nav-inner">
-    <a href="index.html" class="nav-logo">
-      <div class="logo-mark">V</div>
-      <span>Financial Group</span>
-    </a>
-    <ul class="nav-links">
-      <li><a href="index.html" class="nav-link" data-page="index" data-i18n="nav-about">소개</a></li>
-      <li><a href="vpay.html" class="nav-link" data-page="vpay">V Pay</a></li>
-      <li><a href="vbazzar.html" class="nav-link" data-page="vbazzar">V Bazzar</a></li>
-      <li><a href="vpawn.html" class="nav-link" data-page="vpawn">V Pawn</a></li>
-      <li><a href="nia.html" class="nav-link" data-page="nia">NIA World</a></li>
-      <li><a href="healthcare.html" class="nav-link" data-page="healthcare" data-i18n="nav-hc">헬스케어</a></li>
-      <li><a href="#contact" class="nav-link" onclick="smoothNav(event,'contact')" data-i18n="nav-contact">문의</a></li>
-    </ul>
-    <div class="nav-right">
-      <button class="lang-btn" id="langToggle" onclick="toggleLang()">EN</button>
-      <a href="#contact" onclick="smoothNav(event,'contact')" class="nav-cta" data-i18n="nav-cta">문의하기</a>
-    </div>
-    <button class="hamburger" id="hamburger" onclick="toggleMenu()"><span></span><span></span><span></span></button>
-  </div>
-</nav>
+<div data-om-root="1" style="min-height:100vh">
 
-<div id="mobileMenu">
-  <a href="index.html" data-mob-page="index" data-i18n="nav-about">소개</a>
-  <a href="vpay.html" data-mob-page="vpay">V Pay</a>
-  <a href="vbazzar.html" data-mob-page="vbazzar">V Bazzar</a>
-  <a href="vpawn.html" data-mob-page="vpawn">V Pawn</a>
-  <a href="nia.html" data-mob-page="nia">NIA World</a>
-  <a href="healthcare.html" data-mob-page="healthcare" data-i18n="nav-hc">헬스케어</a>
-  <a href="#contact" onclick="smoothNav(event,'contact')" data-i18n="nav-contact">문의</a>
-  <div class="mob-actions">
-    <button class="mob-lang" id="mobLangBtn" onclick="toggleLang()">EN</button>
-    <a href="#contact" onclick="smoothNav(event,'contact')" class="mob-cta" data-i18n="nav-cta">문의하기</a>
+  <nav data-nav="1" style="position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(245,245,247,var(--nav-a));backdrop-filter:blur(var(--nav-blur)) saturate(180%);-webkit-backdrop-filter:blur(var(--nav-blur)) saturate(180%);box-shadow:inset 0 -1px 0 rgba(0,0,0,calc(.08 * var(--nav-line)))">
+    <div class="cont" style="max-width:1180px;margin:0 auto;padding:0 34px;height:54px;display:flex;align-items:center;justify-content:space-between">
+      <a href="#top" data-press="1" style="display:flex;align-items:center;gap:9px;color:var(--ink);font-size:.94rem;font-weight:600;letter-spacing:-.01em">
+        <span style="width:24px;height:24px;border-radius:7px;background:var(--acc);color:#fff;display:flex;align-items:center;justify-content:center;font-size:.76rem;font-weight:700">V</span>
+        <span>Financial Group</span>
+      </a>
+      <ul class="navlinks" style="display:flex;gap:24px;list-style:none;align-items:center">
+        <li><a class="nl" href="#group" style="font-size:.8rem;font-weight:500;color:var(--ink2);transition:opacity .25s,color .25s">그룹</a></li>
+        <li><a class="nl" href="vpay.html" style="font-size:.8rem;font-weight:500;color:var(--ink2);transition:opacity .25s,color .25s">V Pay</a></li>
+        <li><a class="nl" href="vbazzar.html" style="font-size:.8rem;font-weight:500;color:var(--ink2);transition:opacity .25s,color .25s">V Bazzar</a></li>
+        <li><a class="nl" href="nia.html" style="font-size:.8rem;font-weight:500;color:var(--ink2);transition:opacity .25s,color .25s">NIA World</a></li>
+        <li><a class="nl" href="genova.html" style="font-size:.8rem;font-weight:500;color:var(--ink2);transition:opacity .25s,color .25s">Genova</a></li>
+      </ul>
+      <a class="navcta" href="#contact" data-press="1" style="display:inline-flex;align-items:center;gap:8px;padding:7px 16px;border-radius:999px;background:var(--acc);color:#fff;font-size:.79rem;font-weight:600;transition:background .3s;letter-spacing:-.005em">문의하기</a>
+      <button class="burger" onclick="toggleMenu()" aria-label="메뉴" style="display:none;flex-direction:column;gap:5px;padding:6px;border:none;background:none;cursor:pointer">
+        <span data-burger="1" style="display:block;width:20px;height:1.5px;background:var(--ink);border-radius:2px;transition:transform .4s cubic-bezier(.32,.72,0,1),opacity .25s"></span>
+        <span data-burger="2" style="display:block;width:20px;height:1.5px;background:var(--ink);border-radius:2px;transition:transform .4s cubic-bezier(.32,.72,0,1),opacity .25s"></span>
+      </button>
+    </div>
+  </nav>
+
+  <div data-mob="1" data-glass="1" style="display:none;position:fixed;top:54px;left:0;right:0;z-index:99;background:rgba(245,245,247,.92);backdrop-filter:blur(28px) saturate(180%);flex-direction:column;padding:12px 22px 22px;box-shadow:0 20px 50px rgba(0,0,0,.12)">
+    <a href="#group" style="padding:15px 0;border-bottom:1px solid var(--line);font-size:1.3rem;font-weight:600;letter-spacing:-.02em;color:var(--ink)">그룹</a>
+    <a href="vpay.html" style="padding:15px 0;border-bottom:1px solid var(--line);font-size:1.3rem;font-weight:600;letter-spacing:-.02em;color:var(--ink)">V Pay</a>
+    <a href="vbazzar.html" style="padding:15px 0;border-bottom:1px solid var(--line);font-size:1.3rem;font-weight:600;letter-spacing:-.02em;color:var(--ink)">V Bazzar</a>
+    <a href="nia.html" style="padding:15px 0;border-bottom:1px solid var(--line);font-size:1.3rem;font-weight:600;letter-spacing:-.02em;color:var(--ink)">NIA World</a>
+    <a href="genova.html" style="padding:15px 0;border-bottom:1px solid var(--line);font-size:1.3rem;font-weight:600;letter-spacing:-.02em;color:var(--ink)">Genova Wellness</a>
+    <a href="#contact" onclick="closeMenu()" data-press="1" style="margin-top:16px;padding:14px;text-align:center;border-radius:999px;background:var(--acc);color:#fff;font-size:.95rem;font-weight:600">문의하기</a>
   </div>
+
+  <section id="top" style="position:relative;min-height:100svh;display:flex;align-items:flex-end;overflow:hidden;background:var(--deep)">
+    <img src="img/hero-financial.jpg" alt="골든아워의 금융 지구, 유리 오피스 타워와 거리 풍경" data-parallax="0.14" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;will-change:transform" />
+    <div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(11,11,13,.62) 0%,rgba(11,11,13,.24) 30%,rgba(11,11,13,.72) 66%,rgba(11,11,13,.95) 100%)"></div>
+    <div style="position:absolute;inset:0;background:linear-gradient(100deg,rgba(11,11,13,.62) 0%,rgba(11,11,13,.18) 52%,transparent 78%)"></div>
+    <div class="cont" style="position:relative;max-width:1180px;margin:0 auto;padding:0 34px 88px;width:100%">
+      <div data-rv="1" style="font-size:.76rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.72);margin-bottom:22px">V Financial Group</div>
+      <h1 data-rv="1" data-d="60" style="font-size:clamp(2.7rem,6.4vw,5.4rem);font-weight:600;line-height:1.03;letter-spacing:-.035em;color:#fff;max-width:22ch;text-shadow:0 2px 30px rgba(0,0,0,.28)">신뢰는 구조에서 나옵니다</h1>
+      <p data-rv="1" data-d="120" style="font-size:1.14rem;line-height:1.62;color:rgba(255,255,255,.78);max-width:44ch;margin-top:24px">결제·커머스·문화관광·웰니스 네 개 사업을 하나의 운영 기준 위에서 만듭니다.</p>
+      <div data-rv="1" data-d="180" style="display:flex;gap:12px;flex-wrap:wrap;margin-top:36px">
+        <a href="#rail" data-press="1" style="display:inline-flex;align-items:center;gap:10px;padding:13px 26px;border-radius:999px;background:var(--acc);color:#fff;font-size:.94rem;font-weight:600;letter-spacing:-.01em;box-shadow:0 10px 30px rgba(249,115,22,.34)">사업 살펴보기</a>
+        <a href="#contact" data-press="1" data-glass="1" style="display:inline-flex;align-items:center;gap:10px;padding:13px 26px;border-radius:999px;background:rgba(255,255,255,.16);backdrop-filter:blur(18px);color:#fff;font-size:.94rem;font-weight:600;letter-spacing:-.01em;box-shadow:inset 0 1px 0 rgba(255,255,255,.34)">파트너십 문의</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="group" class="sect" style="padding:112px 0">
+    <div class="cont" style="max-width:1180px;margin:0 auto;padding:0 34px">
+      <h2 data-rv="1" style="font-size:clamp(1.9rem,3.7vw,3.1rem);font-weight:600;line-height:1.12;letter-spacing:-.03em;max-width:24ch">인가를 먼저 통과하고, 그 위에서 가장 빠르게 움직입니다.</h2>
+      <p data-rv="1" data-d="60" style="font-size:1.06rem;line-height:1.7;color:var(--mut);max-width:52ch;margin-top:22px">규제 회색지대에서 매출을 만들지 않습니다. 절차를 통과한 범위 안에서 제품을 붙이고, 각 사업이 서로의 트래픽을 되돌려 받는 구조를 설계합니다.</p>
+      <div class="figs wide" style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:56px">
+        <div class="card" data-rv="1" data-d="60" data-lift="1" style="background:var(--surf);border-radius:var(--r);padding:32px 30px;box-shadow:var(--sh-s);transition:box-shadow .4s cubic-bezier(.32,.72,0,1)">
+          <div data-count="4" style="font-size:3rem;font-weight:600;letter-spacing:-.04em;line-height:1;font-variant-numeric:tabular-nums">4</div>
+          <div style="font-size:.94rem;font-weight:600;margin-top:14px">사업 부문</div>
+          <p style="font-size:.88rem;line-height:1.65;color:var(--mut);margin-top:8px">결제, 커머스, 문화관광, 웰니스. 각각 독립 손익으로 운영합니다.</p>
+        </div>
+        <div class="card" data-rv="1" data-d="130" data-lift="1" style="background:var(--surf);border-radius:var(--r);padding:32px 30px;box-shadow:var(--sh-s);transition:box-shadow .4s cubic-bezier(.32,.72,0,1)">
+          <div data-count="5" style="font-size:3rem;font-weight:600;letter-spacing:-.04em;line-height:1;font-variant-numeric:tabular-nums">5</div>
+          <div style="font-size:.94rem;font-weight:600;margin-top:14px">진출 국가</div>
+          <p style="font-size:.88rem;line-height:1.65;color:var(--mut);margin-top:8px">한국·베트남·태국·필리핀·인도네시아 정산 파트너와 직접 계약합니다.</p>
+        </div>
+        <div class="card" data-rv="1" data-d="200" data-lift="1" style="background:var(--surf);border-radius:var(--r);padding:32px 30px;box-shadow:var(--sh-s);transition:box-shadow .4s cubic-bezier(.32,.72,0,1)">
+          <div style="font-size:3rem;font-weight:600;letter-spacing:-.04em;line-height:1;font-variant-numeric:tabular-nums">24/7</div>
+          <div style="font-size:.94rem;font-weight:600;margin-top:14px">플랫폼 운영</div>
+          <p style="font-size:.88rem;line-height:1.65;color:var(--mut);margin-top:8px">구간별 처리 시간을 지표로 관리하고 지연을 상시 점검합니다.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="rail" class="sect" style="padding:16px 0 112px">
+    <div class="cont" style="max-width:1180px;margin:0 auto;padding:0 34px;display:flex;align-items:flex-end;justify-content:space-between;gap:24px;flex-wrap:wrap;margin-bottom:32px">
+      <h2 data-rv="1" style="font-size:clamp(1.7rem,3.2vw,2.6rem);font-weight:600;letter-spacing:-.03em;line-height:1.12">네 개의 사업</h2>
+      <p data-rv="1" data-d="60" style="font-size:.9rem;color:var(--mut)">좌우로 밀어 넘겨보세요</p>
+    </div>
+    <div data-track="1" style="overflow:hidden;cursor:grab;touch-action:pan-y;padding:0 0 6px">
+      <div style="display:flex;gap:18px;padding:0 34px;width:max-content;will-change:transform">
+        <a href="vpay.html" data-press="inner" draggable="false" style="width:min(84vw,420px);flex:0 0 auto;color:var(--ink)">
+          <span style="display:block;border-radius:var(--r);overflow:hidden;background:var(--surf);box-shadow:var(--sh-l);transform-origin:center">
+            <span style="display:block;aspect-ratio:16/10;overflow:hidden;background:#e9e6e1">
+              <img src="img/vpay-currency.jpg" alt="여러 국가의 외화 지폐를 펼쳐 놓은 정물" draggable="false" style="width:100%;height:100%;object-fit:cover" />
+            </span>
+            <span style="display:block;padding:26px 28px 30px">
+              <span style="display:block;font-size:.74rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--acc-text)">01 · Payments</span>
+              <span style="display:block;font-size:1.6rem;font-weight:600;letter-spacing:-.028em;margin-top:10px">V Pay</span>
+              <span style="display:block;font-size:.92rem;line-height:1.6;color:var(--mut);margin-top:8px">아시아 5개국 크로스보더 송금·결제. 환율은 요청 시점에 확정됩니다.</span>
+              <span style="display:inline-flex;align-items:center;gap:7px;margin-top:18px;font-size:.86rem;font-weight:600;color:var(--acc-text)">자세히 보기 →</span>
+            </span>
+          </span>
+        </a>
+        <a href="vbazzar.html" data-press="inner" draggable="false" style="width:min(84vw,420px);flex:0 0 auto;color:var(--ink)">
+          <span style="display:block;border-radius:var(--r);overflow:hidden;background:var(--surf);box-shadow:var(--sh-l)">
+            <span style="display:block;aspect-ratio:16/10;overflow:hidden;background:#e9e6e1">
+              <img src="img/vbazzar-still.jpg" alt="아이보리 종이 위에 정돈된 중고 거래 물품 정물" draggable="false" style="width:100%;height:100%;object-fit:cover" />
+            </span>
+            <span style="display:block;padding:26px 28px 30px">
+              <span style="display:block;font-size:.74rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--acc-text)">02 · Marketplace</span>
+              <span style="display:block;font-size:1.6rem;font-weight:600;letter-spacing:-.028em;margin-top:10px">V Bazzar</span>
+              <span style="display:block;font-size:.92rem;line-height:1.6;color:var(--mut);margin-top:8px">대금을 플랫폼이 보관하고 수령 확인 후 정산하는 C2C 마켓플레이스.</span>
+              <span style="display:inline-flex;align-items:center;gap:7px;margin-top:18px;font-size:.86rem;font-weight:600;color:var(--acc-text)">자세히 보기 →</span>
+            </span>
+          </span>
+        </a>
+        <a href="nia.html" data-press="inner" draggable="false" style="width:min(84vw,420px);flex:0 0 auto;color:var(--ink)">
+          <span style="display:block;border-radius:var(--r);overflow:hidden;background:var(--surf);box-shadow:var(--sh-l)">
+            <span style="display:block;aspect-ratio:16/10;overflow:hidden;background:#e9e6e1">
+              <img src="img/nia-arena.jpg" alt="해질 무렵 반사 수면과 계단식 광장을 갖춘 문화 아레나" draggable="false" style="width:100%;height:100%;object-fit:cover" />
+            </span>
+            <span style="display:block;padding:26px 28px 30px">
+              <span style="display:flex;align-items:center;gap:10px">
+                <span style="font-size:.74rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--acc-text)">03 · Culture</span>
+                <span style="font-size:.64rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;background:var(--acc);color:#fff;border-radius:999px;padding:3px 9px">New</span>
+              </span>
+              <span style="display:block;font-size:1.6rem;font-weight:600;letter-spacing:-.028em;margin-top:10px">NIA World</span>
+              <span style="display:block;font-size:.92rem;line-height:1.6;color:var(--mut);margin-top:8px">공연·체험·숙박·상업을 한 동선으로 묶는 문화관광 복합개발.</span>
+              <span style="display:inline-flex;align-items:center;gap:7px;margin-top:18px;font-size:.86rem;font-weight:600;color:var(--acc-text)">자세히 보기 →</span>
+            </span>
+          </span>
+        </a>
+        <a href="genova.html" data-press="inner" draggable="false" style="width:min(84vw,420px);flex:0 0 auto;color:var(--ink)">
+          <span style="display:block;border-radius:var(--r);overflow:hidden;background:var(--surf);box-shadow:var(--sh-l)">
+            <span style="display:block;aspect-ratio:16/10;overflow:hidden;background:#e9e6e1">
+              <img src="img/genova-dna.jpg" alt="앰버 조명 아래의 DNA 이중나선 모형" draggable="false" style="width:100%;height:100%;object-fit:cover" />
+            </span>
+            <span style="display:block;padding:26px 28px 30px">
+              <span style="display:block;font-size:.74rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--acc-text)">04 · Wellness</span>
+              <span style="display:block;font-size:1.6rem;font-weight:600;letter-spacing:-.028em;margin-top:10px">Genova Wellness</span>
+              <span style="display:block;font-size:.92rem;line-height:1.6;color:var(--mut);margin-top:8px">SNP 유전 분석을 식단·수면·보충 루틴으로 바꾸는 웰니스 프로그램.</span>
+              <span style="display:inline-flex;align-items:center;gap:7px;margin-top:18px;font-size:.86rem;font-weight:600;color:var(--acc-text)">자세히 보기 →</span>
+            </span>
+          </span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section id="principles" class="sect" style="padding:112px 0;background:var(--deep);color:#fff">
+    <div class="cont" style="max-width:1180px;margin:0 auto;padding:0 34px">
+      <h2 data-rv="1" style="font-size:clamp(1.9rem,3.7vw,3rem);font-weight:600;letter-spacing:-.03em;line-height:1.12;max-width:20ch">우리가 지키는 네 가지</h2>
+      <div class="two" style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:48px">
+        <div data-rv="1" data-d="40" data-glass="1" style="background:rgba(255,255,255,.07);backdrop-filter:blur(20px);border-radius:var(--r);padding:32px 30px;box-shadow:inset 0 1px 0 rgba(255,255,255,.14)">
+          <div style="font-size:.74rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.55)">01</div>
+          <div style="font-size:1.14rem;font-weight:600;letter-spacing:-.02em;margin-top:14px">먼저 허가, 그다음 성장</div>
+          <p style="font-size:.92rem;line-height:1.7;color:rgba(255,255,255,.66);margin-top:10px">금융위원회 소액해외송금업 인가를 추진하고, 인가 범위를 넘는 거래는 취급하지 않습니다.</p>
+        </div>
+        <div data-rv="1" data-d="110" data-glass="1" style="background:rgba(255,255,255,.07);backdrop-filter:blur(20px);border-radius:var(--r);padding:32px 30px;box-shadow:inset 0 1px 0 rgba(255,255,255,.14)">
+          <div style="font-size:.74rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.55)">02</div>
+          <div style="font-size:1.14rem;font-weight:600;letter-spacing:-.02em;margin-top:14px">돈이 멈추는 구간을 없앤다</div>
+          <p style="font-size:.92rem;line-height:1.7;color:rgba(255,255,255,.66);margin-top:10px">환전·정산·예치 어디에서도 기다림이 생기지 않도록 구간별 소요 시간을 관리합니다.</p>
+        </div>
+        <div data-rv="1" data-d="180" data-glass="1" style="background:rgba(255,255,255,.07);backdrop-filter:blur(20px);border-radius:var(--r);padding:32px 30px;box-shadow:inset 0 1px 0 rgba(255,255,255,.14)">
+          <div style="font-size:.74rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.55)">03</div>
+          <div style="font-size:1.14rem;font-weight:600;letter-spacing:-.02em;margin-top:14px">데이터는 집계로만 쓴다</div>
+          <p style="font-size:.92rem;line-height:1.7;color:rgba(255,255,255,.66);margin-top:10px">사업 간 공유는 비식별 집계 단위로 제한하고, 유전·건강 데이터는 부문 밖으로 내보내지 않습니다.</p>
+        </div>
+        <div data-rv="1" data-d="250" data-glass="1" style="background:rgba(255,255,255,.07);backdrop-filter:blur(20px);border-radius:var(--r);padding:32px 30px;box-shadow:inset 0 1px 0 rgba(255,255,255,.14)">
+          <div style="font-size:.74rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.55)">04</div>
+          <div style="font-size:1.14rem;font-weight:600;letter-spacing:-.02em;margin-top:14px">단계로 나눠 투자한다</div>
+          <p style="font-size:.92rem;line-height:1.7;color:rgba(255,255,255,.66);margin-top:10px">검증 지표를 통과한 뒤 다음 단계 자금을 집행합니다. NIA World도 존 단위로 개장합니다.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact" class="sect" style="padding:112px 0">
+    <div class="cont" style="max-width:1180px;margin:0 auto;padding:0 34px">
+      <div style="background:var(--surf);border-radius:34px;box-shadow:var(--sh-l);padding:clamp(34px,5vw,68px)">
+        <div class="two" style="display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:start">
+          <div>
+            <h2 data-rv="1" style="font-size:clamp(1.8rem,3.4vw,2.8rem);font-weight:600;letter-spacing:-.03em;line-height:1.12">제휴와 투자,<br />직접 이야기합시다</h2>
+            <p data-rv="1" data-d="60" style="font-size:1.02rem;line-height:1.7;color:var(--mut);margin-top:20px;max-width:36ch">담당자가 영업일 2일 내에 회신합니다. 제안 자료가 있다면 메일로 함께 보내주세요.</p>
+            <div data-rv="1" data-d="120" style="display:flex;gap:12px;flex-wrap:wrap;margin-top:32px">
+              <a href="mailto:info@vpayv.com" data-press="1" style="display:inline-flex;align-items:center;padding:13px 26px;border-radius:999px;background:var(--acc);color:#fff;font-size:.94rem;font-weight:600;transition:background .3s">info@vpayv.com</a>
+              <a href="tel:07041364390" data-press="1" style="display:inline-flex;align-items:center;padding:13px 26px;border-radius:999px;background:var(--bg);color:var(--ink);font-size:.94rem;font-weight:600;font-variant-numeric:tabular-nums">070-4136-4390</a>
+            </div>
+          </div>
+          <div>
+            <div data-rv="1" data-d="60" style="display:grid;grid-template-columns:120px 1fr;gap:20px;padding:20px 0;border-top:1px solid var(--line)">
+              <span style="font-size:.84rem;font-weight:600;color:var(--mut)">본사</span>
+              <span style="font-size:.96rem;line-height:1.65">인천 연수구 인천타워대로 323<br />송도 센트로드 B동 30층 V494호</span>
+            </div>
+            <div data-rv="1" data-d="110" style="display:grid;grid-template-columns:120px 1fr;gap:20px;padding:20px 0;border-top:1px solid var(--line)">
+              <span style="font-size:.84rem;font-weight:600;color:var(--mut)">사업자등록</span>
+              <span style="font-size:.96rem;line-height:1.65;font-variant-numeric:tabular-nums">283-88-03541</span>
+            </div>
+            <div data-rv="1" data-d="160" style="display:grid;grid-template-columns:120px 1fr;gap:20px;padding:20px 0;border-top:1px solid var(--line)">
+              <span style="font-size:.84rem;font-weight:600;color:var(--mut)">제휴 분야</span>
+              <span style="font-size:.96rem;line-height:1.65">NIA World 개발·운영, V Pay 정산, Genova 연구 협력</span>
+            </div>
+            <div data-rv="1" data-d="210" style="display:grid;grid-template-columns:120px 1fr;gap:20px;padding:20px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line)">
+              <span style="font-size:.84rem;font-weight:600;color:var(--mut)">채용</span>
+              <span style="font-size:.96rem;line-height:1.65">결제 백엔드, 리스크 심사, 문화 콘텐츠 기획</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer style="background:var(--deep);color:#fff;padding:64px 0 30px">
+    <div class="cont" style="max-width:1180px;margin:0 auto;padding:0 34px">
+      <div class="ftgrid" style="display:grid;grid-template-columns:1.7fr 1fr 1fr;gap:52px;padding-bottom:44px;border-bottom:1px solid rgba(255,255,255,.12)">
+        <div>
+          <div style="display:flex;align-items:center;gap:9px;margin-bottom:16px">
+            <span style="width:24px;height:24px;border-radius:7px;background:var(--acc);color:#fff;display:flex;align-items:center;justify-content:center;font-size:.76rem;font-weight:700">V</span>
+            <span style="font-size:.94rem;font-weight:600">Financial Group</span>
+          </div>
+          <p style="font-size:1.24rem;font-weight:600;letter-spacing:-.025em;line-height:1.35;max-width:20ch">신뢰는 구조에서 나옵니다.</p>
+        </div>
+        <div>
+          <div style="font-size:.76rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.5);margin-bottom:16px">사업</div>
+          <ul style="list-style:none;display:flex;flex-direction:column;gap:11px">
+            <li><a class="fl" href="vpay.html" style="font-size:.9rem;color:rgba(255,255,255,.74)">V Pay</a></li>
+            <li><a class="fl" href="vbazzar.html" style="font-size:.9rem;color:rgba(255,255,255,.74)">V Bazzar</a></li>
+            <li><a class="fl" href="nia.html" style="font-size:.9rem;color:rgba(255,255,255,.74)">NIA World</a></li>
+            <li><a class="fl" href="genova.html" style="font-size:.9rem;color:rgba(255,255,255,.74)">Genova Wellness</a></li>
+          </ul>
+        </div>
+        <div>
+          <div style="font-size:.76rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.5);margin-bottom:16px">연락</div>
+          <ul style="list-style:none;display:flex;flex-direction:column;gap:11px">
+            <li><a class="fl" href="mailto:info@vpayv.com" style="font-size:.9rem;color:rgba(255,255,255,.74)">info@vpayv.com</a></li>
+            <li><a class="fl" href="tel:07041364390" style="font-size:.9rem;color:rgba(255,255,255,.74);font-variant-numeric:tabular-nums">070-4136-4390</a></li>
+            <li><a class="fl" href="#contact" style="font-size:.9rem;color:rgba(255,255,255,.74)">문의하기</a></li>
+          </ul>
+        </div>
+      </div>
+      <div style="display:flex;justify-content:space-between;align-items:center;gap:14px;padding-top:24px;flex-wrap:wrap">
+        <span style="font-size:.78rem;color:rgba(255,255,255,.42)">© 2026 V Financial Group</span>
+        <span style="font-size:.78rem;color:rgba(255,255,255,.42);font-variant-numeric:tabular-nums">사업자등록번호 283-88-03541</span>
+      </div>
+    </div>
+  </footer>
 </div>
 
-<!-- ═══ HERO ═══ -->
-<section class="hero" id="hero">
-  <div class="hero-dots"></div>
-  <div class="container">
-    <div class="hero-inner">
-      <div class="hero-text">
-        <div class="hero-badge">
-          <div class="hero-badge-dot"></div>
-          <span class="hero-badge-text" data-i18n="idx-badge">글로벌 금융 포트폴리오 그룹</span>
-        </div>
-        <h1 class="hero-title" data-i18n="idx-title">글로벌 금융과<br>디지털 혁신을<br>연결하다</h1>
-        <p class="hero-sub" data-i18n="idx-sub">V Financial Group은 V Pay · V Bazzar · V Pawn · Healthcare 4개 사업을 통해 국경 없는 금융 생태계를 구축합니다.</p>
-        <div class="hero-btns">
-          <a href="#contact" onclick="smoothNav(event,'contact')" class="btn btn-orange" data-i18n="idx-cta1">사업 문의하기</a>
-          <a href="#businesses" onclick="smoothNav(event,'businesses')" class="btn btn-ghost-dark" data-i18n="idx-cta2">사업영역 보기</a>
-        </div>
-        <div class="hero-mini-stats">
-          <div>
-            <div class="mini-stat-val"><span>4</span></div>
-            <div class="mini-stat-lbl" data-i18n="idx-stat1-l">핵심 사업 영역</div>
-          </div>
-          <div>
-            <div class="mini-stat-val"><span>5</span></div>
-            <div class="mini-stat-lbl" data-i18n="idx-stat2-l">진출 국가</div>
-          </div>
-          <div>
-            <div class="mini-stat-val"><span>24</span><span style="font-size:1rem">/7</span></div>
-            <div class="mini-stat-lbl" data-i18n="idx-stat3-l">시간 서비스</div>
-          </div>
-        </div>
-      </div>
-      <div class="hero-visual">
-        <div class="hero-card">
-          <div class="hero-card-top"></div>
-          <div class="hero-card-inner">
-            <div class="hc-header">
-              <div class="hc-brand">
-                <div class="hc-brand-mark">V</div>
-                <span class="hc-brand-name">Financial Group</span>
-              </div>
-              <div class="hc-live"><div class="hc-live-dot"></div> LIVE</div>
-            </div>
-            <div class="biz-items">
-              <a href="vpay.html" class="biz-item" style="text-decoration:none">
-                <div class="biz-item-icon">💸</div>
-                <div class="biz-item-main">
-                  <div class="biz-item-title">V Pay</div>
-                  <div class="biz-item-desc">크로스보더 디지털 금융</div>
-                </div>
-                <div class="biz-item-right">
-                  <div class="biz-item-tag tag-orange">Active</div>
-                  <div class="biz-item-sub">0.5% fee</div>
-                </div>
-              </a>
-              <a href="vbazzar.html" class="biz-item" style="text-decoration:none">
-                <div class="biz-item-icon">🛍️</div>
-                <div class="biz-item-main">
-                  <div class="biz-item-title">V Bazzar</div>
-                  <div class="biz-item-desc">C2C 마켓플레이스</div>
-                </div>
-                <div class="biz-item-right">
-                  <div class="biz-item-tag tag-green">Active</div>
-                  <div class="biz-item-sub">Escrow</div>
-                </div>
-              </a>
-              <a href="vpawn.html" class="biz-item" style="text-decoration:none">
-                <div class="biz-item-icon">💎</div>
-                <div class="biz-item-main">
-                  <div class="biz-item-title">V Pawn</div>
-                  <div class="biz-item-desc">디지털 자산 유동성</div>
-                </div>
-                <div class="biz-item-right">
-                  <div class="biz-item-tag tag-blue">Active</div>
-                  <div class="biz-item-sub">up to 70%</div>
-                </div>
-              </a>
-              <a href="healthcare.html" class="biz-item" style="text-decoration:none">
-                <div class="biz-item-icon">🧬</div>
-                <div class="biz-item-main">
-                  <div class="biz-item-title">Healthcare</div>
-                  <div class="biz-item-desc">SNP 맞춤 헬스케어</div>
-                </div>
-                <div class="biz-item-right">
-                  <div class="biz-item-tag tag-purple">Dev</div>
-                  <div class="biz-item-sub">SNP</div>
-                </div>
-              </a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ═══ ABOUT ═══ -->
-<section class="about-section" id="about">
-  <div class="container">
-    <div class="about-grid">
-      <div>
-        <div class="about-badge reveal" data-i18n="idx-about-tag">ABOUT US</div>
-        <h2 class="about-title reveal" data-i18n="idx-about-title">미래 금융을 선도하는<br>디지털 혁신 그룹</h2>
-        <p class="about-p reveal" data-i18n="idx-about-sub">V Financial Group은 핀테크·커머스·자산금융·헬스케어의 교차점에서 새로운 가치를 창출합니다. 글로벌 스탠다드와 현지 금융 인프라를 연결하여 사용자 중심의 금융 생태계를 만들어갑니다.</p>
-        <p class="about-p reveal" data-i18n="idx-about-p2">우리는 규제 준수와 기술 혁신이 공존할 수 있다고 믿습니다. 금융위원회 인가 추진, SNP 기반 개인화 플랫폼 등 각 사업 영역에서 신뢰와 혁신을 동시에 추구합니다.</p>
-        <div class="about-stats">
-          <div class="astat-card reveal d1">
-            <div class="astat-val" data-count="4" data-suf="개">4개</div>
-            <div class="astat-label" data-i18n="idx-stat1-l">핵심 사업 영역</div>
-          </div>
-          <div class="astat-card reveal d2">
-            <div class="astat-val" data-count="5" data-suf="개국">5개국</div>
-            <div class="astat-label" data-i18n="idx-stat2-l">진출 국가</div>
-          </div>
-          <div class="astat-card reveal d3">
-            <div class="astat-val">24/7</div>
-            <div class="astat-label" data-i18n="idx-stat3-l">시간 서비스</div>
-          </div>
-          <div class="astat-card reveal d4">
-            <div class="astat-val" data-count="2025">2025</div>
-            <div class="astat-label" data-i18n="idx-stat4-l">서비스 고도화</div>
-          </div>
-        </div>
-      </div>
-      <div class="reveal from-r">
-        <div class="about-dark-panel">
-          <div class="adp-header">
-            <span class="adp-title">Portfolio Overview</span>
-            <span class="adp-badge">2026 Active</span>
-          </div>
-          <div class="adp-rows">
-            <div class="adp-row">
-              <div class="adp-row-left"><span class="adp-icon">💸</span><span class="adp-lbl">V Pay</span></div>
-              <span class="adp-val">Fintech</span>
-            </div>
-            <div class="adp-row">
-              <div class="adp-row-left"><span class="adp-icon">🛍️</span><span class="adp-lbl">V Bazzar</span></div>
-              <span class="adp-val">Commerce</span>
-            </div>
-            <div class="adp-row">
-              <div class="adp-row-left"><span class="adp-icon">💎</span><span class="adp-lbl">V Pawn</span></div>
-              <span class="adp-val">Asset Finance</span>
-            </div>
-            <div class="adp-row">
-              <div class="adp-row-left"><span class="adp-icon">🧬</span><span class="adp-lbl">Healthcare</span></div>
-              <span class="adp-val">Healthtech</span>
-            </div>
-          </div>
-          <div style="margin-top:20px">
-            <div class="adp-bar-label"><span>Global Reach</span><span>5 Countries</span></div>
-            <div class="progress-track"><div class="progress-fill" data-fill="75"></div></div>
-            <div class="adp-bar-label" style="margin-top:12px"><span>Digital Innovation</span><span>High</span></div>
-            <div class="progress-track"><div class="progress-fill" data-fill="88"></div></div>
-            <div class="adp-bar-label" style="margin-top:12px"><span>Compliance</span><span>Pursuing</span></div>
-            <div class="progress-track"><div class="progress-fill" data-fill="65"></div></div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ═══ BUSINESSES ═══ -->
-<section class="biz-section" id="businesses">
-  <div class="container">
-    <div class="biz-header">
-      <div class="section-tag reveal" data-i18n="idx-biz-tag">OUR BUSINESSES</div>
-      <h2 class="section-title reveal" data-i18n="idx-biz-title">4가지 사업 영역</h2>
-      <p class="section-sub reveal" data-i18n="idx-biz-sub">금융·커머스·자산·헬스케어를 아우르는 통합 포트폴리오</p>
-    </div>
-    <div class="biz-grid">
-      <!-- V Pay -->
-      <div class="biz-card reveal d1">
-        <div class="biz-card-top orange"></div>
-        <div class="biz-card-body">
-          <div class="biz-card-icon icon-orange">💸</div>
-          <div class="biz-card-name" data-i18n="idx-vpay-title">V Pay</div>
-          <p class="biz-card-desc" data-i18n="idx-vpay-desc">아시아 5개국을 연결하는 크로스보더 디지털 송금·결제 플랫폼</p>
-          <div class="biz-card-points">
-            <div class="biz-card-point"><div class="bcp-dot"></div><span data-i18n="idx-vpay-p1">실시간 환전</span></div>
-            <div class="biz-card-point"><div class="bcp-dot"></div><span data-i18n="idx-vpay-p2">0.5% 이하 수수료</span></div>
-            <div class="biz-card-point"><div class="bcp-dot"></div><span data-i18n="idx-vpay-p3">금융위원회 인가 추진</span></div>
-          </div>
-          <a href="vpay.html" class="biz-card-link"><span data-i18n="idx-card-learn">자세히 보기</span> <span class="arrow">→</span></a>
-        </div>
-      </div>
-      <!-- V Bazzar -->
-      <div class="biz-card reveal d2">
-        <div class="biz-card-top slate"></div>
-        <div class="biz-card-body">
-          <div class="biz-card-icon icon-slate">🛍️</div>
-          <div class="biz-card-name" data-i18n="idx-vbazzar-title">V Bazzar</div>
-          <p class="biz-card-desc" data-i18n="idx-vbazzar-desc">에스크로 보호 C2C 중고거래 마켓플레이스 플랫폼</p>
-          <div class="biz-card-points">
-            <div class="biz-card-point"><div class="bcp-dot"></div><span data-i18n="idx-vbazzar-p1">에스크로 보호</span></div>
-            <div class="biz-card-point"><div class="bcp-dot"></div><span data-i18n="idx-vbazzar-p2">검증된 판매자</span></div>
-            <div class="biz-card-point"><div class="bcp-dot"></div><span data-i18n="idx-vbazzar-p3">안전 결제</span></div>
-          </div>
-          <a href="vbazzar.html" class="biz-card-link"><span data-i18n="idx-card-learn">자세히 보기</span> <span class="arrow">→</span></a>
-        </div>
-      </div>
-      <!-- V Pawn -->
-      <div class="biz-card reveal d3">
-        <div class="biz-card-top amber"></div>
-        <div class="biz-card-body">
-          <div class="biz-card-icon icon-amber">💎</div>
-          <div class="biz-card-name" data-i18n="idx-vpawn-title">V Pawn</div>
-          <p class="biz-card-desc" data-i18n="idx-vpawn-desc">디지털 자산 기반 즉시 유동성 공급 플랫폼</p>
-          <div class="biz-card-points">
-            <div class="biz-card-point"><div class="bcp-dot"></div><span data-i18n="idx-vpawn-p1">즉시 자산 평가</span></div>
-            <div class="biz-card-point"><div class="bcp-dot"></div><span data-i18n="idx-vpawn-p2">담보 유동성</span></div>
-            <div class="biz-card-point"><div class="bcp-dot"></div><span data-i18n="idx-vpawn-p3">안전한 보관</span></div>
-          </div>
-          <a href="vpawn.html" class="biz-card-link"><span data-i18n="idx-card-learn">자세히 보기</span> <span class="arrow">→</span></a>
-        </div>
-      </div>
-      <!-- Healthcare -->
-      <div class="biz-card reveal d4">
-        <div class="biz-card-top teal"></div>
-        <div class="biz-card-body">
-          <div class="biz-card-icon icon-teal">🧬</div>
-          <div class="biz-card-name" data-i18n="idx-hc-title">Healthcare</div>
-          <p class="biz-card-desc" data-i18n="idx-hc-desc">SNP 유전자 분석 기반 맞춤형 영양·건강 관리 플랫폼</p>
-          <div class="biz-card-points">
-            <div class="biz-card-point"><div class="bcp-dot"></div><span data-i18n="idx-hc-p1">SNP 유전자 분석</span></div>
-            <div class="biz-card-point"><div class="bcp-dot"></div><span data-i18n="idx-hc-p2">맞춤 영양 솔루션</span></div>
-            <div class="biz-card-point"><div class="bcp-dot"></div><span data-i18n="idx-hc-p3">개인화 헬스케어</span></div>
-          </div>
-          <a href="healthcare.html" class="biz-card-link"><span data-i18n="idx-card-learn">자세히 보기</span> <span class="arrow">→</span></a>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ═══ STRENGTHS ═══ -->
-<section class="str-section" id="strengths">
-  <div class="container">
-    <div class="str-header">
-      <div class="section-tag light reveal" data-i18n="idx-str-tag">CORE STRENGTHS</div>
-      <h2 class="section-title white reveal" data-i18n="idx-str-title">V Financial Group이<br>선택받는 이유</h2>
-      <p class="section-sub white reveal" data-i18n="idx-str-sub">기술·신뢰·글로벌 네트워크로 차별화된 금융 생태계를 만듭니다.</p>
-    </div>
-    <div class="str-grid">
-      <div class="str-card reveal d1">
-        <div class="str-icon-wrap">🏛️</div>
-        <h3 class="str-card-title" data-i18n="idx-s1-title">규제 준수 금융 혁신</h3>
-        <p class="str-card-desc" data-i18n="idx-s1-desc">금융위원회 소액해외송금업 인가 추진 등 합법적·신뢰성 있는 운영 기반 위에 혁신 서비스를 구축합니다.</p>
-      </div>
-      <div class="str-card reveal d2">
-        <div class="str-icon-wrap">🌐</div>
-        <h3 class="str-card-title" data-i18n="idx-s2-title">글로벌-로컬 네트워크</h3>
-        <p class="str-card-desc" data-i18n="idx-s2-desc">한국·베트남·태국·필리핀·인도네시아를 잇는 현지 파트너십과 규제 대응 네트워크를 보유합니다.</p>
-      </div>
-      <div class="str-card reveal d3">
-        <div class="str-icon-wrap">🔗</div>
-        <h3 class="str-card-title" data-i18n="idx-s3-title">통합 생태계 시너지</h3>
-        <p class="str-card-desc" data-i18n="idx-s3-desc">V Pay·V Bazzar·V Pawn·Healthcare 4개 사업의 교차 연계를 통해 사용자 Lock-in과 생태계 가치를 극대화합니다.</p>
-      </div>
-      <div class="str-card reveal d4">
-        <div class="str-icon-wrap">📊</div>
-        <h3 class="str-card-title" data-i18n="idx-s4-title">데이터 기반 개인화</h3>
-        <p class="str-card-desc" data-i18n="idx-s4-desc">SNP 유전자 분석, 거래 데이터 분석 등 과학적 접근으로 맞춤형 서비스를 제공합니다.</p>
-      </div>
-      <div class="str-card reveal d5" style="grid-column: span 1;">
-        <div class="str-icon-wrap">🛡️</div>
-        <h3 class="str-card-title" data-i18n="idx-s5-title">안전한 자산 보호</h3>
-        <p class="str-card-desc" data-i18n="idx-s5-desc">에스크로, 에스크로 보호 거래, 콜드스토리지 등 다중 보안 체계로 사용자 자산을 안전하게 보호합니다.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ═══ CONTACT ═══ -->
-<section class="contact-section" id="contact">
-  <div class="container">
-    <div class="contact-grid">
-      <div class="contact-left">
-        <div class="contact-tag reveal" data-i18n="idx-ct-tag">CONTACT</div>
-        <h2 class="contact-title reveal" data-i18n="idx-ct-title">파트너십 및 사업 문의</h2>
-        <p class="contact-sub reveal" data-i18n="idx-ct-sub">투자·제휴·서비스 이용 등 모든 문의를 환영합니다.</p>
-        <div class="contact-btns reveal">
-          <a href="mailto:info@vpayv.com" class="contact-btn">
-            <div class="cb-icon">📧</div>
-            <span data-i18n="idx-ct-email">이메일 문의</span>
-            <span style="margin-left:auto;font-size:.8rem;color:var(--s400)">info@vpayv.com →</span>
-          </a>
-          <a href="tel:07041364390" class="contact-btn">
-            <div class="cb-icon">📞</div>
-            <span data-i18n="idx-ct-phone">전화 문의</span>
-            <span style="margin-left:auto;font-size:.8rem;color:var(--s400)">070-4136-4390 →</span>
-          </a>
-        </div>
-      </div>
-      <div>
-        <div class="contact-cards">
-          <div class="info-card reveal d1">
-            <div class="ic-label" data-i18n="idx-ct-card1">이메일</div>
-            <div class="ic-value"><a href="mailto:info@vpayv.com" style="color:var(--orange)">info@vpayv.com</a></div>
-          </div>
-          <div class="info-card reveal d2">
-            <div class="ic-label" data-i18n="idx-ct-card2">전화번호</div>
-            <div class="ic-value"><a href="tel:07041364390" style="color:var(--s900)">070-4136-4390</a></div>
-          </div>
-          <div class="info-card reveal d3">
-            <div class="ic-label" data-i18n="idx-ct-card3">사업자등록</div>
-            <div class="ic-value" data-i18n="idx-biz-num">283-88-03541</div>
-          </div>
-          <div class="info-card reveal d4" style="grid-column:span 2">
-            <div class="ic-label" data-i18n="idx-ct-card4">주소 (인천)</div>
-            <div class="ic-value" data-i18n="idx-ct-addr">인천타워대로 323 비동 30층 V494호</div>
-            <div class="ic-sub" data-i18n="idx-ct-addr2">송도 센트로드, 연수구</div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ═══ FOOTER ═══ -->
-<footer>
-  <div class="container">
-    <div class="ft-grid">
-      <div>
-        <div class="ft-logo">
-          <div class="ft-logo-mark">V</div>
-          <span class="ft-logo-text">Financial Group</span>
-        </div>
-        <p class="ft-desc" data-i18n="ft-desc">글로벌 금융과 디지털 혁신을 연결하는 기업 포트폴리오 그룹.</p>
-        <div class="ft-ci">
-          <a href="mailto:info@vpayv.com">info@vpayv.com</a>
-          <a href="tel:07041364390">070-4136-4390</a>
-          <span data-i18n="ft-biz">사업자등록번호 283-88-03541</span>
-        </div>
-      </div>
-      <div class="ft-col">
-        <h5 data-i18n="ft-businesses">사업 영역</h5>
-        <ul>
-          <li><a href="vpay.html">V Pay</a></li>
-          <li><a href="vbazzar.html">V Bazzar</a></li>
-          <li><a href="vpawn.html">V Pawn</a></li>
-          <li><a href="healthcare.html" data-i18n="nav-hc">헬스케어</a></li>
-        </ul>
-      </div>
-      <div class="ft-col">
-        <h5 data-i18n="ft-contact-col">연락처</h5>
-        <ul>
-          <li><a href="mailto:info@vpayv.com">info@vpayv.com</a></li>
-          <li><a href="tel:07041364390">070-4136-4390</a></li>
-          <li><a href="#contact" onclick="smoothNav(event,'contact')" data-i18n="nav-cta">문의하기</a></li>
-        </ul>
-      </div>
-    </div>
-    <div class="ft-bottom">
-      <span class="ft-copy" data-i18n="ft-copy">© 2026 V Financial Group. All rights reserved.</span>
-      <span class="ft-biz" data-i18n="ft-biz">사업자등록번호 283-88-03541</span>
-    </div>
-  </div>
-</footer>
-
-<script src="shared.js"></script>
+<script type="module" src="page.js"></script>
 </body>
 </html>

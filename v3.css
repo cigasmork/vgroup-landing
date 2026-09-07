@@ -1,0 +1,49 @@
+:root{
+  --bg:#F5F5F7; --surf:#FFFFFF; --ink:#111113; --ink2:#3A3A3E; --mut:#6E6E73;
+  --line:rgba(0,0,0,.09); --acc:#F97316; --acc-d:#EA580C; --acc-text:#9A3412; --deep:#0B0B0D;
+  --sh-s:0 1px 2px rgba(0,0,0,.05), 0 8px 20px rgba(0,0,0,.06);
+  --sh-l:0 2px 6px rgba(0,0,0,.06), 0 30px 70px rgba(0,0,0,.14);
+  --r:26px;
+  --nav-a:.35; --nav-blur:14px; --nav-line:0;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  font-family:-apple-system,BlinkMacSystemFont,"SF Pro Text","Apple SD Gothic Neo","Pretendard",system-ui,sans-serif;
+  background:var(--bg);color:var(--ink);-webkit-font-smoothing:antialiased;
+  overflow-x:hidden;word-break:keep-all;overflow-wrap:break-word;
+  font-size:17px;line-height:1.5;letter-spacing:0;
+}
+a{text-decoration:none;color:var(--acc-text)}
+a:hover{color:var(--ink)}
+img{display:block;max-width:100%}
+::selection{background:var(--acc);color:#fff}
+
+/* hover states — these were style-hover attributes in the design source */
+.nl:hover{opacity:1;color:var(--acc-text)}
+.card:hover{box-shadow:var(--sh-l)}
+.fl:hover{color:#fff}
+
+@media (prefers-reduced-transparency: reduce){
+  [data-nav]{background:#fff !important;backdrop-filter:none !important}
+  [data-glass]{background:#fff !important;backdrop-filter:none !important}
+}
+@media (prefers-contrast: more){
+  :root{--line:rgba(0,0,0,.35);--mut:#48484C}
+}
+@media (max-width:1024px){
+  .two{grid-template-columns:1fr !important;gap:44px !important}
+  .three{grid-template-columns:1fr !important}
+}
+@media (max-width:768px){
+  .navlinks,.navcta{display:none !important}
+  .burger{display:flex !important}
+  .cont{padding:0 22px !important}
+  .sect{padding:72px 0 !important}
+  .figs,.cards,.steps,.ftgrid,.gaugerow,.zoneleg,.corridor{grid-template-columns:1fr !important;gap:16px !important}
+  .figs.wide{gap:26px !important}
+  .railline{display:none !important}
+  .stepdot{margin-bottom:14px !important}
+  .gaugerow span[data-bar],.corridor span[data-bar]{display:none !important}
+  .stack{height:44px !important}
+}
